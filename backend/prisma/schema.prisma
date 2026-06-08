@@ -1,0 +1,296 @@
+// ============================================================
+// Formora — Prisma Schema
+// ============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────
+
+enum Plan {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum OAuthProvider {
+  GOOGLE
+  APPLE
+  GITHUB
+}
+
+enum ProfileSection {
+  PERSONAL
+  CONTACT
+  EMPLOYMENT
+  EDUCATION
+  MEDICAL
+}
+
+enum FieldVisibility {
+  PUBLIC
+  PRIVATE
+  MASKED
+}
+
+enum FieldSource {
+  MANUAL
+  OCR
+  IMPORT
+}
+
+enum DocumentType {
+  PASSPORT
+  DRIVERS_LICENSE
+  NATIONAL_ID
+  RESUME
+  CERTIFICATE
+  OTHER
+}
+
+enum OcrProvider {
+  GOOGLE_VISION
+  TESSERACT
+}
+
+enum Platform {
+  BROWSER_EXTENSION
+  DESKTOP
+  MOBILE
+}
+
+// ─────────────────────────────────────────────
+// USERS
+// ─────────────────────────────────────────────
+
+model User {
+  id                String    @id @default(uuid()) @db.Uuid
+  email             String    @unique
+  emailVerifiedAt   DateTime?
+  passwordHash      String?
+  fullName          String
+  avatarUrl         String?
+  plan              Plan      @default(FREE)
+  storageUsedBytes  BigInt    @default(0)
+  storageLimitBytes BigInt    @default(1073741824) // 1 GB
+  isActive          Boolean   @default(true)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  deletedAt         DateTime?
+
+  // Relations
+  sessions       UserSession[]
+  oauthProviders UserOAuthProvider[]
+  mfaConfig      UserMfaConfig?
+  profile        Profile?
+  autofillMaps   AutofillMapping[]
+  fillSessions   FormFillSession[]
+  auditLogs      AuditLog[]
+
+  @@index([email])
+  @@map("users")
+}
+
+model UserOAuthProvider {
+  id             String        @id @default(uuid()) @db.Uuid
+  userId         String        @db.Uuid
+  provider       OAuthProvider
+  providerUserId String
+  accessToken    String? // stored encrypted at application level
+  createdAt      DateTime      @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerUserId])
+  @@map("user_oauth_providers")
+}
+
+model UserSession {
+  id               String    @id @default(uuid()) @db.Uuid
+  userId           String    @db.Uuid
+  refreshTokenHash String    @unique
+  ipAddress        String?
+  userAgent        String?
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  createdAt        DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("user_sessions")
+}
+
+model UserMfaConfig {
+  id           String    @id @default(uuid()) @db.Uuid
+  userId       String    @unique @db.Uuid
+  totpSecret   String // encrypted
+  backupCodes  String[] // each code stored as bcrypt hash
+  enabledAt    DateTime?
+  createdAt    DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_mfa_configs")
+}
+
+model EmailVerificationToken {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@map("email_verification_tokens")
+}
+
+model PasswordResetToken {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@map("password_reset_tokens")
+}
+
+// ─────────────────────────────────────────────
+// PROFILES
+// ─────────────────────────────────────────────
+
+model Profile {
+  id                String   @id @default(uuid()) @db.Uuid
+  userId            String   @unique @db.Uuid
+  completenessScore Int      @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fields    ProfileField[]
+  documents ProfileDocument[]
+
+  @@map("profiles")
+}
+
+model ProfileField {
+  id         String          @id @default(uuid()) @db.Uuid
+  profileId  String          @db.Uuid
+  section    ProfileSection
+  fieldKey   String
+  valueEnc   String // AES-256-GCM encrypted
+  dataType   String
+  visibility FieldVisibility @default(PRIVATE)
+  source     FieldSource     @default(MANUAL)
+  confidence Int?
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, section, fieldKey])
+  @@map("profile_fields")
+}
+
+model ProfileDocument {
+  id           String       @id @default(uuid()) @db.Uuid
+  profileId    String       @db.Uuid
+  filename     String
+  contentType  String
+  sizeBytes    BigInt
+  storageKey   String
+  thumbnailKey String?
+  documentType DocumentType?
+  virusScanned Boolean?
+  virusClean   Boolean?
+  createdAt    DateTime     @default(now())
+  deletedAt    DateTime?
+
+  profile    Profile     @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  ocrResults OcrResult[]
+
+  @@map("profile_documents")
+}
+
+model OcrResult {
+  id               String      @id @default(uuid()) @db.Uuid
+  documentId       String      @db.Uuid
+  provider         OcrProvider
+  rawResponse      Json
+  extractedFields  Json
+  overallConfidence Int
+  processedAt      DateTime    @default(now())
+
+  document ProfileDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@map("ocr_results")
+}
+
+// ─────────────────────────────────────────────
+// AUTOFILL
+// ─────────────────────────────────────────────
+
+model AutofillMapping {
+  id             String   @id @default(uuid()) @db.Uuid
+  userId         String   @db.Uuid
+  domain         String
+  formSelector   String?
+  fieldSelector  String
+  profileFieldKey String
+  aiConfidence   Int
+  userConfirmed  Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("autofill_mappings")
+}
+
+model FormFillSession {
+  id             String   @id @default(uuid()) @db.Uuid
+  userId         String?  @db.Uuid
+  domain         String
+  fieldsDetected Int
+  fieldsFilled   Int
+  fillAccuracy   Int?
+  durationMs     Int?
+  platform       Platform
+  createdAt      DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("form_fill_sessions")
+}
+
+// ─────────────────────────────────────────────
+// AUDIT
+// ─────────────────────────────────────────────
+
+model AuditLog {
+  id           String   @id @default(uuid()) @db.Uuid
+  userId       String?  @db.Uuid
+  action       String
+  resourceType String
+  resourceId   String?  @db.Uuid
+  metadata     Json?
+  ipAddress    String?
+  userAgent    String?
+  createdAt    DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([action])
+  @@map("audit_logs")
+}
