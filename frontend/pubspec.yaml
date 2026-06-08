@@ -1,0 +1,34 @@
+name: formora
+description: Formora AI-powered form automation platform frontend.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  go_router: ^13.2.0
+  dio: ^5.4.2
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  custom_lint: latest
+  riverpod_lint: latest
+  build_runner: ^2.4.8
+  freezed: ^2.4.7
+  json_serializable: ^8.0.0
+  mocktail: ^1.0.3
+
+flutter:
+  uses-material-design: true

@@ -1,0 +1,54 @@
+# ============================================================
+# Formora — Root .gitignore
+# ============================================================
+
+# ------ Flutter / Dart ------
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+*.g.dart
+*.freezed.dart
+
+# ------ Node / JS ------
+node_modules/
+dist/
+.next/
+out/
+*.tsbuildinfo
+
+# ------ Environment variables ------
+.env
+.env.*
+!.env.example
+
+# ------ IDE ------
+.vscode/
+.idea/
+*.iml
+*.suo
+*.user
+
+# ------ OS ------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------ Docker ------
+.docker/
+
+# ------ Logs ------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ------ Coverage ------
+coverage/
+lcov.info
+
+# ------ Misc ------
+*.swp
+*.swo
