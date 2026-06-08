@@ -49,6 +49,11 @@ class AuthRepository {
       data: {'refreshToken': refreshToken},
     );
   }
+
+  Future<Map<String, dynamic>> upgradePlan() async {
+    final response = await _apiClient.dio.post('/users/me/upgrade');
+    return response.data['data'] as Map<String, dynamic>;
+  }
 }
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {

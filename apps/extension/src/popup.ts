@@ -77,7 +77,13 @@ async function showMainView() {
     userAvatar.textContent = initials;
     userName.textContent   = user.fullName ?? user.email;
     userEmail.textContent  = user.email;
-    planBadge.textContent  = user.plan ?? 'Free';
+    if (user.plan && user.plan.toUpperCase() === 'PRO') {
+      planBadge.textContent = 'Pro';
+      planBadge.className = 'status-pill pro';
+    } else {
+      planBadge.textContent = 'Free';
+      planBadge.className = 'status-pill success';
+    }
   }
 
   if (comp) {

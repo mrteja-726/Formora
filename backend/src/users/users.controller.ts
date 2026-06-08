@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  Post,
   Patch,
   Delete,
   Body,
@@ -38,5 +39,12 @@ export class UsersController {
   @ApiOperation({ summary: 'Soft-delete account (30-day grace period)' })
   async deleteMe(@CurrentUser() user: { id: string }) {
     return { success: true, data: await this.usersService.softDelete(user.id) };
+  }
+
+  @Post('me/upgrade')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Upgrade user plan to PRO (Mock payment)' })
+  async upgradeMe(@CurrentUser() user: { id: string }) {
+    return { success: true, data: await this.usersService.upgradeToPro(user.id) };
   }
 }

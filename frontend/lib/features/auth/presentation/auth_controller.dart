@@ -121,6 +121,29 @@ class AuthNotifier extends StateNotifier<AuthState> {
     await SecureStorage.clear();
     state = state.copyWith(isLoading: false, clearUser: true);
   }
+
+  Future<bool> upgradeUserPlan() async {
+    state = state.copyWith(isLoading: true, errorMessage: null);
+    try {
+      await _repository.upgradePlan();
+      final user = await _repository.getMe();
+      state = state.copyWith(user: user, isLoading: false);
+      return true;
+    } on DioException catch (e) {
+      String msg = e.message ?? e.toString();
+      if (e.response != null && e.response!.data != null) {
+        final data = e.response!.data;
+        if (data is Map) {
+          msg = data['message'] ?? msg;
+        }
+      }
+      state = state.copyWith(isLoading: false, errorMessage: msg);
+      return false;
+    } catch (e) {
+      state = state.copyWith(isLoading: false, errorMessage: e.toString());
+      return false;
+    }
+  }
 }
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {

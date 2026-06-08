@@ -51,4 +51,19 @@ export class UsersService {
     });
     return { message: 'Account scheduled for deletion. You have 30 days to cancel.' };
   }
+
+  async upgradeToPro(id: string) {
+    return this.prisma.user.update({
+      where: { id },
+      data: { plan: 'PRO' },
+      select: {
+        id: true,
+        email: true,
+        fullName: true,
+        plan: true,
+        storageLimitBytes: true,
+        updatedAt: true,
+      },
+    });
+  }
 }
