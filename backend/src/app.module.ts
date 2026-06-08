@@ -3,8 +3,9 @@
 // ============================================================
 
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { BullModule } from '@nestjs/bullmq';
 import { APP_GUARD } from '@nestjs/core';
 
 import { PrismaModule } from './prisma/prisma.module';
@@ -15,6 +16,8 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ProfileModule } from './profile/profile.module';
 import { DocumentsModule } from './documents/documents.module';
+import { OcrModule } from './ocr/ocr.module';
+import { MappingModule } from './mapping/mapping.module';
 
 @Module({
   imports: [
@@ -27,6 +30,19 @@ import { DocumentsModule } from './documents/documents.module';
       { name: 'medium', ttl: 60_000 * 10, limit: 500 },
     ]),
 
+    // ── BullMQ (Redis-backed queues) ──────────────────────
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (config: ConfigService) => ({
+        connection: {
+          host: config.get('REDIS_HOST', 'localhost'),
+          port: config.get<number>('REDIS_PORT', 6379),
+          password: config.get<string>('REDIS_PASSWORD'),
+        },
+      }),
+      inject: [ConfigService],
+    }),
+
     // ── Infrastructure ────────────────────────────────────
     PrismaModule,
     EncryptionModule,
@@ -38,6 +54,8 @@ import { DocumentsModule } from './documents/documents.module';
     UsersModule,
     ProfileModule,
     DocumentsModule,
+    OcrModule,
+    MappingModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
