@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f0f1a;
+      --surface: #1a1a2e;
+      --border: rgba(99,102,241,0.2);
+      --primary: #6366f1;
+      --primary-hover: #818cf8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text: #f1f5f9;
+      --muted: #64748b;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 360px;
+      min-height: 500px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 14px;
+      overflow-x: hidden;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .logo svg { flex-shrink: 0; }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s;
+    }
+    .icon-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* ── Auth View ── */
+    #auth-view { padding: 24px 20px; }
+
+    .auth-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .auth-sub   { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .form-group input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus { border-color: var(--primary); }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border: none;
+      border-radius: var(--radius);
+      color: white;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px;
+      transition: opacity 0.2s, transform 0.1s;
+      margin-top: 4px;
+    }
+    .btn-primary:hover  { opacity: 0.9; }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .error-msg {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 8px;
+      color: #fca5a5;
+      font-size: 13px;
+      padding: 10px 14px;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* ── Main View ── */
+    #main-view { display: none; }
+
+    /* ── Profile card ── */
+    .profile-card {
+      margin: 16px 20px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .profile-info { flex: 1; min-width: 0; }
+    .profile-name  { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .profile-email { font-size: 12px; color: var(--muted); }
+
+    /* ── Completeness bar ── */
+    .completeness {
+      margin: 0 20px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .completeness-track {
+      flex: 1;
+      height: 6px;
+      background: var(--surface);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .completeness-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #22c55e);
+      border-radius: 99px;
+      transition: width 0.6s ease;
+    }
+    .completeness-pct { font-size: 12px; font-weight: 600; color: var(--primary); min-width: 32px; }
+
+    /* ── Section: current page ── */
+    .section { margin: 0 20px 16px; }
+    .section-title { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px; }
+
+    .page-status {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+
+    .page-domain { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+    .page-sub    { font-size: 12px; color: var(--muted); }
+
+    /* ── Field mappings list ── */
+    .mappings-list { display: flex; flex-direction: column; gap: 6px; }
+
+    .mapping-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      gap: 8px;
+    }
+
+    .mapping-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+
+    .mapping-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+      background: var(--success);
+    }
+    .mapping-dot.low  { background: var(--warning); }
+    .mapping-dot.none { background: var(--danger); }
+
+    .mapping-field { font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .mapping-key   { font-size: 12px; font-weight: 500; color: var(--primary); }
+
+    .conf-badge {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 99px;
+      background: rgba(99,102,241,0.15);
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    /* ── Action buttons ── */
+    .actions { padding: 0 20px 20px; display: flex; flex-direction: column; gap: 8px; }
+
+    .btn-fill {
+      width: 100%;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border: none;
+      border-radius: var(--radius);
+      color: white;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn-fill:hover  { opacity: 0.9; }
+    .btn-fill:active { transform: scale(0.98); }
+    .btn-fill:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-secondary {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* ── Trust badge ── */
+    .trust-section {
+      margin: 0 20px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+    }
+
+    .trust-label { font-size: 12px; color: var(--muted); }
+
+    .trust-select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 12px;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+
+    /* ── Status pill ── */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 99px;
+    }
+    .status-pill.success { background: rgba(34,197,94,0.15); color: #86efac; }
+    .status-pill.warning { background: rgba(245,158,11,0.15); color: #fcd34d; }
+
+    /* ── Loading spinner ── */
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+    }
+    .empty-state svg { margin-bottom: 8px; opacity: 0.4; }
+    .empty-state p { font-size: 13px; }
+
+    .divider { height: 1px; background: var(--border); margin: 0 20px 16px; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────── -->
+  <header class="header">
+    <div class="logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <defs>
+          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6366f1"/>
+            <stop offset="100%" stop-color="#a855f7"/>
+          </linearGradient>
+        </defs>
+        <rect width="24" height="24" rx="6" fill="url(#g1)"/>
+        <path d="M7 8h10M7 12h7M7 16h5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="18" cy="16" r="3" fill="white" opacity="0.9"/>
+        <path d="M17 16l.8.8 1.5-1.5" stroke="#6366f1" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      Formora
+    </div>
+    <div class="header-actions" id="header-actions" style="display:none">
+      <button class="icon-btn" id="settings-btn" title="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
+      </button>
+      <button class="icon-btn" id="logout-btn" title="Logout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Auth View ─────────────────────────────────────────── -->
+  <div id="auth-view">
+    <p class="auth-title" style="padding-top:24px; text-align:center">Welcome to Formora</p>
+    <p class="auth-sub" style="text-align:center; padding: 0 20px 20px">Sign in to autofill any form instantly</p>
+    <div style="padding: 0 20px">
+      <div class="form-group">
+        <label for="email-input">Email</label>
+        <input type="email" id="email-input" placeholder="jane@example.com" autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label for="pass-input">Password</label>
+        <input type="password" id="pass-input" placeholder="••••••••••••" autocomplete="current-password" />
+      </div>
+      <button class="btn-primary" id="login-btn">
+        <span id="login-label">Sign In</span>
+      </button>
+      <div class="error-msg" id="login-error"></div>
+    </div>
+  </div>
+
+  <!-- ── Main View ─────────────────────────────────────────── -->
+  <div id="main-view">
+
+    <!-- Profile -->
+    <div class="profile-card">
+      <div class="avatar" id="user-avatar">J</div>
+      <div class="profile-info">
+        <div class="profile-name" id="user-name">Loading…</div>
+        <div class="profile-email" id="user-email"></div>
+      </div>
+      <span class="status-pill success" id="plan-badge">Free</span>
+    </div>
+
+    <!-- Completeness -->
+    <div class="completeness">
+      <div class="completeness-track">
+        <div class="completeness-fill" id="completeness-fill" style="width:0%"></div>
+      </div>
+      <span class="completeness-pct" id="completeness-pct">0%</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Trust control -->
+    <div class="trust-section">
+      <div>
+        <div class="section-title" style="margin:0 0 2px">This site</div>
+        <div class="page-domain" id="current-domain" style="font-size:13px">—</div>
+      </div>
+      <select class="trust-select" id="trust-select">
+        <option value="ask">Ask me</option>
+        <option value="trusted">Always fill</option>
+        <option value="blocked">Block</option>
+      </select>
+    </div>
+
+    <!-- Current page mappings -->
+    <div class="section">
+      <div class="section-title">Detected fields</div>
+      <div id="mappings-container">
+        <div class="empty-state">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/>
+          </svg>
+          <p>Navigate to a page with a form<br>to see field mappings</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="btn-fill" id="fill-btn" disabled>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        Fill Form
+      </button>
+      <button class="btn-secondary" id="analyze-btn">
+        Re-scan this page
+      </button>
+    </div>
+
+  </div>
+
+  <script src="../popup.ts" type="module"></script>
+</body>
+</html>

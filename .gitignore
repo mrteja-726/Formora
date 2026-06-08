@@ -16,6 +16,8 @@ node_modules/
 dist/
 .next/
 out/
+.output/
+.wxt/
 *.tsbuildinfo
 
 # ------ Environment variables ------
