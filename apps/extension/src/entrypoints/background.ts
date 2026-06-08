@@ -5,10 +5,14 @@
 
 import { getTokens, analyzeForm, executeFill } from '../utils/api';
 import { getDomainTrust } from '../utils/trust';
+import { initSyncClient } from '../utils/sync';
 import type { ExtMessage } from '../types';
 
 export default defineBackground({
   main() {
+    // Start extension sync client
+    initSyncClient();
+
     // ── Extension install / update ─────────────────────────────
     chrome.runtime.onInstalled.addListener((details: chrome.runtime.InstalledDetails) => {
       if (details.reason === 'install') {

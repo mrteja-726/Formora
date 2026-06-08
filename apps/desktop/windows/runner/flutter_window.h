@@ -23,6 +23,14 @@ class FlutterWindow : public Win32Window {
                          LPARAM const lparam) noexcept override;
 
  private:
+  // Wide-char to UTF-8 conversion helper
+  std::string Utf8Encode(const std::wstring& wstr);
+  // UTF-8 to wide-char conversion helper
+  std::wstring Utf8Decode(const std::string& str);
+
+  // Method channel for autofill operations
+  std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> autofill_channel_;
+
   // The project to run.
   flutter::DartProject project_;
 
