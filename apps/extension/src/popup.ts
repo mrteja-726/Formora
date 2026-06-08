@@ -13,6 +13,7 @@ let currentTab: chrome.tabs.Tab | null = null;
 let currentDomain = '';
 let currentSessionId: string | null = null;
 let currentMappings: FieldMapping[] = [];
+let selectedSelectors = new Set<string>();
 
 // ── DOM references ─────────────────────────────────────────
 const authView    = document.getElementById('auth-view')!;
@@ -129,12 +130,19 @@ logoutBtn.addEventListener('click', async () => {
 
 trustSelect.addEventListener('change', async () => {
   await setDomainTrust(currentDomain, trustSelect.value as 'trusted' | 'blocked' | 'ask');
+  await scanPage();
 });
 
 // ── Page scan ─────────────────────────────────────────────
 
 async function scanPage() {
   if (!currentTab?.id || !currentDomain) return;
+
+  const trust = await getDomainTrust(currentDomain);
+  if (trust === 'blocked') {
+    renderBlockedState();
+    return;
+  }
 
   mappingsCon.innerHTML = '<div style="text-align:center;padding:16px;color:var(--muted);font-size:13px"><span class="spinner" style="border-top-color:var(--primary)"></span><br><br>Scanning page…</div>';
 
@@ -170,16 +178,21 @@ function renderMappings(mappings: FieldMapping[]) {
     return;
   }
 
-  fillBtn.disabled = false;
+  // Set all matched items to selected by default
+  selectedSelectors = new Set(matched.map((m) => m.selector));
+  updateFillButton();
 
   const html = matched.map((m) => {
-    const confClass = m.confidence >= 85 ? '' : m.confidence >= 60 ? 'low' : 'none';
+    const isChecked = selectedSelectors.has(m.selector) ? 'checked' : '';
     return `
-      <div class="mapping-item">
+      <div class="mapping-item" data-selector="${escHtml(m.selector)}">
         <div class="mapping-left">
-          <div class="mapping-dot ${confClass}"></div>
+          <label class="checkbox-container" onclick="event.stopPropagation()">
+            <input type="checkbox" class="mapping-checkbox" data-selector="${escHtml(m.selector)}" ${isChecked} />
+            <span class="checkmark"></span>
+          </label>
           <div>
-            <div class="mapping-field">${escHtml(m.selector)}</div>
+            <div class="mapping-field" style="max-width: 170px; word-break: break-all;">${escHtml(m.selector)}</div>
             <div class="mapping-key">${escHtml(m.profileFieldKey ?? '')}</div>
           </div>
         </div>
@@ -188,11 +201,70 @@ function renderMappings(mappings: FieldMapping[]) {
     `;
   }).join('');
 
-  mappingsCon.innerHTML = `<div class="mappings-list">${html}</div><div style="font-size:11px;color:var(--muted);text-align:center;margin-top:8px">${matched.length} of ${mappings.length} fields matched</div>`;
+  mappingsCon.innerHTML = `
+    <div class="mappings-list">${html}</div>
+    <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:8px">
+      ${matched.length} of ${mappings.length} fields matched
+    </div>
+  `;
+
+  // Attach click events to mapping items
+  const items = mappingsCon.querySelectorAll('.mapping-item');
+  items.forEach((item) => {
+    const selector = item.getAttribute('data-selector')!;
+    const checkbox = item.querySelector('.mapping-checkbox') as HTMLInputElement;
+
+    item.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.classList.contains('mapping-checkbox') || target.closest('.checkbox-container')) return;
+
+      checkbox.checked = !checkbox.checked;
+      _toggleSelector(selector, checkbox.checked);
+    });
+
+    checkbox.addEventListener('change', () => {
+      _toggleSelector(selector, checkbox.checked);
+    });
+  });
+}
+
+function _toggleSelector(selector: string, isChecked: boolean) {
+  if (isChecked) {
+    selectedSelectors.add(selector);
+  } else {
+    selectedSelectors.delete(selector);
+  }
+  updateFillButton();
+}
+
+function updateFillButton() {
+  const count = selectedSelectors.size;
+  fillBtn.disabled = count === 0;
+  if (count > 0) {
+    fillBtn.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      Fill ${count} Field${count > 1 ? 's' : ''}
+    `;
+  } else {
+    fillBtn.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      Fill Form
+    `;
+  }
 }
 
 function renderEmptyState(msg: string) {
   fillBtn.disabled = true;
+  fillBtn.innerHTML = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+    </svg>
+    Fill Form
+  `;
   mappingsCon.innerHTML = `<div class="empty-state">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
@@ -201,18 +273,33 @@ function renderEmptyState(msg: string) {
   </div>`;
 }
 
+function renderBlockedState() {
+  fillBtn.disabled = true;
+  fillBtn.innerHTML = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+    </svg>
+    Fill Form
+  `;
+  mappingsCon.innerHTML = `<div class="empty-state">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.5">
+      <circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+    </svg>
+    <p style="color: #fca5a5; font-weight: 500; margin-top: 8px;">Autofill is blocked on this site.</p>
+    <p style="font-size: 12px; margin-top: 4px;">Change domain trust settings to resume.</p>
+  </div>`;
+}
+
 // ── Fill ───────────────────────────────────────────────────
 
 fillBtn.addEventListener('click', async () => {
-  if (!currentSessionId || currentMappings.length === 0) return;
+  if (!currentSessionId || selectedSelectors.size === 0) return;
 
   fillBtn.disabled = true;
   fillBtn.innerHTML = '<span class="spinner"></span> Filling…';
 
   try {
-    const confirmedSelectors = currentMappings
-      .filter((m) => m.profileFieldKey)
-      .map((m) => m.selector);
+    const confirmedSelectors = Array.from(selectedSelectors);
 
     await chrome.runtime.sendMessage({
       type: 'TRIGGER_FILL',
@@ -223,13 +310,11 @@ fillBtn.addEventListener('click', async () => {
     fillBtn.innerHTML = '✓ Filled!';
     fillBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
     setTimeout(() => {
-      fillBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Fill Form`;
       fillBtn.style.background = '';
-      fillBtn.disabled = false;
+      updateFillButton();
     }, 2500);
   } catch (err) {
-    fillBtn.textContent = 'Fill Form';
-    fillBtn.disabled = false;
+    updateFillButton();
     alert((err as Error).message);
   }
 });
