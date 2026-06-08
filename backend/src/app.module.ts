@@ -9,10 +9,12 @@ import { APP_GUARD } from '@nestjs/core';
 
 import { PrismaModule } from './prisma/prisma.module';
 import { EncryptionModule } from './common/encryption/encryption.module';
+import { StorageModule } from './common/storage/storage.module';
 import { MailModule } from './mail/mail.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ProfileModule } from './profile/profile.module';
+import { DocumentsModule } from './documents/documents.module';
 
 @Module({
   imports: [
@@ -28,12 +30,14 @@ import { ProfileModule } from './profile/profile.module';
     // ── Infrastructure ────────────────────────────────────
     PrismaModule,
     EncryptionModule,
+    StorageModule,
     MailModule,
 
     // ── Feature modules ───────────────────────────────────
     AuthModule,
     UsersModule,
     ProfileModule,
+    DocumentsModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
