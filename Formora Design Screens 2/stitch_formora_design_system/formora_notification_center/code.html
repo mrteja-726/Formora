@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Formora | Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .unread-indicator {
+            position: relative;
+        }
+        .unread-indicator::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 8px;
+            height: 8px;
+            background-color: #00478d; /* primary color from config */
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            background: rgba(251, 248, 254, 0.8);
+        }
+        .notification-card {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s;
+        }
+        .notification-card:active {
+            transform: scale(0.98);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#424752",
+                      "tertiary": "#643c49",
+                      "primary-fixed": "#d6e3ff",
+                      "on-background": "#1b1b1f",
+                      "on-tertiary-fixed": "#31111d",
+                      "tertiary-container": "#7e5361",
+                      "tertiary-fixed-dim": "#eeb8c8",
+                      "secondary-fixed-dim": "#bec6dc",
+                      "surface": "#fbf8fe",
+                      "inverse-primary": "#a9c7ff",
+                      "surface-variant": "#e4e1e7",
+                      "outline-variant": "#c2c6d4",
+                      "inverse-on-surface": "#f3f0f5",
+                      "on-surface": "#1b1b1f",
+                      "tertiary-fixed": "#ffd9e3",
+                      "surface-dim": "#dcd9de",
+                      "secondary-container": "#dae2f9",
+                      "on-primary-fixed": "#001b3d",
+                      "inverse-surface": "#303034",
+                      "on-secondary-fixed-variant": "#3f4759",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#a9c7ff",
+                      "background": "#fbf8fe",
+                      "surface-container": "#f0edf2",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-fixed-variant": "#633b48",
+                      "secondary": "#565e71",
+                      "on-primary-fixed-variant": "#00468c",
+                      "on-error": "#ffffff",
+                      "surface-bright": "#fbf8fe",
+                      "surface-container-highest": "#e4e1e7",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-container": "#c8daff",
+                      "surface-container-low": "#f6f2f8",
+                      "secondary-fixed": "#dae2f9",
+                      "on-tertiary-container": "#ffcddb",
+                      "primary-container": "#005eb8",
+                      "surface-container-high": "#eae7ed",
+                      "primary": "#00478d",
+                      "on-secondary-fixed": "#131b2c",
+                      "error": "#ba1a1a",
+                      "surface-tint": "#005db6",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#5c6478",
+                      "on-primary": "#ffffff",
+                      "outline": "#727783"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "24px",
+                      "lg": "16px",
+                      "3xl": "48px",
+                      "xs": "4px",
+                      "2xl": "32px",
+                      "margin-mobile": "16px",
+                      "gutter": "16px",
+                      "sm": "8px",
+                      "md": "12px",
+                      "margin-desktop": "24px"
+              },
+              "fontFamily": {
+                      "title-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "title-lg": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"],
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "label-lg": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                      "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                      "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                      "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 glass-header flex flex-col w-full max-w-screen-xl mx-auto border-b border-surface-variant/30">
+<div class="flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-3">
+<button class="p-2 -ml-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Notifications</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+</button>
+<button class="text-label-lg font-label-lg text-primary px-3 py-1.5 rounded-full hover:bg-primary/5 transition-colors">
+                    Clear All
+                </button>
+</div>
+</div>
+<!-- Category/Filter Chips -->
+<div class="flex items-center gap-2 px-4 pb-4 overflow-x-auto hide-scrollbar">
+<button class="px-5 py-2 rounded-full bg-primary text-on-primary font-title-md text-title-md whitespace-nowrap shadow-sm">
+                All
+            </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-title-md text-title-md whitespace-nowrap hover:bg-surface-variant transition-colors">
+                OCR
+            </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-title-md text-title-md whitespace-nowrap hover:bg-surface-variant transition-colors">
+                Backups
+            </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-title-md text-title-md whitespace-nowrap hover:bg-surface-variant transition-colors">
+                Security
+            </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-title-md text-title-md whitespace-nowrap hover:bg-surface-variant transition-colors">
+                AI
+            </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-title-md text-title-md whitespace-nowrap hover:bg-surface-variant transition-colors">
+                Profiles
+            </button>
+</div>
+</header>
+<main class="max-w-screen-xl mx-auto px-4 pt-4 pb-32">
+<!-- New Section -->
+<section class="mb-8">
+<h2 class="font-title-lg text-title-lg text-on-surface-variant mb-4 px-1">New</h2>
+<div class="space-y-3">
+<!-- Notification Card: AI -->
+<div class="notification-card bg-surface-container-lowest border border-outline-variant/30 p-4 rounded-xl shadow-sm relative group overflow-hidden">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center flex-shrink-0 unread-indicator">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface font-semibold truncate">AI Insights Ready</h3>
+<span class="text-label-lg font-label-lg text-outline whitespace-nowrap ml-2">2m ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant leading-relaxed mb-3">
+                                Formora AI has analyzed your monthly financial statements. 3 new spending optimizations detected.
+                            </p>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-primary-container text-on-primary-container font-title-md text-body-md rounded-lg hover:bg-primary/20 transition-colors">
+                                    View Insights
+                                </button>
+<button class="px-4 py-2 border border-outline-variant text-on-surface-variant font-title-md text-body-md rounded-lg hover:bg-surface-container transition-colors">
+                                    Dismiss
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Card: OCR -->
+<div class="notification-card bg-surface-container-lowest border border-outline-variant/30 p-4 rounded-xl shadow-sm relative group overflow-hidden">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center flex-shrink-0 unread-indicator">
+<span class="material-symbols-outlined">document_scanner</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface font-semibold truncate">OCR Completed</h3>
+<span class="text-label-lg font-label-lg text-outline whitespace-nowrap ml-2">15m ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant leading-relaxed mb-3">
+                                Passport.pdf has been successfully scanned and metadata has been securely indexed.
+                            </p>
+<button class="px-4 py-2 bg-primary text-on-primary font-title-md text-body-md rounded-lg hover:bg-primary/90 transition-colors">
+                                View Document
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Earlier Section -->
+<section>
+<h2 class="font-title-lg text-title-lg text-on-surface-variant mb-4 px-1">Earlier</h2>
+<div class="space-y-3">
+<!-- Notification Card: Security -->
+<div class="notification-card bg-surface-container-low/50 border border-transparent p-4 rounded-xl transition-all hover:bg-surface-container-high/40">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface font-medium truncate">Security Alert</h3>
+<span class="text-label-lg font-label-lg text-outline whitespace-nowrap ml-2">2h ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant leading-relaxed mb-3">
+                                New login detected from a Chrome browser on Windows in San Francisco, CA.
+                            </p>
+<button class="px-4 py-2 border border-error text-error font-title-md text-body-md rounded-lg hover:bg-error/5 transition-colors">
+                                Check Activity
+                            </button>
+</div>
+<button class="p-1 h-fit text-outline hover:text-on-surface">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Notification Card: Backups -->
+<div class="notification-card bg-surface-container-low/50 border border-transparent p-4 rounded-xl transition-all hover:bg-surface-container-high/40">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">cloud_upload</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface font-medium truncate">Backup Successful</h3>
+<span class="text-label-lg font-label-lg text-outline whitespace-nowrap ml-2">5h ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                                Your 'Confidential' vault has been successfully backed up to the encrypted cloud.
+                            </p>
+</div>
+<button class="p-1 h-fit text-outline hover:text-on-surface">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Notification Card: Profile -->
+<div class="notification-card bg-surface-container-low/50 border border-transparent p-4 rounded-xl transition-all hover:bg-surface-container-high/40">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">account_circle</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface font-medium truncate">Profile Updated</h3>
+<span class="text-label-lg font-label-lg text-outline whitespace-nowrap ml-2">Yesterday</span>
+</div>
+<p class="text-body-md text-on-surface-variant leading-relaxed mb-3">
+                                Two-factor authentication (2FA) recovery codes have been regenerated.
+                            </p>
+<button class="px-4 py-2 bg-surface-variant text-on-surface-variant font-title-md text-body-md rounded-lg hover:bg-outline-variant transition-colors">
+                                View Security Settings
+                            </button>
+</div>
+<button class="p-1 h-fit text-outline hover:text-on-surface">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Empty State Visual Background -->
+<div class="mt-16 flex flex-col items-center justify-center text-center px-8 opacity-40">
+<div class="w-32 h-32 mb-6 rounded-3xl bg-gradient-to-br from-primary-fixed to-surface-container flex items-center justify-center relative overflow-hidden">
+
+<span class="material-symbols-outlined text-primary text-5xl relative z-10">notifications_none</span>
+</div>
+<p class="font-title-md text-on-surface-variant max-w-xs">You're all caught up with your digital vault activity.</p>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Matching SCREEN_52 Logic) -->
+<nav class="fixed bottom-0 left-0 w-full bg-surface-container border-t border-outline-variant/20 z-50 rounded-t-xl shadow-sm md:hidden">
+<div class="flex justify-around items-center px-4 py-3 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-lg text-label-lg mt-1">Documents</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-lg text-label-lg mt-1">Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg text-label-lg mt-1">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Desktop Navigation Rail (Hidden on Mobile) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-24 bg-surface-container flex-col items-center py-8 gap-8 border-r border-outline-variant/20 z-50">
+<div class="text-primary font-bold text-2xl mb-4">F</div>
+<button class="p-3 rounded-2xl hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">home</span>
+</button>
+<button class="p-3 rounded-2xl hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">description</span>
+</button>
+<button class="p-3 rounded-2xl bg-secondary-container text-on-secondary-container shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</button>
+<button class="p-3 rounded-2xl hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">smart_toy</span>
+</button>
+<div class="mt-auto">
+<button class="p-3 rounded-2xl hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">settings</span>
+</button>
+</div>
+</nav>
+<script>
+        // Micro-interactions for chips
+        const chips = document.querySelectorAll('.flex.overflow-x-auto button');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-primary', 'text-on-primary');
+                    c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+                chip.classList.add('bg-primary', 'text-on-primary');
+            });
+        });
+
+        // Swipe-like dismissal placeholder
+        const cards = document.querySelectorAll('.notification-card');
+        cards.forEach(card => {
+            let startX;
+            card.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            card.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                if (diff > 100) { // Swipe left
+                    card.style.transform = 'translateX(-120%)';
+                    card.style.opacity = '0';
+                    setTimeout(() => card.remove(), 300);
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Formora AI - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-tint": "#005db6",
+                "on-tertiary-fixed": "#31111d",
+                "inverse-primary": "#a9c7ff",
+                "error-container": "#ffdad6",
+                "tertiary": "#643c49",
+                "on-primary-fixed-variant": "#00468c",
+                "on-primary-fixed": "#001b3d",
+                "on-secondary-container": "#5c6478",
+                "primary-fixed": "#d6e3ff",
+                "on-error-container": "#93000a",
+                "primary-container": "#005eb8",
+                "on-surface": "#1b1b1f",
+                "primary-fixed-dim": "#a9c7ff",
+                "outline": "#727783",
+                "tertiary-fixed-dim": "#eeb8c8",
+                "surface-container-high": "#eae7ed",
+                "surface-variant": "#e4e1e7",
+                "primary": "#00478d",
+                "inverse-surface": "#303034",
+                "surface-container-lowest": "#ffffff",
+                "secondary-container": "#dae2f9",
+                "on-tertiary-container": "#ffcddb",
+                "secondary-fixed-dim": "#bec6dc",
+                "on-secondary": "#ffffff",
+                "on-primary-container": "#c8daff",
+                "surface-container": "#f0edf2",
+                "on-primary": "#ffffff",
+                "on-tertiary-fixed-variant": "#633b48",
+                "inverse-on-surface": "#f3f0f5",
+                "surface-container-low": "#f6f2f8",
+                "on-tertiary": "#ffffff",
+                "on-error": "#ffffff",
+                "on-secondary-fixed-variant": "#3f4759",
+                "surface-container-highest": "#e4e1e7",
+                "background": "#fbf8fe",
+                "on-secondary-fixed": "#131b2c",
+                "tertiary-container": "#7e5361",
+                "surface-bright": "#fbf8fe",
+                "error": "#ba1a1a",
+                "surface": "#fbf8fe",
+                "outline-variant": "#c2c6d4",
+                "tertiary-fixed": "#ffd9e3",
+                "secondary": "#565e71",
+                "on-surface-variant": "#424752",
+                "on-background": "#1b1b1f",
+                "secondary-fixed": "#dae2f9",
+                "surface-dim": "#dcd9de"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "2xl": "1rem",
+                "3xl": "1.5rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "sm": "8px",
+                "margin-desktop": "24px",
+                "md": "12px",
+                "2xl": "32px",
+                "xs": "4px",
+                "lg": "16px",
+                "xl": "24px",
+                "margin-mobile": "16px",
+                "gutter": "16px",
+                "3xl": "48px"
+        },
+        "fontFamily": {
+                "headline-md": ["Plus Jakarta Sans"],
+                "label-lg": ["JetBrains Mono"],
+                "display-lg": ["Plus Jakarta Sans"],
+                "body-md": ["Inter"],
+                "title-lg": ["Plus Jakarta Sans"],
+                "title-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-lg-mobile": ["Plus Jakarta Sans"],
+                "headline-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+                "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+    body {
+        background-color: #fbf8fe;
+        color: #1b1b1f;
+        -webkit-tap-highlight-color: transparent;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .ai-spark-glow {
+        box-shadow: 0 0 15px rgba(0, 94, 184, 0.15);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    /* Material 3 Grid Baseline */
+    .md3-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+    @media (min-width: 768px) {
+        .md3-grid {
+            grid-template-columns: repeat(8, 1fr);
+        }
+    }
+    @media (min-width: 1200px) {
+        .md3-grid {
+            grid-template-columns: repeat(12, 1fr);
+        }
+    }
+</style>
+</head>
+<body class="font-body-md text-body-md mb-24">
+<!-- TopAppBar from COMPONENTS_114 -->
+<header class="fixed top-0 z-40 bg-surface dark:bg-surface flex justify-between items-center w-full px-margin-mobile h-16">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim p-2 hover:bg-surface-container-low transition-colors active:scale-95 duration-200 cursor-pointer">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim tracking-tight">Formora</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant active:scale-95 duration-200 transition-transform cursor-pointer">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0xKDpdH5RUWjlINbCFRZ0kslzG7AyR1ouNau7uCdyBS6XSvABHcXmiDoUvba6Hbrev4IuD7bb6_WysEKah0iL1PfN3c8-okaUB7jF5b3H19H2NiENtt4JOJFw7_N82p-9G3JIPJP9cqockWuPh8onBtuoyZRhisy11Aq6nrNZsu7GlBgdWSyIkVrPOLRmRI907uw2ZZb60DllJx1aya-649VtpjMQA-aZgpEGJ2yQv6XlP1fQVoU0hM0TVehzblt9NarhCZMMELsV"/>
+</div>
+</header>
+<main class="max-w-screen-xl mx-auto px-margin-mobile pt-20 space-y-gutter">
+<!-- AI Provider Status Card - Refined Hierarchy -->
+<section>
+<div class="p-lg bg-surface-container-lowest rounded-2xl border border-outline-variant/30 ai-spark-glow">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-title-lg text-title-lg text-on-surface">Gemini Pro 1.5</h3>
+<span class="px-2 py-0.5 rounded-md bg-secondary-container text-[10px] font-bold text-on-secondary-container uppercase tracking-widest">Active</span>
+</div>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<p class="font-label-lg text-label-lg text-on-surface-variant">Connected • 142ms Latency</p>
+</div>
+</div>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">settings_suggest</span>
+</button>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center px-1">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Monthly Token Limit</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">65%</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[65%] rounded-full"></div>
+</div>
+<div class="flex justify-between items-center px-1">
+<span class="text-[10px] text-on-surface-variant">Used: 650 tokens</span>
+<span class="text-[10px] text-on-surface-variant">Limit: 1,000</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Intelligent Actions - MD3 Grid Layout -->
+<section>
+<h2 class="font-title-lg text-title-lg text-on-surface mb-md px-1">Intelligent Actions</h2>
+<div class="md3-grid">
+<button class="col-span-2 flex flex-col items-center justify-center p-md bg-surface-container rounded-2xl hover:bg-surface-container-high transition-all active:scale-[0.98] group">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<span class="font-title-md text-xs text-center text-on-surface-variant font-medium">Analyze Docs</span>
+</button>
+<button class="col-span-2 flex flex-col items-center justify-center p-md bg-surface-container rounded-2xl hover:bg-surface-container-high transition-all active:scale-[0.98] group">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+</div>
+<span class="font-title-md text-xs text-center text-on-surface-variant font-medium">Profiles</span>
+</button>
+<button class="col-span-2 flex flex-col items-center justify-center p-md bg-surface-container rounded-2xl hover:bg-surface-container-high transition-all active:scale-[0.98] group">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary">edit_note</span>
+</div>
+<span class="font-title-md text-xs text-center text-on-surface-variant font-medium">Fill Form</span>
+</button>
+<button class="col-span-2 flex flex-col items-center justify-center p-md bg-surface-container rounded-2xl hover:bg-surface-container-high transition-all active:scale-[0.98] group">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary">search_insights</span>
+</div>
+<span class="font-title-md text-xs text-center text-on-surface-variant font-medium">Find Info</span>
+</button>
+<button class="col-span-4 md:col-span-2 flex flex-col items-center justify-center p-md bg-surface-container rounded-2xl hover:bg-surface-container-high transition-all active:scale-[0.98] group">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary">auto_stories</span>
+</div>
+<span class="font-title-md text-xs text-center text-on-surface-variant font-medium">Explain</span>
+</button>
+</div>
+</section>
+<!-- Main Content Area: MD3 Columns -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-xl">
+<!-- Left Side: Recent & Pinned -->
+<div class="md:col-span-7 lg:col-span-8 space-y-xl">
+<!-- Pinned Conversations -->
+<section>
+<div class="flex items-center gap-2 mb-md">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">keep</span>
+<h2 class="font-title-lg text-title-lg text-on-surface">Pinned Chats</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<div class="p-lg bg-tertiary-fixed rounded-2xl border border-on-tertiary-container/10 flex items-start justify-between cursor-pointer hover:brightness-95 transition-all active:scale-95">
+<div class="space-y-1">
+<h4 class="font-title-md text-on-tertiary-fixed">Tax Audit 2024 Prep</h4>
+<p class="text-xs text-on-tertiary-fixed-variant">Updated 2h ago</p>
+</div>
+<span class="material-symbols-outlined text-on-tertiary-fixed text-lg">arrow_outward</span>
+</div>
+<div class="p-lg bg-secondary-fixed rounded-2xl border border-on-secondary-fixed-variant/10 flex items-start justify-between cursor-pointer hover:brightness-95 transition-all active:scale-95">
+<div class="space-y-1">
+<h4 class="font-title-md text-on-secondary-fixed">Medical History Extract</h4>
+<p class="text-xs text-on-secondary-fixed-variant">Updated Yesterday</p>
+</div>
+<span class="material-symbols-outlined text-on-secondary-fixed text-lg">arrow_outward</span>
+</div>
+</div>
+</section>
+<!-- Recent Interactions -->
+<section>
+<h2 class="font-title-lg text-title-lg text-on-surface mb-md">Recent Interactions</h2>
+<div class="space-y-2">
+<div class="group flex items-center gap-md p-md bg-surface-container-low hover:bg-white rounded-2xl transition-all cursor-pointer border border-transparent hover:border-outline-variant active:scale-[0.99]">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chat_bubble</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-title-md text-sm text-on-surface truncate">Identify PAN card fields for auto-filling...</h4>
+<p class="text-xs text-on-surface-variant">Jan 24, 2024 • 14:20</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="group flex items-center gap-md p-md bg-surface-container-low hover:bg-white rounded-2xl transition-all cursor-pointer border border-transparent hover:border-outline-variant active:scale-[0.99]">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chat_bubble</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-title-md text-sm text-on-surface truncate">Summarize Home Loan Agreement terms</h4>
+<p class="text-xs text-on-surface-variant">Jan 22, 2024 • 09:45</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Side: Suggestions -->
+<div class="md:col-span-5 lg:col-span-4">
+<section class="bg-surface-container-high/30 p-xl rounded-3xl border border-outline-variant/20">
+<div class="flex items-center gap-2 mb-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h2 class="font-title-lg text-title-lg text-on-surface">Try these</h2>
+</div>
+<div class="space-y-md">
+<div class="p-lg bg-white rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-all cursor-pointer flex flex-col gap-sm shadow-sm active:scale-[0.97] group">
+<p class="font-body-md text-sm text-on-surface-variant">Find missing information in Personal Profile</p>
+<div class="flex items-center gap-1 text-primary">
+<span class="text-xs font-bold uppercase tracking-widest">Execute</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">bolt</span>
+</div>
+</div>
+<div class="p-lg bg-white rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-all cursor-pointer flex flex-col gap-sm shadow-sm active:scale-[0.97] group">
+<p class="font-body-md text-sm text-on-surface-variant">Analyze uploaded PAN Card</p>
+<div class="flex items-center gap-1 text-primary">
+<span class="text-xs font-bold uppercase tracking-widest">Execute</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">bolt</span>
+</div>
+</div>
+<div class="p-lg bg-white rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-all cursor-pointer flex flex-col gap-sm shadow-sm active:scale-[0.97] group">
+<p class="font-body-md text-sm text-on-surface-variant">Generate Resume Summary</p>
+<div class="flex items-center gap-1 text-primary">
+<span class="text-xs font-bold uppercase tracking-widest">Execute</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">bolt</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- FAB / Assistant Spark -->
+<button class="fixed bottom-24 right-margin-mobile w-14 h-14 bg-primary-container text-on-primary-container shadow-lg rounded-2xl flex items-center justify-center hover:scale-105 active:scale-90 transition-all z-50 group border border-primary/20">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform" style="color: #005eb8;">auto_awesome</span>
+</button>
+<!-- BottomNavBar from COMPONENTS_114 -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface-container dark:bg-surface-container-highest shadow-md rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-lg text-label-lg mt-1">Vault</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-5 py-1 transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-label-lg text-label-lg mt-1">Assistant</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-lg text-label-lg mt-1">Profile</span>
+</button>
+</nav>
+<script>
+    // Micro-interactions for Material 3 touch feedback
+    document.querySelectorAll('button, .cursor-pointer').forEach(el => {
+        el.addEventListener('touchstart', function() {
+            this.classList.add('opacity-80');
+        });
+        el.addEventListener('touchend', function() {
+            this.classList.remove('opacity-80');
+        });
+    });
+</script>
+</body></html>

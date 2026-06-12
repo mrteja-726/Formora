@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora - Identity Documents</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#dae2f9",
+                    "surface-tint": "#005db6",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "background": "#fbf8fe",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "on-background": "#1b1b1f",
+                    "surface-container-low": "#f6f2f8",
+                    "outline": "#727783",
+                    "surface": "#fbf8fe",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1b1b1f",
+                    "secondary-fixed": "#dae2f9",
+                    "on-secondary-container": "#5c6478",
+                    "inverse-surface": "#303034",
+                    "primary": "#00478d",
+                    "tertiary-container": "#7e5361",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "inverse-on-surface": "#f3f0f5",
+                    "secondary": "#565e71",
+                    "on-surface-variant": "#424752",
+                    "error": "#ba1a1a",
+                    "primary-container": "#005eb8",
+                    "tertiary-fixed": "#ffd9e3",
+                    "on-primary-fixed": "#001b3d",
+                    "on-primary-container": "#c8daff",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-secondary-fixed": "#131b2c",
+                    "on-tertiary-container": "#ffcddb",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dcd9de",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e4e1e7",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-high": "#eae7ed",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#f0edf2",
+                    "inverse-primary": "#a9c7ff",
+                    "surface-container-highest": "#e4e1e7",
+                    "primary-fixed": "#d6e3ff",
+                    "on-tertiary-fixed": "#31111d",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "tertiary": "#643c49",
+                    "surface-bright": "#fbf8fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "lg": "16px",
+                    "3xl": "48px",
+                    "2xl": "32px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "md": "12px",
+                    "margin-desktop": "24px",
+                    "gutter": "16px",
+                    "xl": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-lg": ["JetBrains Mono"],
+                    "title-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .verified-badge { background-color: #e8f5e9; color: #2e7d32; }
+        .pending-badge { background-color: #fff8e1; color: #f57f17; }
+        .missing-badge { background-color: #f5f5f5; color: #757575; }
+        
+        .progress-gradient {
+            background: linear-gradient(90deg, #005eb8 0%, #00478d 100%);
+        }
+        
+        .bento-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px rgba(0, 71, 141, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-surface-container-low px-margin-mobile py-sm flex justify-between items-center w-full shadow-sm">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary p-xs rounded-full hover:bg-surface-variant transition-colors active:scale-95 duration-150">arrow_back</button>
+<h1 class="font-title-lg text-title-lg text-primary">Vault</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant p-xs rounded-full hover:bg-surface-variant transition-colors active:scale-95 duration-150">more_vert</button>
+</div>
+</header>
+<main class="max-w-3xl mx-auto px-margin-mobile mt-lg">
+<!-- Hero Section / Header -->
+<section class="mb-xl">
+<div class="flex justify-between items-end mb-md">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">Identity Documents</h2>
+<p class="font-body-md text-on-surface-variant mt-xs">12 Fields Completed · 2 Fields Missing</p>
+</div>
+<div class="text-right">
+<span class="font-title-lg text-title-lg text-primary font-bold">85%</span>
+</div>
+</div>
+<div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full progress-gradient w-[85%] rounded-full transition-all duration-1000 ease-out"></div>
+</div>
+</section>
+<!-- Progress Summary Card (Asymmetric Layout) -->
+<section class="mb-xl">
+<div class="bg-primary-container text-on-primary-container p-lg rounded-xl shadow-sm relative overflow-hidden bento-card">
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-lg">
+<div class="max-w-md">
+<h3 class="font-title-md text-title-md font-bold mb-xs">Almost there, Alex!</h3>
+<p class="font-body-md opacity-90">To reach 100% and unlock auto-filling for international travel forms, please provide your Issuing Authority and Emergency Contact details.</p>
+</div>
+<button class="bg-on-primary-container text-primary px-lg py-sm rounded-full font-label-lg whitespace-nowrap active:scale-95 transition-transform">Complete Now</button>
+</div>
+<!-- Abstract Glow Decoration -->
+<div class="absolute -right-12 -top-12 w-32 h-32 bg-primary-fixed-dim opacity-20 blur-3xl rounded-full"></div>
+</div>
+</section>
+<!-- Fields List -->
+<section class="space-y-md">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider mb-sm">Vault Fields</h3>
+<!-- Field Card 1 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant bento-card flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Full Name</span>
+<span class="verified-badge px-sm py-1 rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">check_circle</span> Verified
+                        </span>
+</div>
+<p class="font-title-md text-title-md text-on-surface">Alex Sterling</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant p-sm rounded-full hover:bg-surface-variant transition-colors">edit</button>
+<button class="flex items-center gap-xs px-md py-sm border border-outline-variant rounded-lg text-primary font-label-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+                        Upload
+                    </button>
+</div>
+</div>
+<!-- Field Card 2 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant bento-card flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Date of Birth</span>
+<span class="verified-badge px-sm py-1 rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">check_circle</span> Verified
+                        </span>
+</div>
+<p class="font-title-md text-title-md text-on-surface">March 14, 1992</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant p-sm rounded-full hover:bg-surface-variant transition-colors">edit</button>
+<button class="flex items-center gap-xs px-md py-sm border border-outline-variant rounded-lg text-primary font-label-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+                        Upload
+                    </button>
+</div>
+</div>
+<!-- Field Card 3 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant bento-card flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Passport Number</span>
+<span class="verified-badge px-sm py-1 rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">check_circle</span> Verified
+                        </span>
+</div>
+<p class="font-title-md text-title-md text-on-surface font-mono tracking-widest">A12345678</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant p-sm rounded-full hover:bg-surface-variant transition-colors">edit</button>
+<button class="flex items-center gap-xs px-md py-sm border border-outline-variant rounded-lg text-primary font-label-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+                        Upload
+                    </button>
+</div>
+</div>
+<!-- Field Card 4 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant bento-card flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Expiry Date</span>
+<span class="verified-badge px-sm py-1 rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">check_circle</span> Verified
+                        </span>
+</div>
+<p class="font-title-md text-title-md text-on-surface">January 10, 2030</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant p-sm rounded-full hover:bg-surface-variant transition-colors">edit</button>
+<button class="flex items-center gap-xs px-md py-sm border border-outline-variant rounded-lg text-primary font-label-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+                        Upload
+                    </button>
+</div>
+</div>
+<!-- Field Card 5 (Pending) -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant bento-card flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Issuing Authority</span>
+<span class="pending-badge px-sm py-1 rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">history</span> Pending
+                        </span>
+</div>
+<p class="font-title-md text-title-md text-on-surface-variant italic">Reviewing document...</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant p-sm rounded-full hover:bg-surface-variant transition-colors">edit</button>
+<button class="flex items-center gap-xs px-md py-sm border border-outline-variant rounded-lg text-primary font-label-lg bg-secondary-container/30 hover:bg-secondary-container/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                        View
+                    </button>
+</div>
+</div>
+<!-- Field Card 6 (Missing) -->
+<div class="bg-surface-container border-2 border-dashed border-outline-variant p-lg rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Emergency Contact</span>
+<span class="missing-badge px-sm py-1 rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[12px]">error</span> Missing
+                        </span>
+</div>
+<p class="font-title-md text-title-md text-outline">Not provided</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-xs px-lg py-sm bg-primary text-on-primary rounded-full font-label-lg shadow-sm hover:shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        Add Data
+                    </button>
+</div>
+</div>
+</section>
+<!-- AI Assistant Placeholder (Premium Touch) -->
+<section class="mt-3xl mb-lg">
+<div class="bg-surface-container-high rounded-2xl p-lg flex items-center gap-lg border-l-4 border-tertiary shadow-sm">
+<div class="w-12 h-12 bg-tertiary-container text-on-tertiary-container rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md font-bold text-on-surface">Vault Assistant Insight</h4>
+<p class="font-body-md text-on-surface-variant">Your passport expires in less than 6 months. Most airlines require at least 6 months validity for international travel. Need help with renewal forms?</p>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-28 right-margin-mobile z-50 bg-primary-container text-on-primary-container w-14 h-14 rounded-2xl shadow-lg flex items-center justify-center hover:shadow-xl active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined text-[32px]">add</span>
+<!-- Optional Label for Expanded State if needed -->
+</button>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container flex justify-around items-center px-lg py-md rounded-t-xl shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-lg py-xs hover:bg-surface-container-high transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg mt-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-lg py-xs active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-lg text-label-lg mt-xs">Documents</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-lg py-xs hover:bg-surface-container-high transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="font-label-lg text-label-lg mt-xs">AI Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-lg py-xs hover:bg-surface-container-high transition-colors active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg text-label-lg mt-xs">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0px)';
+            });
+        });
+    </script>
+</body></html>

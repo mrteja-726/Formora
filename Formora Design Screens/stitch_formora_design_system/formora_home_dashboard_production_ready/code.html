@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .circular-progress {
+            background: radial-gradient(closest-side, #00478d 79%, transparent 80% 100%),
+                        conic-gradient(#a9c7ff 72%, #002d5d 0);
+        }
+        
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.15s; }
+        .stagger-3 { animation-delay: 0.2s; }
+        .stagger-4 { animation-delay: 0.25s; }
+        .stagger-5 { animation-delay: 0.3s; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#005db6",
+                      "on-tertiary-fixed": "#31111d",
+                      "inverse-primary": "#a9c7ff",
+                      "error-container": "#ffdad6",
+                      "tertiary": "#643c49",
+                      "on-primary-fixed-variant": "#00468c",
+                      "on-primary-fixed": "#001b3d",
+                      "on-secondary-container": "#5c6478",
+                      "primary-fixed": "#d6e3ff",
+                      "on-error-container": "#93000a",
+                      "primary-container": "#005eb8",
+                      "on-surface": "#1b1b1f",
+                      "primary-fixed-dim": "#a9c7ff",
+                      "outline": "#727783",
+                      "tertiary-fixed-dim": "#eeb8c8",
+                      "surface-container-high": "#eae7ed",
+                      "surface-variant": "#e4e1e7",
+                      "primary": "#00478d",
+                      "inverse-surface": "#303034",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#dae2f9",
+                      "on-tertiary-container": "#ffcddb",
+                      "secondary-fixed-dim": "#bec6dc",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#c8daff",
+                      "surface-container": "#f0edf2",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#633b48",
+                      "inverse-on-surface": "#f3f0f5",
+                      "surface-container-low": "#f6f2f8",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "on-secondary-fixed-variant": "#3f4759",
+                      "surface-container-highest": "#e4e1e7",
+                      "background": "#fbf8fe",
+                      "on-secondary-fixed": "#131b2c",
+                      "tertiary-container": "#7e5361",
+                      "surface-bright": "#fbf8fe",
+                      "error": "#ba1a1a",
+                      "surface": "#fbf8fe",
+                      "outline-variant": "#c2c6d4",
+                      "tertiary-fixed": "#ffd9e3",
+                      "secondary": "#565e71",
+                      "on-surface-variant": "#424752",
+                      "on-background": "#1b1b1f",
+                      "secondary-fixed": "#dae2f9",
+                      "surface-dim": "#dcd9de"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "2xl": "1.25rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "margin-desktop": "24px",
+                      "md": "12px",
+                      "2xl": "32px",
+                      "xs": "4px",
+                      "lg": "16px",
+                      "xl": "24px",
+                      "margin-mobile": "16px",
+                      "gutter": "16px",
+                      "3xl": "48px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "label-lg": ["JetBrains Mono"],
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"],
+                      "title-lg": ["Plus Jakarta Sans"],
+                      "title-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                      "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                      "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top App Bar (MD3 Small Center Aligned) -->
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile h-16">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+</button>
+<div class="flex items-center gap-1">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Formora</h1>
+<span class="material-symbols-outlined text-primary text-xl">expand_more</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-fixed flex items-center justify-center cursor-pointer active:scale-95 transition-transform">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu4kbSqfASijjOgdOjOmFYijXmbOJO_y66kf-iZjPgMRL36Xg6Unb6i29VzQ2Kp_1mS7v8RwF2Ct37JfWF5ltfG_grkn7gvVu_lho9x820IIqn4KLy-rk7mUWLaH569P-219PLZw1nNSlQvVRjmTSPQR-2hNzzN3Ymbko0kCTweK-6gkapmzbTa2H1_87ICEreCXYc8vG3dp63L-lOBwVKmPlpXAducUhHXr0gKYT_mbPBIMxxr04esOQdertJmcRAsXTaslMafuK9"/>
+</div>
+</header>
+<main class="px-margin-mobile max-w-2xl mx-auto pt-6 space-y-xl">
+<!-- Hero Section: MD3 Filled Container Style -->
+<section class="bg-primary text-on-primary p-6 rounded-2xl shadow-md relative overflow-hidden animate-fade-in-up">
+<div class="relative z-10 flex items-start justify-between">
+<div class="space-y-sm">
+<h2 class="font-headline text-headline-lg-mobile font-bold leading-tight">You're almost there!</h2>
+<p class="font-body-md text-on-primary opacity-90">6 items remaining to secure your vault.</p>
+<ul class="mt-4 space-y-xs font-body-md text-sm">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-on-primary"></span>
+                        Add Emergency Contact
+                    </li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-on-primary"></span>
+                        Verify Identity Document
+                    </li>
+</ul>
+</div>
+<div class="relative flex-shrink-0">
+<div class="circular-progress w-24 h-24 rounded-full flex items-center justify-center shadow-inner">
+<div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-center">
+<span class="font-headline font-bold text-xl text-on-primary">72%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-10 -right-10 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+</section>
+<!-- Completion Breakdown Chips -->
+<section class="space-y-sm animate-fade-in-up stagger-1">
+<h3 class="font-headline font-semibold text-on-surface-variant text-sm px-1">Status Overview</h3>
+<div class="flex overflow-x-auto gap-sm hide-scrollbar pb-2">
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container-highest rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-green-700 text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-lg text-on-surface">Identity</span>
+</div>
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full border border-outline-variant">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="font-label-lg text-on-surface">Education</span>
+</div>
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full border border-outline-variant">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="font-label-lg text-on-surface">Employment</span>
+</div>
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-error-container text-on-error-container rounded-full">
+<span class="material-symbols-outlined text-lg">error</span>
+<span class="font-label-lg">Banking</span>
+</div>
+</div>
+</section>
+<!-- Quick Actions Grid (MD3 Tonal/Elevated Cards) -->
+<section class="grid grid-cols-2 gap-lg animate-fade-in-up stagger-2">
+<button class="flex flex-col items-center justify-center p-6 bg-secondary-container text-on-secondary-container rounded-2xl gap-md transition-all hover:shadow-md active:scale-95 group">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container text-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">document_scanner</span>
+</div>
+<span class="font-headline text-sm font-semibold">Scan Document</span>
+</button>
+<button class="flex flex-col items-center justify-center p-6 bg-secondary-container text-on-secondary-container rounded-2xl gap-md transition-all hover:shadow-md active:scale-95 group">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container text-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">upload_file</span>
+</div>
+<span class="font-headline text-sm font-semibold">Upload File</span>
+</button>
+</section>
+<!-- Information Categories List (MD3 Outlined and Tonal Cards) -->
+<section class="space-y-lg animate-fade-in-up stagger-3">
+<h3 class="font-headline font-semibold text-on-surface-variant text-sm px-1">Vault Categories</h3>
+<!-- Personal Info Card (Tonal) -->
+<div class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant hover:border-primary/30 transition-colors flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-primary-container text-on-primary-container">
+<span class="material-symbols-outlined">badge</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Personal Info</h4>
+<p class="font-body-md text-xs text-on-surface-variant">100% complete • Secure</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 py-2 font-label-lg text-primary bg-primary/5 rounded-lg hover:bg-primary/10 transition-colors">Edit Details</button>
+<button class="flex-1 py-2 font-label-lg text-on-surface-variant hover:bg-surface-variant rounded-lg transition-colors">View Profile</button>
+</div>
+</div>
+<!-- Identity Docs Card (Critical Tonal) -->
+<div class="bg-surface-container-low rounded-2xl p-lg border border-error/30 transition-colors flex flex-col gap-md animate-fade-in-up stagger-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-error-container text-on-error-container">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Identity Docs</h4>
+<p class="font-body-md text-xs text-error font-semibold">3 missing fields • Urgent</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-error w-[40%] h-full rounded-full"></div>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 py-2 font-label-lg text-primary border border-primary/20 rounded-lg hover:bg-primary/5 transition-colors">Upload Scan</button>
+<button class="flex-1 py-2 font-label-lg text-white bg-primary rounded-lg shadow-sm active:scale-95 transition-transform">Fix Missing</button>
+</div>
+</div>
+<!-- Emergency Contacts (Outlined/Dashed) -->
+<div class="bg-surface rounded-2xl p-lg border-2 border-dashed border-outline-variant flex items-center justify-between opacity-70 group hover:opacity-100 hover:border-primary transition-all animate-fade-in-up stagger-5">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined">contact_emergency</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Emergency Contacts</h4>
+<p class="font-body-md text-xs text-on-surface-variant">Not started</p>
+</div>
+</div>
+<button class="p-3 bg-primary text-on-primary rounded-full shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</section>
+</main>
+<!-- MD3 Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface-container shadow-md rounded-t-xl">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 transition-all duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<!-- Vault -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-lg text-label-lg">Vault</span>
+</a>
+<!-- Assistant -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-lg text-label-lg">Assistant</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</a>
+</nav>
+<!-- FAB: Contextual -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary-container text-on-primary-container rounded-2xl shadow-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</body></html>

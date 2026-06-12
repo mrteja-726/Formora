@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora Backup Center</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Script & Config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dcd9de",
+                        "secondary-fixed": "#dae2f9",
+                        "primary-fixed": "#d6e3ff",
+                        "on-secondary-container": "#5c6478",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#7e5361",
+                        "on-secondary-fixed": "#131b2c",
+                        "primary-container": "#005eb8",
+                        "on-secondary-fixed-variant": "#3f4759",
+                        "surface-tint": "#005db6",
+                        "surface-container-low": "#f6f2f8",
+                        "on-primary-fixed-variant": "#00468c",
+                        "background": "#fbf8fe",
+                        "outline": "#727783",
+                        "on-tertiary-fixed": "#31111d",
+                        "on-primary-fixed": "#001b3d",
+                        "tertiary": "#643c49",
+                        "secondary": "#565e71",
+                        "on-secondary": "#ffffff",
+                        "primary": "#00478d",
+                        "surface-container": "#f0edf2",
+                        "surface-container-highest": "#e4e1e7",
+                        "tertiary-fixed": "#ffd9e3",
+                        "inverse-surface": "#303034",
+                        "surface-variant": "#e4e1e7",
+                        "on-surface": "#1b1b1f",
+                        "on-background": "#1b1b1f",
+                        "inverse-on-surface": "#f3f0f5",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#633b48",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fbf8fe",
+                        "on-tertiary-container": "#ffcddb",
+                        "on-surface-variant": "#424752",
+                        "surface-container-high": "#eae7ed",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "secondary-fixed-dim": "#bec6dc",
+                        "on-primary-container": "#c8daff",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fbf8fe",
+                        "inverse-primary": "#a9c7ff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#dae2f9",
+                        "outline-variant": "#c2c6d4",
+                        "tertiary-fixed-dim": "#eeb8c8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "24px",
+                        "margin-desktop": "24px",
+                        "3xl": "48px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "md": "12px",
+                        "gutter": "16px",
+                        "2xl": "32px",
+                        "lg": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "title-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-lg": ["JetBrains Mono"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                        "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        @keyframes shield-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(200, 218, 255, 0.1); }
+            50% { box-shadow: 0 0 35px rgba(200, 218, 255, 0.4); }
+        }
+        .animate-shield-glow { animation: shield-glow 3s infinite ease-in-out; }
+        
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24 font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky bg-background flex items-center justify-between px-margin-mobile py-sm z-40 flat no-shadows border-b border-surface-container-high">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">shield</span>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary tracking-tight">Formora</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high flex items-center justify-center border border-outline-variant/30">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A minimalist, high-resolution digital rendering of a generic user avatar placeholder. The avatar features a sleek, abstract geometric silhouette set against a soft, premium light-grey background. The lighting is pristine and studio-quality, casting subtle, elegant shadows that define the shape. The aesthetic is clean, secure, and modern, perfectly fitting a sophisticated privacy-first application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu4eOhaLIL5kgyDnzSHaazj_2s5ccTvxBxXq3Ac2cH-OcflUMVczSvzTjzeAyKZUUHULYvi3jaSsgXeIhvK2biHS7TBVGXLlK-gmQKoYvzSl_S_pCkgornWLrwlQZCOSmsY_CPaR12Bq29Fs5grBjyC1OECVrndsA6aFaj-W-8r9AgY7ZFdasD8QXn9E7SuyAW_7bTWkL4gVRArmE0mbD1U58kx8YRiOumsnbxQKmS49NOyCPrMUTKTIB4vLTBoBeE2kemRFsty79B"/>
+</div>
+</header>
+<main class="px-margin-mobile flex flex-col gap-xl mt-md">
+<!-- Backup Health Hero Card -->
+<section class="bg-primary-container rounded-xl p-lg flex flex-col items-center justify-center text-center relative overflow-hidden shadow-sm border border-primary/10">
+<!-- Decorative background gradient element -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-surface-tint/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 w-20 h-20 rounded-full bg-surface-container-lowest flex items-center justify-center animate-shield-glow mb-4 shadow-md border border-primary-fixed/50">
+<span class="material-symbols-outlined text-primary text-4xl drop-shadow-sm" style="font-variation-settings: 'FILL' 1;">shield_lock</span>
+</div>
+<div class="relative z-10">
+<h2 class="font-title-lg text-title-lg text-on-primary-container mb-1 tracking-tight">Securely Encrypted</h2>
+<div class="inline-flex items-center gap-2 bg-on-primary-container/10 px-3 py-1 rounded-full mt-2">
+<span class="w-2 h-2 rounded-full bg-[#4CAF50] animate-pulse"></span>
+<p class="font-body-md text-body-md text-on-primary-container/90">Last Backup: 2h ago • Age: 120 mins</p>
+</div>
+</div>
+</section>
+<!-- Quick Actions Grid -->
+<section class="grid grid-cols-3 gap-md">
+<button class="bg-secondary-container text-on-secondary-container rounded-xl p-md flex flex-col items-center justify-center gap-sm active:scale-95 transition-transform shadow-sm border border-secondary-fixed/50 hover:bg-secondary-fixed">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">cloud_upload</span>
+</div>
+<span class="font-label-lg text-label-lg font-medium">Create</span>
+</button>
+<button class="bg-surface-container-low text-on-surface rounded-xl p-md flex flex-col items-center justify-center gap-sm active:scale-95 transition-transform hover:bg-surface-container-highest border border-outline-variant/30">
+<div class="w-10 h-10 rounded-full bg-surface-container/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">settings_backup_restore</span>
+</div>
+<span class="font-label-lg text-label-lg">Restore</span>
+</button>
+<button class="bg-surface-container-low text-on-surface rounded-xl p-md flex flex-col items-center justify-center gap-sm active:scale-95 transition-transform hover:bg-surface-container-highest border border-outline-variant/30">
+<div class="w-10 h-10 rounded-full bg-surface-container/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">verified_user</span>
+</div>
+<span class="font-label-lg text-label-lg">Verify</span>
+</button>
+</section>
+<!-- Storage Usage Bento -->
+<section class="bg-surface-container-lowest rounded-xl p-lg flex flex-col gap-md border border-outline-variant/40 shadow-sm relative overflow-hidden">
+<div class="flex justify-between items-end relative z-10">
+<div class="flex items-center gap-sm text-on-surface">
+<span class="material-symbols-outlined text-xl">database</span>
+<span class="font-title-md text-title-md">Storage Usage</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface-variant bg-surface-container px-2 py-1 rounded-md border border-outline-variant/20">4.2 GB / 10 GB Local</span>
+</div>
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden mt-1 relative z-10 shadow-inner">
+<div class="h-full bg-primary rounded-full relative" style="width: 42%;">
+<div class="absolute inset-0 bg-white/20 w-full h-full" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);"></div>
+</div>
+</div>
+</section>
+<!-- Encryption Details Card -->
+<section class="bg-transparent border border-outline-variant rounded-xl p-lg flex flex-col gap-md bg-surface-container-lowest/50">
+<div class="flex items-center gap-sm mb-1">
+<span class="material-symbols-outlined text-primary text-xl">security</span>
+<h3 class="font-title-md text-title-md text-on-surface tracking-tight">Technical Security</h3>
+</div>
+<div class="grid grid-cols-2 gap-y-md gap-x-md">
+<div class="flex flex-col bg-surface-container-low p-sm rounded-lg border border-outline-variant/20">
+<span class="font-label-lg text-label-lg text-on-surface-variant mb-1">Encryption</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">AES-256 Enabled</span>
+</div>
+<div class="flex flex-col bg-surface-container-low p-sm rounded-lg border border-outline-variant/20">
+<span class="font-label-lg text-label-lg text-on-surface-variant mb-1">Backup Version</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">v2.4.0</span>
+</div>
+<div class="flex flex-col col-span-2">
+<div class="flex items-center gap-sm bg-primary-fixed/20 p-md rounded-lg border border-primary/10">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-primary-fixed font-medium">Integrity Status: Verified</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Backup History Timeline -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-on-surface">Recent Backups</h3>
+<button class="font-label-lg text-label-lg text-primary hover:underline">View All</button>
+</div>
+<div class="flex flex-col gap-4 border-l-2 border-surface-container ml-3 pl-5 relative mt-2">
+<!-- Timeline Item 1 -->
+<div class="relative group">
+<div class="absolute -left-[27px] top-1.5 w-3 h-3 bg-primary rounded-full border-2 border-background ring-4 ring-primary/10"></div>
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 shadow-sm flex flex-col gap-2 transition-colors hover:bg-surface-container-low">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">calendar_today</span>
+<span class="font-label-lg text-label-lg text-on-surface">Jan 24, 2024 • 14:20</span>
+</div>
+<span class="font-label-lg text-label-lg text-primary bg-primary-fixed/30 px-2 py-0.5 rounded-md border border-primary/20">1.2 GB</span>
+</div>
+<div class="h-px w-full bg-outline-variant/20 my-1"></div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">group</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Profiles: Personal, Business</p>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">description</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Documents: 142 files</p>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative opacity-70">
+<div class="absolute -left-[27px] top-1.5 w-3 h-3 bg-outline-variant rounded-full border-2 border-background"></div>
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 shadow-sm flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">calendar_today</span>
+<span class="font-label-lg text-label-lg text-on-surface">Jan 23, 2024 • 10:00</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-md">1.1 GB</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Reminder Toggle -->
+<section class="bg-surface-container-lowest rounded-xl p-md flex items-center justify-between shadow-sm border border-outline-variant/30 mb-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed/50 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Weekly Reminders</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant mt-0.5">Get notified to sync local vault</span>
+</div>
+</div>
+<!-- Interactive Toggle -->
+<button aria-label="Toggle Reminders" class="w-12 h-7 bg-primary rounded-full relative transition-colors duration-300 ease-in-out cursor-pointer flex-shrink-0 border border-primary/20 shadow-inner" onclick="this.classList.toggle('bg-surface-variant'); this.classList.toggle('bg-primary'); this.classList.toggle('border-outline-variant'); this.firstElementChild.classList.toggle('translate-x-5'); this.firstElementChild.classList.toggle('bg-outline');">
+<span class="absolute left-[3px] top-[3px] w-5 h-5 bg-on-primary rounded-full transition-transform duration-300 ease-in-out translate-x-5 shadow-sm"></span>
+</button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container shadow-[0_-4px_20px_rgba(0,0,0,0.05)] flex justify-around items-center px-4 py-2 pb-4">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all duration-200 active:scale-90 group w-16">
+<span class="material-symbols-outlined group-hover:bg-surface-variant/50 rounded-full px-4 py-1 transition-colors">dashboard</span>
+<span class="font-label-lg text-label-lg mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all duration-200 active:scale-90 group w-16">
+<span class="material-symbols-outlined group-hover:bg-surface-variant/50 rounded-full px-4 py-1 transition-colors">lock</span>
+<span class="font-label-lg text-label-lg mt-1">Vault</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all duration-200 active:scale-90 group w-16">
+<span class="material-symbols-outlined group-hover:bg-surface-variant/50 rounded-full px-4 py-1 transition-colors">auto_awesome</span>
+<span class="font-label-lg text-label-lg mt-1 text-center whitespace-nowrap">AI</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-secondary-container bg-transparent px-2 py-1 transition-all duration-200 active:scale-90 w-16">
+<div class="bg-secondary-container rounded-full px-5 py-1 mb-1 shadow-sm border border-secondary-fixed/50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cloud_upload</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold">Backups</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .circular-progress {
+            background: radial-gradient(closest-side, white 79%, transparent 80% 100%),
+                        conic-gradient(#005eb8 72%, #e4e1e7 0);
+        }
+        
+        /* Smooth scrolling for horizontal areas */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#fbf8fe",
+                      "surface-container": "#f0edf2",
+                      "primary-container": "#005eb8",
+                      "primary-fixed": "#d6e3ff",
+                      "tertiary": "#643c49",
+                      "on-surface-variant": "#424752",
+                      "tertiary-fixed-dim": "#eeb8c8",
+                      "on-tertiary-container": "#ffcddb",
+                      "secondary": "#565e71",
+                      "inverse-surface": "#303034",
+                      "on-primary-fixed-variant": "#00468c",
+                      "on-secondary-fixed": "#131b2c",
+                      "error-container": "#ffdad6",
+                      "outline-variant": "#c2c6d4",
+                      "surface-dim": "#dcd9de",
+                      "on-secondary-container": "#5c6478",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed": "#001b3d",
+                      "primary": "#00478d",
+                      "on-background": "#1b1b1f",
+                      "on-surface": "#1b1b1f",
+                      "secondary-fixed-dim": "#bec6dc",
+                      "inverse-primary": "#a9c7ff",
+                      "on-tertiary-fixed-variant": "#633b48",
+                      "surface-container-high": "#eae7ed",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#727783",
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#7e5361",
+                      "surface-bright": "#fbf8fe",
+                      "surface-tint": "#005db6",
+                      "surface": "#fbf8fe",
+                      "on-secondary-fixed-variant": "#3f4759",
+                      "surface-variant": "#e4e1e7",
+                      "surface-container-low": "#f6f2f8",
+                      "surface-container-highest": "#e4e1e7",
+                      "on-tertiary-fixed": "#31111d",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed": "#ffd9e3",
+                      "on-primary-container": "#c8daff",
+                      "inverse-on-surface": "#f3f0f5",
+                      "secondary-container": "#dae2f9",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#dae2f9",
+                      "primary-fixed-dim": "#a9c7ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "12px",
+                      "2xl": "24px",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "16px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "24px",
+                      "xs": "4px",
+                      "md": "12px",
+                      "3xl": "48px",
+                      "2xl": "32px",
+                      "sm": "8px",
+                      "xl": "24px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "label-lg": ["JetBrains Mono"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "title-md": ["Inter"],
+                      "title-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                      "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                      "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                      "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                      "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="w-full sticky top-0 z-50 bg-surface-container-low h-16 flex items-center justify-between px-margin-mobile">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-fixed flex items-center justify-center border-2 border-surface-container-highest">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu4kbSqfASijjOgdOjOmFYijXmbOJO_y66kf-iZjPgMRL36Xg6Unb6i29VzQ2Kp_1mS7v8RwF2Ct37JfWF5ltfG_grkn7gvVu_lho9x820IIqn4KLy-rk7mUWLaH569P-219PLZw1nNSlQvVRjmTSPQR-2hNzzN3Ymbko0kCTweK-6gkapmzbTa2H1_87ICEreCXYc8vG3dp63L-lOBwVKmPlpXAducUhHXr0gKYT_mbPBIMxxr04esOQdertJmcRAsXTaslMafuK9"/>
+</div>
+<div class="flex items-center gap-1 cursor-pointer">
+<h1 class="font-headline-md text-title-md font-bold text-primary">Personal Vault</h1>
+<span class="material-symbols-outlined text-primary text-xl">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100 relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile max-w-2xl mx-auto pt-6 space-y-xl">
+<!-- Hero Section: Profile Completion -->
+<section class="bg-primary text-on-primary p-6 rounded-2xl shadow-md relative overflow-hidden">
+<div class="relative z-10 flex items-start justify-between">
+<div class="space-y-sm">
+<h2 class="font-headline-md text-headline-lg-mobile font-bold leading-tight">You're almost there!</h2>
+<p class="font-body-md text-on-primary-container opacity-90">6 items remaining to secure your vault.</p>
+<ul class="mt-4 space-y-xs font-body-md text-sm opacity-80">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-on-primary-container"></span> Add Emergency Contact</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-on-primary-container"></span> Verify Identity Document</li>
+</ul>
+</div>
+<div class="relative flex-shrink-0">
+<div class="circular-progress w-24 h-24 rounded-full flex items-center justify-center shadow-inner">
+<div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-center">
+<span class="font-headline font-bold text-xl">72%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtle aesthetic background flare -->
+<div class="absolute -bottom-10 -right-10 w-48 h-48 bg-on-primary-container/20 rounded-full blur-3xl"></div>
+</section>
+<!-- Completion Breakdown Chips -->
+<section class="space-y-sm">
+<h3 class="font-headline font-semibold text-on-surface-variant text-sm px-1">Status Overview</h3>
+<div class="flex overflow-x-auto gap-sm hide-scrollbar pb-2">
+<!-- Identity (100%) -->
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container-highest rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-green-600 text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-lg text-on-surface">Identity</span>
+</div>
+<!-- Education (80%) -->
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full border border-outline-variant">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="font-label-lg text-on-surface">Education</span>
+</div>
+<!-- Employment (60%) -->
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full border border-outline-variant">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="font-label-lg text-on-surface">Employment</span>
+</div>
+<!-- Banking (40%) -->
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-error-container text-on-error-container rounded-full">
+<span class="material-symbols-outlined text-lg">error</span>
+<span class="font-label-lg">Banking</span>
+</div>
+<!-- Family (0%) -->
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full border border-outline-variant">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="font-label-lg text-on-surface-variant">Family</span>
+</div>
+</div>
+</section>
+<!-- Quick Actions Grid -->
+<section class="grid grid-cols-2 gap-lg">
+<button class="flex flex-col items-center justify-center p-6 bg-secondary-container text-on-secondary-container rounded-2xl gap-md transition-all hover:shadow-md active:scale-95 group">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container text-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">document_scanner</span>
+</div>
+<span class="font-title-md text-sm font-semibold">Scan Document</span>
+</button>
+<button class="flex flex-col items-center justify-center p-6 bg-secondary-container text-on-secondary-container rounded-2xl gap-md transition-all hover:shadow-md active:scale-95 group">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container text-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">upload_file</span>
+</div>
+<span class="font-title-md text-sm font-semibold">Upload File</span>
+</button>
+<button class="flex flex-col items-center justify-center p-6 bg-secondary-container text-on-secondary-container rounded-2xl gap-md transition-all hover:shadow-md active:scale-95 group">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container text-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">person_add</span>
+</div>
+<span class="font-title-md text-sm font-semibold">Create Profile</span>
+</button>
+<button class="flex flex-col items-center justify-center p-6 bg-secondary-container text-on-secondary-container rounded-2xl gap-md transition-all hover:shadow-md active:scale-95 group">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container text-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">cloud_sync</span>
+</div>
+<span class="font-title-md text-sm font-semibold">Create Backup</span>
+</button>
+</section>
+<!-- Information Categories List -->
+<section class="space-y-lg">
+<h3 class="font-headline font-semibold text-on-surface-variant text-sm px-1">Vault Categories</h3>
+<!-- Personal Info Card -->
+<div class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant hover:border-primary/30 transition-colors flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined">badge</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Personal Info</h4>
+<p class="font-body-md text-xs text-on-surface-variant">100% complete • Secure</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 py-2 font-label-lg text-primary bg-primary/5 rounded-lg hover:bg-primary/10">Edit Details</button>
+<button class="flex-1 py-2 font-label-lg text-on-surface-variant hover:bg-surface-variant rounded-lg">View Profile</button>
+</div>
+</div>
+<!-- Identity Docs Card -->
+<div class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant hover:border-primary/30 transition-colors flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-error-container/20 text-error">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Identity Docs</h4>
+<p class="font-body-md text-xs text-error font-medium">3 missing fields • Urgent</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-error w-[40%] h-full rounded-full"></div>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 py-2 font-label-lg text-primary border border-primary/20 rounded-lg hover:bg-primary/5">Upload Scan</button>
+<button class="flex-1 py-2 font-label-lg text-white bg-primary rounded-lg shadow-sm">Fix Missing</button>
+</div>
+</div>
+<!-- Employment Card -->
+<div class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant hover:border-primary/30 transition-colors flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined">work</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Employment</h4>
+<p class="font-body-md text-xs text-on-surface-variant">60% complete</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<!-- Emergency Contacts -->
+<div class="bg-surface-container-low rounded-2xl p-lg border-2 border-dashed border-outline-variant flex items-center justify-between opacity-70 group hover:opacity-100 hover:border-primary transition-all">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined">contact_emergency</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Emergency Contacts</h4>
+<p class="font-body-md text-xs text-on-surface-variant">Not started</p>
+</div>
+</div>
+<button class="p-2 bg-primary rounded-full text-white shadow-sm active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</section>
+</main>
+<!-- FAB: Contextual to Home/Vault -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary-container text-on-primary-container rounded-2xl shadow-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface-container shadow-md rounded-t-xl z-50">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<!-- Documents -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-lg text-label-lg">Documents</span>
+</a>
+<!-- AI Assistant -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-lg text-label-lg">AI Assistant</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+</nav>
+<!-- Background Decoration -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-40">
+
+</div>
+</body></html>

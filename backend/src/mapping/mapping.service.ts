@@ -14,26 +14,26 @@ import OpenAI from 'openai';
 
 // ── Profile field catalogue (key → canonical aliases) ───────
 const FIELD_ALIASES: Record<string, string[]> = {
-  first_name:    ['first name', 'given name', 'firstname', 'fname', 'forename', 'first'],
-  last_name:     ['last name', 'surname', 'family name', 'lastname', 'lname', 'second name'],
-  full_name:     ['full name', 'name', 'your name', 'complete name'],
-  email:         ['email', 'email address', 'e-mail', 'electronic mail'],
-  phone:         ['phone', 'telephone', 'mobile', 'cell', 'contact number', 'phone number'],
+  first_name: ['first name', 'given name', 'firstname', 'fname', 'forename', 'first'],
+  last_name: ['last name', 'surname', 'family name', 'lastname', 'lname', 'second name'],
+  full_name: ['full name', 'name', 'your name', 'complete name'],
+  email: ['email', 'email address', 'e-mail', 'electronic mail'],
+  phone: ['phone', 'telephone', 'mobile', 'cell', 'contact number', 'phone number'],
   date_of_birth: ['date of birth', 'dob', 'birth date', 'birthday', 'born on'],
   address_line1: ['address', 'street address', 'address line 1', 'street', 'addr1'],
   address_line2: ['address line 2', 'apt', 'suite', 'unit', 'apartment', 'addr2'],
-  city:          ['city', 'town', 'locality', 'suburb'],
-  state:         ['state', 'province', 'region', 'county'],
-  zip_code:      ['zip', 'postal code', 'zip code', 'postcode', 'pin code'],
-  country:       ['country', 'nation', 'country of residence'],
-  gender:        ['gender', 'sex', 'gender identity'],
-  nationality:   ['nationality', 'citizenship', 'national origin'],
+  city: ['city', 'town', 'locality', 'suburb'],
+  state: ['state', 'province', 'region', 'county'],
+  zip_code: ['zip', 'postal code', 'zip code', 'postcode', 'pin code'],
+  country: ['country', 'nation', 'country of residence'],
+  gender: ['gender', 'sex', 'gender identity'],
+  nationality: ['nationality', 'citizenship', 'national origin'],
   current_job_title: ['job title', 'position', 'role', 'occupation', 'title', 'current role'],
-  employer:      ['employer', 'company', 'organisation', 'organization', 'workplace', 'employer name'],
-  linkedin_url:  ['linkedin', 'linkedin url', 'linkedin profile'],
-  website:       ['website', 'portfolio', 'personal website', 'url', 'web page'],
+  employer: ['employer', 'company', 'organisation', 'organization', 'workplace', 'employer name'],
+  linkedin_url: ['linkedin', 'linkedin url', 'linkedin profile'],
+  website: ['website', 'portfolio', 'personal website', 'url', 'web page'],
   passport_number: ['passport number', 'passport no', 'document number'],
-  license_number:  ['license number', 'dl number', "driver's license"],
+  license_number: ['license number', 'dl number', "driver's license"],
 };
 
 export interface FormField {
@@ -97,13 +97,16 @@ export class MappingService {
 
       // 3. LLM fallback for ambiguous fields
       if (this.openai && (ruleMatch === null || (ruleMatch?.confidence ?? 0) < 85)) {
-        const llmMatch = await this.runLlmMapping(field, userId);
+        const llmMatch = await this.runLlmMapping(field);
         if (llmMatch) {
-          mappings.push({ ...llmMatch, source: 'llm', requiresConfirmation: llmMatch.confidence < 90 });
+          mappings.push({
+            ...llmMatch,
+            source: 'llm',
+            requiresConfirmation: llmMatch.confidence < 90,
+          });
           continue;
         }
       }
-
       // 4. Use rule result even if low confidence
       if (ruleMatch) {
         mappings.push({ ...ruleMatch, source: 'rule', requiresConfirmation: true });
@@ -137,11 +140,7 @@ export class MappingService {
 
   // ── EXECUTE FILL — return decrypted values ────────────────
 
-  async executeFill(
-    userId: string,
-    sessionId: string,
-    confirmedSelectors: string[],
-  ) {
+  async executeFill(userId: string, sessionId: string, confirmedSelectors: string[]) {
     const session = await this.prisma.formFillSession.findFirst({
       where: { id: sessionId, userId },
     });
@@ -166,9 +165,7 @@ export class MappingService {
         select: { valueEnc: true },
       });
 
-      values[mapping.fieldSelector] = field
-        ? this.encryption.safeDecrypt(field.valueEnc)
-        : null;
+      values[mapping.fieldSelector] = field ? this.encryption.safeDecrypt(field.valueEnc) : null;
     }
 
     // Update session stats
@@ -187,6 +184,9 @@ export class MappingService {
       where: { id: sessionId, userId },
       data: { fillAccuracy: accuracy },
     });
+    if (feedback) {
+      this.logger.log(`Form fill session ${sessionId} feedback: ${feedback}`);
+    }
     return { rated: true, accuracy };
   }
 
@@ -208,13 +208,20 @@ export class MappingService {
 
         // Exact match
         if (aliases.some((alias) => alias === term)) {
-          return { selector: field.selector, profileFieldKey: profileKey, confidence: 99, requiresConfirmation: false };
+          return {
+            selector: field.selector,
+            profileFieldKey: profileKey,
+            confidence: 99,
+            requiresConfirmation: false,
+          };
         }
 
         // Contains match
         for (const alias of aliases) {
           if (term.includes(alias) || alias.includes(term)) {
-            const score = Math.round((Math.min(alias.length, term.length) / Math.max(alias.length, term.length)) * 95);
+            const score = Math.round(
+              (Math.min(alias.length, term.length) / Math.max(alias.length, term.length)) * 95,
+            );
             if (score > bestScore) {
               bestScore = score;
               bestKey = profileKey;
@@ -226,21 +233,33 @@ export class MappingService {
 
     // HTML type hints
     if (!bestKey) {
-      if (field.type === 'email') { bestKey = 'email'; bestScore = 95; }
-      if (field.type === 'tel')   { bestKey = 'phone'; bestScore = 90; }
+      if (field.type === 'email') {
+        bestKey = 'email';
+        bestScore = 95;
+      }
+      if (field.type === 'tel') {
+        bestKey = 'phone';
+        bestScore = 90;
+      }
       if (field.type === 'date' && field.label?.toLowerCase().includes('birth')) {
-        bestKey = 'date_of_birth'; bestScore = 90;
+        bestKey = 'date_of_birth';
+        bestScore = 90;
       }
     }
 
     return bestKey
-      ? { selector: field.selector, profileFieldKey: bestKey, confidence: bestScore, requiresConfirmation: bestScore < 85 }
+      ? {
+          selector: field.selector,
+          profileFieldKey: bestKey,
+          confidence: bestScore,
+          requiresConfirmation: bestScore < 85,
+        }
       : null;
   }
 
   // ── LLM MAPPING ───────────────────────────────────────────
 
-  private async runLlmMapping(field: FormField, userId: string): Promise<Omit<FieldMapping, 'source'> | null> {
+  private async runLlmMapping(field: FormField): Promise<Omit<FieldMapping, 'source'> | null> {
     const profileKeys = Object.keys(FIELD_ALIASES).join(', ');
     const prompt = `You are a form field mapper. Given a web form field, identify which user profile field it maps to.
 
@@ -304,26 +323,28 @@ If none match well, return {"profileFieldKey": null, "confidence": 0}`;
   private async saveMappings(userId: string, domain: string, mappings: FieldMapping[]) {
     const highConf = mappings.filter((m) => m.profileFieldKey && m.confidence >= 80);
     for (const m of highConf) {
-      await this.prisma.autofillMapping.upsert({
-        where: {
-          // Using a composite unique identifier
-          id: `${userId}_${domain}_${m.selector}`.slice(0, 36),
-        },
-        create: {
-          id: `${userId}_${domain}_${m.selector}`.slice(0, 36),
-          userId,
-          domain,
-          fieldSelector: m.selector,
-          profileFieldKey: m.profileFieldKey!,
-          aiConfidence: m.confidence,
-          userConfirmed: m.source === 'cache',
-        },
-        update: {
-          aiConfidence: m.confidence,
-        },
-      }).catch(() => {
-        // Non-critical — mapping already exists
-      });
+      await this.prisma.autofillMapping
+        .upsert({
+          where: {
+            // Using a composite unique identifier
+            id: `${userId}_${domain}_${m.selector}`.slice(0, 36),
+          },
+          create: {
+            id: `${userId}_${domain}_${m.selector}`.slice(0, 36),
+            userId,
+            domain,
+            fieldSelector: m.selector,
+            profileFieldKey: m.profileFieldKey!,
+            aiConfidence: m.confidence,
+            userConfirmed: m.source === 'cache',
+          },
+          update: {
+            aiConfidence: m.confidence,
+          },
+        })
+        .catch(() => {
+          // Non-critical — mapping already exists
+        });
     }
   }
 }

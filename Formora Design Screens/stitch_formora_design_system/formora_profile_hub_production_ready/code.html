@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Formora Profile Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#005db6",
+                    "on-tertiary-fixed": "#31111d",
+                    "inverse-primary": "#a9c7ff",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#643c49",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-primary-fixed": "#001b3d",
+                    "on-secondary-container": "#5c6478",
+                    "primary-fixed": "#d6e3ff",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#005eb8",
+                    "on-surface": "#1b1b1f",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "outline": "#727783",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "surface-container-high": "#eae7ed",
+                    "surface-variant": "#e4e1e7",
+                    "primary": "#00478d",
+                    "inverse-surface": "#303034",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#dae2f9",
+                    "on-tertiary-container": "#ffcddb",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#c8daff",
+                    "surface-container": "#f0edf2",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "inverse-on-surface": "#f3f0f5",
+                    "surface-container-low": "#f6f2f8",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "surface-container-highest": "#e4e1e7",
+                    "background": "#fbf8fe",
+                    "on-secondary-fixed": "#131b2c",
+                    "tertiary-container": "#7e5361",
+                    "surface-bright": "#fbf8fe",
+                    "error": "#ba1a1a",
+                    "surface": "#fbf8fe",
+                    "outline-variant": "#c2c6d4",
+                    "tertiary-fixed": "#ffd9e3",
+                    "secondary": "#565e71",
+                    "on-surface-variant": "#424752",
+                    "on-background": "#1b1b1f",
+                    "secondary-fixed": "#dae2f9",
+                    "surface-dim": "#dcd9de"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "24px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "margin-desktop": "24px",
+                    "md": "12px",
+                    "2xl": "32px",
+                    "xs": "4px",
+                    "lg": "16px",
+                    "xl": "24px",
+                    "margin-mobile": "16px",
+                    "gutter": "16px",
+                    "3xl": "48px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-lg": ["JetBrains Mono"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "title-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar: small_center_aligned -->
+<header class="sticky top-0 z-50 bg-surface dark:bg-surface w-full">
+<div class="flex justify-between items-center w-full px-margin-mobile h-16">
+<button class="p-2 text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors active:scale-95 duration-200 rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-title-lg text-title-lg text-on-surface dark:text-on-surface">Profile Hub</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant active:scale-95 duration-200 transition-transform cursor-pointer">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Bziw7PIn2KPVuB8gJWigTa5NjmbAyw9OpowRSxeiFZ2JvFksOhKLgcCTJPD5zPJ-aG3MSA1lHeZIjbHK6G-TbAxy2_ZQG21vW3QUojG3lQKWBqLbmFiQoCB3B2uPmBRRgyyNyenIobVQVOz8FSSm9tomdUJCjbVgMAQqD16oRW-PMTyfqD9hyP0lD8w6pLpoZ4Qo1CxxtOfDRhYg82n3xzBvknhlWlcy4Rw967CcAVtINB5LP1UeCkpUleMquDqHdJEp7BDmrrfi"/>
+</div>
+</div>
+</header>
+<main class="px-margin-mobile pt-sm space-y-gutter">
+<!-- MD3 Hero Header with Avatar and Progress -->
+<section class="bg-primary-container text-on-primary-container rounded-3xl p-xl relative overflow-hidden shadow-sm">
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="relative mb-md">
+<!-- Outer Ring Container -->
+<div class="relative w-28 h-28 flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full">
+<circle class="text-white/20" cx="56" cy="56" fill="transparent" r="52" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-white progress-ring-circle" cx="56" cy="56" fill="transparent" r="52" stroke="currentColor" stroke-dasharray="326.7" stroke-dashoffset="91.5" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<div class="w-24 h-24 rounded-full border-2 border-white/50 overflow-hidden shadow-lg bg-surface">
+<img alt="Jonathan Alexander Smith" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Bziw7PIn2KPVuB8gJWigTa5NjmbAyw9OpowRSxeiFZ2JvFksOhKLgcCTJPD5zPJ-aG3MSA1lHeZIjbHK6G-TbAxy2_ZQG21vW3QUojG3lQKWBqLbmFiQoCB3B2uPmBRRgyyNyenIobVQVOz8FSSm9tomdUJCjbVgMAQqD16oRW-PMTyfqD9hyP0lD8w6pLpoZ4Qo1CxxtOfDRhYg82n3xzBvknhlWlcy4Rw967CcAVtINB5LP1UeCkpUleMquDqHdJEp7BDmrrfi"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-[#005eb8] text-white text-[10px] font-bold px-2 py-0.5 rounded-full border-2 border-primary-container">
+72%
+</div>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-center leading-tight">Jonathan Alexander Smith</h2>
+<div class="mt-sm inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full">
+<span class="material-symbols-outlined text-sm">description</span>
+<span class="font-label-lg text-label-lg">1,248 Documents Securely Stored</span>
+</div>
+</div>
+</section>
+<!-- Quick Actions Row: MD3 Cards -->
+<section class="grid grid-cols-3 gap-gutter">
+<button class="flex flex-col items-center gap-sm p-md bg-surface-container rounded-2xl hover:bg-surface-variant transition-all active:scale-95">
+<div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface-variant text-center">Create Profile</span>
+</button>
+<button class="flex flex-col items-center gap-sm p-md bg-surface-container rounded-2xl hover:bg-surface-variant transition-all active:scale-95">
+<div class="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">backup</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface-variant text-center">Export Backup</span>
+</button>
+<button class="flex flex-col items-center gap-sm p-md bg-surface-container rounded-2xl hover:bg-surface-variant transition-all active:scale-95">
+<div class="w-14 h-14 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface-variant text-center">Security Check</span>
+</button>
+</section>
+<!-- Sections with 16px margins (gutter) -->
+<div class="space-y-gutter">
+<!-- Profiles Section -->
+<section>
+<h3 class="font-title-md text-on-surface-variant mb-sm px-xs flex items-center gap-2 uppercase tracking-wider text-[11px] font-bold">
+<span class="material-symbols-outlined text-[18px]">group</span> Profiles
+</h3>
+<div class="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30">
+<div class="flex items-center justify-between p-lg bg-surface-container-highest">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">J</div>
+<div>
+<p class="font-title-md text-on-surface">Current Profile</p>
+<p class="text-body-md text-on-surface-variant">Default Vault</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="h-[1px] bg-outline-variant/20"></div>
+<button class="w-full flex items-center gap-md p-lg text-primary hover:bg-primary-fixed/20 transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-title-md">Add New Profile</span>
+</button>
+</div>
+</section>
+<!-- Storage Usage -->
+<section>
+<div class="flex justify-between items-center mb-sm px-xs">
+<h3 class="font-title-md text-on-surface-variant flex items-center gap-2 uppercase tracking-wider text-[11px] font-bold">
+<span class="material-symbols-outlined text-[18px]">cloud</span> Storage
+</h3>
+<button class="text-[#005eb8] font-title-md text-sm">Manage</button>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant/30">
+<div class="flex justify-between text-body-md mb-sm">
+<span class="text-on-surface">Used: 1.2 GB</span>
+<span class="text-on-surface-variant">Total: 10 GB</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden mb-2">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 12%;"></div>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">Encrypted storage status: Healthy</p>
+</div>
+</section>
+<!-- Backup & Restore -->
+<section>
+<h3 class="font-title-md text-on-surface-variant mb-sm px-xs flex items-center gap-2 uppercase tracking-wider text-[11px] font-bold">
+<span class="material-symbols-outlined text-[18px]">history</span> Backup &amp; Restore
+</h3>
+<div class="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30">
+<div class="flex items-center justify-between p-lg border-b border-outline-variant/20">
+<div>
+<p class="font-title-md text-on-surface">Cloud Sync</p>
+<p class="text-body-md text-on-surface-variant">Last backup: 2 hours ago</p>
+</div>
+<button class="bg-[#005eb8] text-white px-5 py-2 rounded-full font-title-md text-sm active:scale-95 transition-transform">Sync Now</button>
+</div>
+<button class="w-full p-lg flex items-center justify-between hover:bg-surface-variant/20 transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">settings_backup_restore</span>
+<span class="font-title-md text-on-surface">Restore Data from Archive</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Security Section -->
+<section>
+<h3 class="font-title-md text-on-surface-variant mb-sm px-xs flex items-center gap-2 uppercase tracking-wider text-[11px] font-bold">
+<span class="material-symbols-outlined text-[18px]">security</span> Security
+</h3>
+<div class="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30">
+<div class="p-lg flex items-center justify-between border-b border-outline-variant/20">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">fingerprint</span>
+<div>
+<p class="font-title-md text-on-surface">Biometric Lock</p>
+<p class="text-body-md text-on-surface-variant">Active</p>
+</div>
+</div>
+<div class="w-12 h-7 bg-primary rounded-full relative flex items-center px-1">
+<div class="w-5 h-5 bg-white rounded-full ml-auto shadow-sm"></div>
+</div>
+</div>
+<button class="w-full p-lg flex items-center justify-between hover:bg-surface-variant/20 transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">key</span>
+<div>
+<p class="font-title-md text-on-surface">Encryption Keys</p>
+<p class="text-body-md text-on-surface-variant">256-bit AES Managed</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Recent Activity: List Pattern -->
+<section>
+<h3 class="font-title-md text-on-surface-variant mb-sm px-xs flex items-center gap-2 uppercase tracking-wider text-[11px] font-bold">
+<span class="material-symbols-outlined text-[18px]">list_alt</span> Recent Activity
+</h3>
+<div class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant/30 space-y-md">
+<div class="flex items-start gap-md">
+<div class="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0"></div>
+<div class="space-y-xs">
+<p class="font-title-md text-on-surface leading-tight">Document Scanned</p>
+<p class="text-body-md text-on-surface-variant">"Quarterly_Tax_2023.pdf" added</p>
+<p class="text-[11px] text-outline font-medium">1 hour ago</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<div class="mt-1 w-2 h-2 rounded-full bg-secondary flex-shrink-0"></div>
+<div class="space-y-xs">
+<p class="font-title-md text-on-surface leading-tight">Backup Exported</p>
+<p class="text-body-md text-on-surface-variant">Full encrypted archive generated</p>
+<p class="text-[11px] text-outline font-medium">2 hours ago</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<div class="mt-1 w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+<div class="space-y-xs">
+<p class="font-title-md text-on-surface leading-tight">Security Audit</p>
+<p class="text-body-md text-on-surface-variant">Password strength verified</p>
+<p class="text-[11px] text-outline font-medium">Yesterday</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar: label_icon -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface-container dark:bg-surface-container-highest shadow-md rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-lg text-label-lg">Vault</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-5 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-lg text-label-lg">Assistant</span>
+</button>
+<!-- Active Profile Tab -->
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-5 py-1 active:scale-90 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</button>
+</nav>
+<script>
+    // Micro-interaction for MD3 ripple-like effect
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.add('opacity-80');
+            setTimeout(() => this.classList.remove('opacity-80'), 100);
+        });
+    });
+</script>
+</body></html>

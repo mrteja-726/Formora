@@ -96,11 +96,11 @@ export class DocumentsController {
 
   @Get()
   @ApiOperation({ summary: 'List all uploaded documents (paginated)' })
-  @ApiQuery({ name: 'page',  required: false, example: 1 })
+  @ApiQuery({ name: 'page', required: false, example: 1 })
   @ApiQuery({ name: 'limit', required: false, example: 20 })
   async list(
     @CurrentUser() user: { id: string },
-    @Query('page',  new DefaultValuePipe(1),  ParseIntPipe) page: number,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
     @Query('limit', new DefaultValuePipe(20), ParseIntPipe) limit: number,
   ) {
     return {
@@ -113,10 +113,7 @@ export class DocumentsController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Get document details and OCR results' })
-  async findOne(
-    @CurrentUser() user: { id: string },
-    @Param('id') id: string,
-  ) {
+  async findOne(@CurrentUser() user: { id: string }, @Param('id') id: string) {
     return {
       success: true,
       data: await this.documentsService.findOne(user.id, id),
@@ -127,10 +124,7 @@ export class DocumentsController {
 
   @Get(':id/download')
   @ApiOperation({ summary: 'Get a 15-minute pre-signed download URL' })
-  async getDownloadUrl(
-    @CurrentUser() user: { id: string },
-    @Param('id') id: string,
-  ) {
+  async getDownloadUrl(@CurrentUser() user: { id: string }, @Param('id') id: string) {
     return {
       success: true,
       data: await this.documentsService.getDownloadUrl(user.id, id),
@@ -142,10 +136,7 @@ export class DocumentsController {
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Soft-delete a document and reclaim storage quota' })
-  async delete(
-    @CurrentUser() user: { id: string },
-    @Param('id') id: string,
-  ) {
+  async delete(@CurrentUser() user: { id: string }, @Param('id') id: string) {
     return {
       success: true,
       data: await this.documentsService.softDelete(user.id, id),

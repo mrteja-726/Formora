@@ -4,22 +4,8 @@
 // Called by the browser extension to analyze and fill forms
 // ============================================================
 
-import {
-  Controller,
-  Post,
-  Body,
-  Param,
-  UseGuards,
-  HttpCode,
-  HttpStatus,
-} from '@nestjs/common';
-import {
-  ApiTags,
-  ApiOperation,
-  ApiBearerAuth,
-  ApiParam,
-  ApiResponse,
-} from '@nestjs/swagger';
+import { Controller, Post, Body, Param, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiBearerAuth, ApiParam, ApiResponse } from '@nestjs/swagger';
 
 import { MappingService } from './mapping.service';
 import { AnalyzeFormDto, ExecuteFillDto, RateSessionDto } from './dto/mapping.dto';
@@ -49,15 +35,8 @@ Uses cache → rules → LLM (3-tier resolution).
     status: 200,
     description: 'Returns sessionId and array of field mappings with confidence scores',
   })
-  async analyzeForm(
-    @CurrentUser() user: { id: string },
-    @Body() dto: AnalyzeFormDto,
-  ) {
-    const result = await this.mappingService.analyzeForm(
-      user.id,
-      dto.domain,
-      dto.fields,
-    );
+  async analyzeForm(@CurrentUser() user: { id: string }, @Body() dto: AnalyzeFormDto) {
+    const result = await this.mappingService.analyzeForm(user.id, dto.domain, dto.fields);
     return { success: true, data: result };
   }
 

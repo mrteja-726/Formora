@@ -3,6 +3,7 @@
 # ============================================================
 
 # ------ Flutter / Dart ------
+flutter/
 .dart_tool/
 .packages
 .pub-cache/

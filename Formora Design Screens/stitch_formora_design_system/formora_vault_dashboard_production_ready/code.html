@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora Vault - Secure Document Intelligence</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#005db6",
+                    "on-tertiary-fixed": "#31111d",
+                    "inverse-primary": "#a9c7ff",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#643c49",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-primary-fixed": "#001b3d",
+                    "on-secondary-container": "#5c6478",
+                    "primary-fixed": "#d6e3ff",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#005eb8",
+                    "on-surface": "#1b1b1f",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "outline": "#727783",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "surface-container-high": "#eae7ed",
+                    "surface-variant": "#e4e1e7",
+                    "primary": "#00478d",
+                    "inverse-surface": "#303034",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#dae2f9",
+                    "on-tertiary-container": "#ffcddb",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#c8daff",
+                    "surface-container": "#f0edf2",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "inverse-on-surface": "#f3f0f5",
+                    "surface-container-low": "#f6f2f8",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "surface-container-highest": "#e4e1e7",
+                    "background": "#fbf8fe",
+                    "on-secondary-fixed": "#131b2c",
+                    "tertiary-container": "#7e5361",
+                    "surface-bright": "#fbf8fe",
+                    "error": "#ba1a1a",
+                    "surface": "#fbf8fe",
+                    "outline-variant": "#c2c6d4",
+                    "tertiary-fixed": "#ffd9e3",
+                    "secondary": "#565e71",
+                    "on-surface-variant": "#424752",
+                    "on-background": "#1b1b1f",
+                    "secondary-fixed": "#dae2f9",
+                    "surface-dim": "#dcd9de"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px",
+                    "2xl": "16px",
+                    "3xl": "24px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "margin-desktop": "24px",
+                    "md": "12px",
+                    "2xl": "32px",
+                    "xs": "4px",
+                    "lg": "16px",
+                    "xl": "24px",
+                    "margin-mobile": "16px",
+                    "gutter": "16px",
+                    "3xl": "48px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-lg": ["JetBrains Mono"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "title-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInTranslate 0.5s ease-out forwards;
+        }
+        @keyframes fadeInTranslate {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar: small_center_aligned from COMPONENTS_114 -->
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile h-16">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Formora</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-fixed flex items-center justify-center active:scale-95 transition-transform duration-200">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-FsOtcMWL0fF9sjcx6waEKLxHuxQIo0eN-5kNxYmEBpXWCPFD_PQeexGxSuBTTudSsvz2xTN5CZOmUwEovTLFFRNeCrXFnZdferyxtPq17Kl2G3BgsKlCduBpOh53vSzDsMPet2AoJEp0i0evhKqrQ3X9zVbF1AUslTGrvdrLx4HKEGGUTYAd_gHaMVRHqadEyvvW1XVKU618Sj5639NCZTru-s2DaXG99Lo7KmZqrDkcjNXyfUxmuNaVACnryI_31dXZl75g9-0O"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-margin-mobile py-lg">
+<!-- Hero Summary Card -->
+<section class="mb-xl">
+<div class="relative bg-primary-container text-on-primary-container p-6 rounded-3xl overflow-hidden shadow-sm border border-primary/10">
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<p class="font-label-lg text-label-lg uppercase tracking-wider opacity-80 mb-2">Portfolio Overview</p>
+<div class="flex flex-col gap-4">
+<div>
+<h2 class="font-display-lg text-5xl font-bold mb-1">1,248</h2>
+<p class="font-title-md text-title-md">Total Documents Secured</p>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-on-primary-container/10">
+<div class="flex flex-col">
+<span class="font-label-lg opacity-70">This Month</span>
+<span class="font-title-lg text-xl">+42 Files</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg opacity-70">Accuracy</span>
+<span class="font-title-lg text-xl">99.8%</span>
+</div>
+<div class="col-span-2">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-lg opacity-70">Storage</span>
+<span class="font-label-lg">1.2GB of 10GB</span>
+</div>
+<div class="w-full bg-on-primary-container/20 h-2 rounded-full overflow-hidden">
+<div class="bg-on-primary-container w-[12%] h-full rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Filters -->
+<section class="mb-xl -mx-margin-mobile px-margin-mobile overflow-x-auto no-scrollbar flex items-center gap-sm">
+<button class="flex items-center px-6 py-2.5 bg-primary-container text-on-primary-container rounded-full font-label-lg whitespace-nowrap active:scale-95 transition-all">All</button>
+<button class="flex items-center px-6 py-2.5 bg-surface-container text-on-surface-variant rounded-full font-label-lg whitespace-nowrap hover:bg-surface-variant transition-all">Identity</button>
+<button class="flex items-center px-6 py-2.5 bg-surface-container text-on-surface-variant rounded-full font-label-lg whitespace-nowrap hover:bg-surface-variant transition-all">Education</button>
+<button class="flex items-center px-6 py-2.5 bg-surface-container text-on-surface-variant rounded-full font-label-lg whitespace-nowrap hover:bg-surface-variant transition-all">Career</button>
+<button class="flex items-center px-6 py-2.5 bg-surface-container text-on-surface-variant rounded-full font-label-lg whitespace-nowrap hover:bg-surface-variant transition-all">Healthcare</button>
+</section>
+<!-- Smart Collections: MD3 Card Pattern -->
+<section class="mb-xl">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-title-lg text-title-lg text-on-surface">Smart Collections</h3>
+<button class="text-primary font-label-lg flex items-center gap-1 active:scale-95 transition-transform">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Identity Card -->
+<div class="bg-surface-container-low p-4 rounded-3xl border border-transparent hover:border-outline-variant transition-all cursor-pointer group active:scale-[0.98]">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">badge</span>
+</div>
+<p class="font-title-md text-title-md text-on-surface">Identity</p>
+<p class="font-body-md text-on-surface-variant">14 documents</p>
+</div>
+<!-- Education Card -->
+<div class="bg-surface-container-low p-4 rounded-3xl border border-transparent hover:border-outline-variant transition-all cursor-pointer group active:scale-[0.98]">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<p class="font-title-md text-title-md text-on-surface">Education</p>
+<p class="font-body-md text-on-surface-variant">28 documents</p>
+</div>
+<!-- Career Card -->
+<div class="bg-surface-container-low p-4 rounded-3xl border border-transparent hover:border-outline-variant transition-all cursor-pointer group active:scale-[0.98]">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">work</span>
+</div>
+<p class="font-title-md text-title-md text-on-surface">Career</p>
+<p class="font-body-md text-on-surface-variant">42 documents</p>
+</div>
+<!-- AI Archive -->
+<div class="bg-tertiary-container/10 p-4 rounded-3xl border border-tertiary/20 transition-all cursor-pointer group active:scale-[0.98]">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center mb-md group-hover:rotate-12 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<p class="font-title-md text-title-md text-tertiary">AI Archive</p>
+<p class="font-body-md text-on-surface-variant">8 suggested</p>
+</div>
+</div>
+</section>
+<!-- Document Grid: MD3 Card Pattern + Staggered Entrance -->
+<section class="mb-3xl">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-title-lg text-title-lg text-on-surface">Recent Documents</h3>
+<button class="font-label-lg flex items-center gap-1 text-primary">Newest <span class="material-symbols-outlined text-sm">expand_more</span></button>
+</div>
+<div class="grid grid-cols-1 gap-gutter">
+<!-- Document Card 1 -->
+<div class="stagger-item bg-surface-container-lowest rounded-3xl border border-outline-variant/30 overflow-hidden shadow-sm active:scale-[0.98] transition-transform" style="animation-delay: 100ms;">
+<div class="aspect-[16/9] bg-surface-container-high relative overflow-hidden">
+<img alt="Passport preview" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHLFCNpk3gdQsPzc2vLYcyCtUd3BtyqbkTujGhdFKH-midIhXxYpbH9SJt9ylWefuZxT9SIgTuJm-iAF6ACmOJgQ5aMIJcMaktM-AiGbcJHgAGdFOLPtxlYUVsa6vXAKTN21u0HeMtQboYlVRPiAfsAMEw4NGN2SCLdXDzuad3xfZssR9zFDNgEPsLJcuZg1uCpewVyapYS6LmG7oF-K4UxTMfFOH-Zs2DwsCU5GqDZshv0na-8EGONAXcM0N5_zLL89D2mFTVsJYJ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
+<span class="bg-primary-container text-white text-[10px] px-2 py-0.5 rounded uppercase font-bold tracking-tighter">Ready</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-title-md text-title-md text-on-surface truncate">Passport_Scan_2024.pdf</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] rounded-full font-bold">IDENTITY</span>
+</div>
+</div>
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+<div class="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
+<span class="font-body-md text-xs text-on-surface-variant">2 days ago</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-bold">SECURED</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Card 2 -->
+<div class="stagger-item bg-surface-container-lowest rounded-3xl border border-outline-variant/30 overflow-hidden shadow-sm active:scale-[0.98] transition-transform" style="animation-delay: 200ms;">
+<div class="aspect-[16/9] bg-surface-container-high relative overflow-hidden">
+<img alt="Contract preview" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8n_CxAuBYJZOQfweTBKdkvQTEkdDOzSP1P4Jh4FVqHxmITLOmoNzusVjtPMFVBTLuPdUPQX_le1KNJyHrjhQ5pLmrWBBCnn8xh5jbi1Cmq8K3l2sujqfWIlbqjBa3LeERjAwaG4wVNGFAFpy_DsZ5vgChp2PUF2xzn1z0M9jBUWuFmzGG6FxBGt0hqG3vSMhiipouKCWUAIcCDO8j6dmEegV35Fs_8ryLsmIt1O35OybAmLWlFNjybEzlkHnHSGESH6JEJ2u_Uwtd"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
+<span class="bg-tertiary-container text-white text-[10px] px-2 py-0.5 rounded uppercase font-bold tracking-tighter">Processing</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-title-md text-title-md text-on-surface truncate">Employment_Contract_Final.pdf</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] rounded-full font-bold">CAREER</span>
+</div>
+</div>
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+<div class="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
+<span class="font-body-md text-xs text-on-surface-variant">5 hours ago</span>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-sm animate-spin">sync</span>
+<span class="text-[10px] font-bold">ANALYZING</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Card 3 -->
+<div class="stagger-item bg-surface-container-lowest rounded-3xl border border-outline-variant/30 overflow-hidden shadow-sm active:scale-[0.98] transition-transform" style="animation-delay: 300ms;">
+<div class="aspect-[16/9] bg-surface-container-high relative overflow-hidden">
+<img alt="Medical preview" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABCRj_356rRqHHoBtX0QGnU_qjUG20ugUzXTdl1zRTYI--f8IiaMQ-JLX32L9yE_kQx-LNUPDVV6JsEeFFfLOtevitJ-WiTcSBrt8pVLK10BNHkD6IBnYnODzSISMAownwdUrNrygSjGF_oIaVqOW80kHjjZZfXf8xM0a5O9VqCvqv2rr2r2PLWftxaPHprKfF3V6ha7DF8aKwsHF9fGoyNqfBNNAy91yt6ff5rzU01WL-ZDzWYwJMc5HwvHVM7n9xY-4HMyj19dXy"/>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-title-md text-title-md text-on-surface truncate">Lab_Results_Oct_24.pdf</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] rounded-full font-bold">HEALTHCARE</span>
+</div>
+</div>
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+<div class="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
+<span class="font-body-md text-xs text-on-surface-variant">Oct 12, 2024</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-bold">SECURED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB: Upload -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary-container text-white rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center z-[60] active:scale-90">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- BottomNavBar: label_icon from COMPONENTS_114 -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface-container rounded-t-xl shadow-md">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-lg text-label-lg">Vault</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-lg text-label-lg">Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</a>
+</nav>
+</body></html>

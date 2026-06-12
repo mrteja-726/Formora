@@ -3,22 +3,8 @@
 // Routes: /api/v1/auth/*
 // ============================================================
 
-import {
-  Controller,
-  Post,
-  Get,
-  Body,
-  Req,
-  UseGuards,
-  HttpCode,
-  HttpStatus,
-} from '@nestjs/common';
-import {
-  ApiTags,
-  ApiOperation,
-  ApiResponse,
-  ApiBearerAuth,
-} from '@nestjs/swagger';
+import { Controller, Post, Get, Body, Req, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { Throttle } from '@nestjs/throttler';
 
 import { AuthService } from './auth.service';
@@ -80,11 +66,7 @@ export class AuthController {
   @ApiResponse({ status: 200, description: 'Returns access and refresh tokens' })
   @ApiResponse({ status: 401, description: 'Invalid credentials' })
   async login(@Body() dto: LoginDto, @Req() req: { ip: string; headers: Record<string, string> }) {
-    const result = await this.authService.login(
-      dto,
-      req.ip,
-      req.headers['user-agent'],
-    );
+    const result = await this.authService.login(dto, req.ip, req.headers['user-agent']);
     return { success: true, data: result };
   }
 
@@ -124,7 +106,15 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Google OAuth2 callback' })
   async googleCallback(@Req() req: { user: Record<string, unknown> }) {
-    const result = await this.authService.handleGoogleAuth(req.user as any);
+    const result = await this.authService.handleGoogleAuth(
+      req.user as unknown as {
+        providerId: string;
+        email: string;
+        fullName: string;
+        avatarUrl?: string;
+        accessToken: string;
+      },
+    );
     return { success: true, data: result };
   }
 

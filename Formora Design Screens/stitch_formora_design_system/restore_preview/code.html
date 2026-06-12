@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Preview Restore - Step 3</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#005db6",
+                    "inverse-on-surface": "#f3f0f5",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#dae2f9",
+                    "on-secondary-fixed": "#131b2c",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#a9c7ff",
+                    "surface-bright": "#fbf8fe",
+                    "tertiary-fixed": "#ffd9e3",
+                    "tertiary-container": "#7e5361",
+                    "surface-container-low": "#f6f2f8",
+                    "primary": "#00478d",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0edf2",
+                    "tertiary": "#643c49",
+                    "on-tertiary-fixed": "#31111d",
+                    "secondary": "#565e71",
+                    "on-surface": "#1b1b1f",
+                    "error": "#ba1a1a",
+                    "surface": "#fbf8fe",
+                    "primary-container": "#005eb8",
+                    "on-surface-variant": "#424752",
+                    "primary-fixed": "#d6e3ff",
+                    "on-primary-fixed": "#001b3d",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#fbf8fe",
+                    "surface-container-high": "#eae7ed",
+                    "on-primary-container": "#c8daff",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dcd9de",
+                    "on-secondary-container": "#5c6478",
+                    "surface-container-highest": "#e4e1e7",
+                    "outline-variant": "#c2c6d4",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "surface-variant": "#e4e1e7",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#303034",
+                    "on-tertiary-container": "#ffcddb",
+                    "secondary-fixed": "#dae2f9",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "outline": "#727783",
+                    "on-background": "#1b1b1f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "xs": "4px",
+                    "margin-desktop": "24px",
+                    "3xl": "48px",
+                    "2xl": "32px",
+                    "xl": "24px",
+                    "margin-mobile": "16px",
+                    "lg": "16px",
+                    "gutter": "16px",
+                    "md": "12px"
+            },
+            "fontFamily": {
+                    "title-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-lg": [
+                            "JetBrains Mono"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "title-md": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "title-lg": [
+                            "22px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.25px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "letterSpacing": "0.5px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-lg": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.5px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-md": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "title-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "letterSpacing": "0.15px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "57px",
+                            {
+                                    "lineHeight": "64px",
+                                    "letterSpacing": "-0.25px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- Transactional Header (Global Nav Suppressed) -->
+<header class="flex items-center px-margin-mobile py-md sticky top-0 bg-surface-container-lowest z-20 border-b border-outline-variant/30 backdrop-blur-sm bg-opacity-90">
+<button class="p-2 -ml-2 text-on-surface rounded-full hover:bg-surface-container-high transition-colors active:scale-95 flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="ml-2 flex flex-col">
+<h1 class="font-title-lg text-title-lg text-on-surface">Preview Contents</h1>
+<span class="font-label-lg text-label-lg text-primary tracking-wider uppercase mt-1">Step 3 of 4</span>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 w-full max-w-3xl mx-auto px-margin-mobile py-xl flex flex-col gap-xl">
+<!-- Hero Summary Card -->
+<section class="bg-primary-container rounded-xl p-lg relative overflow-hidden shadow-sm">
+<!-- Decorative Graphic -->
+<div class="absolute -top-12 -right-12 w-40 h-40 bg-on-primary-container/10 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex flex-col sm:flex-row sm:items-center gap-lg">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest shadow-sm flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">cloud_sync</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-primary-container mb-1">Workstation Backup</h2>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-on-primary-container/80 font-body-md text-body-md">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                            Oct 24, 2023
+                        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">hard_drive</span>
+                            4.2 GB Total
+                        </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Breakdown Section -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center justify-between px-1 mb-2">
+<h3 class="font-title-lg text-title-lg text-on-surface">Selected for Restore</h3>
+<span class="font-label-lg text-label-lg text-on-surface-variant bg-surface-container-high px-2 py-1 rounded-md">3 Categories</span>
+</div>
+<!-- Category: Profiles -->
+<div class="bg-surface rounded-xl border border-outline-variant/40 p-lg hover:shadow-md transition-shadow duration-300 group cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-surface-tint/0 group-hover:bg-surface-tint/5 transition-colors"></div>
+<div class="relative z-10 flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">person</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface">Profiles</h4>
+</div>
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<div class="pl-[52px] flex flex-wrap gap-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full border border-outline-variant/50 bg-surface-container-lowest font-body-md text-body-md text-on-surface-variant">Personal</span>
+<span class="inline-flex items-center px-3 py-1 rounded-full border border-outline-variant/50 bg-surface-container-lowest font-body-md text-body-md text-on-surface-variant">Business</span>
+</div>
+</div>
+</div>
+<!-- Category: Documents -->
+<div class="bg-surface rounded-xl border border-outline-variant/40 p-lg hover:shadow-md transition-shadow duration-300 group cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-surface-tint/0 group-hover:bg-surface-tint/5 transition-colors"></div>
+<div class="relative z-10 flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined">folder_open</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface">Documents</h4>
+</div>
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<div class="pl-[52px] flex flex-col gap-3">
+<div class="flex items-center justify-between font-body-md text-body-md text-on-surface-variant">
+<span>142 Files</span>
+<span class="font-label-lg text-label-lg text-on-surface">3.2 GB</span>
+</div>
+<!-- Mini visualizer -->
+<div class="w-full h-1.5 rounded-full bg-surface-container-high flex overflow-hidden">
+<div class="h-full bg-tertiary w-[60%]"></div>
+<div class="h-full bg-secondary w-[25%]"></div>
+<div class="h-full bg-primary w-[15%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Category: Settings -->
+<div class="bg-surface rounded-xl border border-outline-variant/40 p-lg hover:shadow-md transition-shadow duration-300 group cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-surface-tint/0 group-hover:bg-surface-tint/5 transition-colors"></div>
+<div class="relative z-10 flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface">Settings Configuration</h4>
+</div>
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<div class="pl-[52px] flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-outline-variant/50 bg-surface-container-lowest font-body-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">smart_toy</span>
+                            AI Config
+                        </span>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-outline-variant/50 bg-surface-container-lowest font-body-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">palette</span>
+                            UI Themes
+                        </span>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-outline-variant/50 bg-surface-container-lowest font-body-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">key</span>
+                            Vault Keys
+                        </span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Footer Actions -->
+<div class="sticky bottom-0 bg-surface-container-lowest border-t border-outline-variant/30 p-margin-mobile shadow-[0_-4px_20px_rgba(0,0,0,0.02)]">
+<div class="max-w-3xl mx-auto flex flex-col sm:flex-row gap-md">
+<button class="w-full sm:w-auto px-6 py-3 rounded-full border border-outline text-primary font-label-lg text-label-lg tracking-wide hover:bg-surface-container-low transition-colors focus:ring-2 focus:ring-primary focus:outline-none">
+                Cancel
+            </button>
+<button class="w-full sm:flex-1 px-6 py-3 rounded-full bg-primary text-on-primary font-label-lg text-label-lg tracking-wide hover:bg-primary/90 transition-all active:scale-[0.98] shadow-sm flex items-center justify-center gap-2 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface focus:outline-none group">
+                Continue to Resolution
+                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

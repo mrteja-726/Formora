@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora | Permissions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#eeb8c8",
+                      "background": "#fbf8fe",
+                      "primary": "#00478d",
+                      "tertiary-container": "#7e5361",
+                      "primary-fixed-dim": "#a9c7ff",
+                      "surface-container": "#f0edf2",
+                      "on-tertiary-fixed": "#31111d",
+                      "on-primary-container": "#c8daff",
+                      "on-error-container": "#93000a",
+                      "on-secondary-container": "#5c6478",
+                      "on-primary-fixed-variant": "#00468c",
+                      "inverse-surface": "#303034",
+                      "surface-dim": "#dcd9de",
+                      "secondary-fixed-dim": "#bec6dc",
+                      "on-surface-variant": "#424752",
+                      "on-secondary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "surface-tint": "#005db6",
+                      "primary-fixed": "#d6e3ff",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#a9c7ff",
+                      "surface-container-high": "#eae7ed",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#1b1b1f",
+                      "tertiary-fixed": "#ffd9e3",
+                      "on-primary-fixed": "#001b3d",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-container": "#ffcddb",
+                      "secondary": "#565e71",
+                      "on-secondary-fixed-variant": "#3f4759",
+                      "error-container": "#ffdad6",
+                      "surface-variant": "#e4e1e7",
+                      "on-background": "#1b1b1f",
+                      "outline-variant": "#c2c6d4",
+                      "on-secondary-fixed": "#131b2c",
+                      "surface-container-highest": "#e4e1e7",
+                      "surface": "#fbf8fe",
+                      "tertiary": "#643c49",
+                      "surface-container-low": "#f6f2f8",
+                      "secondary-fixed": "#dae2f9",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#633b48",
+                      "outline": "#727783",
+                      "inverse-on-surface": "#f3f0f5",
+                      "surface-bright": "#fbf8fe",
+                      "primary-container": "#005eb8",
+                      "secondary-container": "#dae2f9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "xl": "24px",
+                      "md": "12px",
+                      "lg": "16px",
+                      "3xl": "48px",
+                      "xs": "4px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "24px",
+                      "gutter": "16px",
+                      "2xl": "32px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "title-lg": ["Plus Jakarta Sans"],
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "label-lg": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "title-md": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                      "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                      "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .permission-card {
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease;
+        }
+        .permission-card:active {
+            transform: scale(0.98);
+        }
+        .glass-effect {
+            background: rgba(251, 248, 254, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top Navigation Anchor -->
+<nav class="w-full top-0 sticky z-40 bg-background flex items-center px-margin-mobile md:px-margin-desktop h-16 w-full">
+<button class="material-symbols-outlined text-primary p-2 mr-4 hover:bg-surface-container-low transition-colors rounded-full active:scale-95 duration-150">
+            arrow_back
+        </button>
+<h1 class="font-title-lg text-title-lg-mobile md:text-title-lg text-primary">Permissions</h1>
+</nav>
+<main class="max-w-3xl mx-auto px-margin-mobile mt-lg space-y-lg">
+<!-- AI Trust Banner -->
+<section class="bg-primary-container/10 border border-primary-container/20 rounded-xl p-lg flex items-start gap-md mb-xl">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+<div class="flex-1">
+<h2 class="font-title-md text-title-md text-primary mb-xs">Privacy Pledge</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Formora uses local-first encryption. None of the data processed through these permissions is ever uploaded to external servers. Your device remains your vault.</p>
+</div>
+</section>
+<!-- Permissions List -->
+<div class="space-y-md">
+<!-- 1. Storage -->
+<article class="permission-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg shadow-sm">
+<div class="flex items-start justify-between mb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Storage</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="flex items-center gap-1 px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Granted
+                                </span>
+<span class="font-label-lg text-label-lg text-outline">2h ago</span>
+</div>
+</div>
+</div>
+<button class="bg-surface-container-high px-lg py-sm rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-variant transition-colors active:scale-95">Manage</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">To securely store and encrypt your documents locally.</p>
+<div class="bg-surface-container-low rounded-lg p-md">
+<div class="flex items-center gap-sm text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-lg text-label-lg font-bold">Privacy Explanation</span>
+</div>
+<p class="font-body-md text-[13px] leading-relaxed text-on-surface-variant">Data is isolated within Formora's sandbox. We use AES-256 local encryption. No third-party apps or cloud services can access this directory without your explicit biometric signature.</p>
+</div>
+</article>
+<!-- 2. Camera -->
+<article class="permission-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg shadow-sm">
+<div class="flex items-start justify-between mb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Camera</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="flex items-center gap-1 px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Granted
+                                </span>
+<span class="font-label-lg text-label-lg text-outline">Yesterday</span>
+</div>
+</div>
+</div>
+<button class="bg-surface-container-high px-lg py-sm rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-variant transition-colors active:scale-95">Manage</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Used for scanning physical documents and IDs.</p>
+<div class="bg-surface-container-low rounded-lg p-md">
+<div class="flex items-center gap-sm text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-lg text-label-lg font-bold">Privacy Explanation</span>
+</div>
+<p class="font-body-md text-[13px] leading-relaxed text-on-surface-variant">The camera is only active during the "Scan" action. Images are processed instantly for OCR using on-device ML and the raw image is either saved to your vault or discarded immediately.</p>
+</div>
+</article>
+<!-- 3. Notifications -->
+<article class="permission-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg shadow-sm">
+<div class="flex items-start justify-between mb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Notifications</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="flex items-center gap-1 px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Granted
+                                </span>
+<span class="font-label-lg text-label-lg text-outline">10m ago</span>
+</div>
+</div>
+</div>
+<button class="bg-surface-container-high px-lg py-sm rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-variant transition-colors active:scale-95">Manage</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Alerts for backup status, security logs, and AI insights.</p>
+<div class="bg-surface-container-low rounded-lg p-md">
+<div class="flex items-center gap-sm text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-lg text-label-lg font-bold">Privacy Explanation</span>
+</div>
+<p class="font-body-md text-[13px] leading-relaxed text-on-surface-variant">We utilize local notification scheduling. Your private data is never sent to notification servers (FCM/APNs); only generic triggers are used to keep your info private.</p>
+</div>
+</article>
+<!-- 4. Accessibility -->
+<article class="permission-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg shadow-sm">
+<div class="flex items-start justify-between mb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">accessibility_new</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Accessibility</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="flex items-center gap-1 px-2 py-0.5 bg-surface-container text-on-surface-variant rounded-full text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[12px]">block</span> Denied
+                                </span>
+<span class="font-label-lg text-label-lg text-outline">Never</span>
+</div>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-lg py-sm rounded-full font-label-lg text-label-lg hover:brightness-110 transition-all active:scale-95">Enable</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Required for advanced AI form-filling features.</p>
+<div class="bg-surface-container-low rounded-lg p-md">
+<div class="flex items-center gap-sm text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-lg text-label-lg font-bold">Privacy Explanation</span>
+</div>
+<p class="font-body-md text-[13px] leading-relaxed text-on-surface-variant">Accessibility services are used strictly to identify input fields in third-party apps for Formora Auto-Fill. We do not record keystrokes or observe screen content unrelated to active form-filling tasks.</p>
+</div>
+</article>
+<!-- 5. Overlay -->
+<article class="permission-card bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg shadow-sm">
+<div class="flex items-start justify-between mb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">layers</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Overlay</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="flex items-center gap-1 px-2 py-0.5 bg-surface-container text-on-surface-variant rounded-full text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[12px]">block</span> Denied
+                                </span>
+<span class="font-label-lg text-label-lg text-outline">Never</span>
+</div>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-lg py-sm rounded-full font-label-lg text-label-lg hover:brightness-110 transition-all active:scale-95">Enable</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Allows the AI Assistant to appear over other apps.</p>
+<div class="bg-surface-container-low rounded-lg p-md">
+<div class="flex items-center gap-sm text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-lg text-label-lg font-bold">Privacy Explanation</span>
+</div>
+<p class="font-body-md text-[13px] leading-relaxed text-on-surface-variant">The overlay window is a floating UI component for the Formora Assistant. It only renders UI elements and does not have the technical capability to capture your background screen.</p>
+</div>
+</article>
+</div>
+<!-- Footer Visual Hint -->
+<div class="flex flex-col items-center justify-center pt-xl text-center">
+<div class="w-12 h-1 bg-surface-variant rounded-full mb-md"></div>
+<p class="font-body-md text-body-md text-outline">End of permission audit. <br/> Security scan completed 4m ago.</p>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container flex justify-around items-center py-sm px-lg rounded-t-xl shadow-md md:px-margin-desktop">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 transition-all duration-200 hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined">lock</span>
+<span class="font-label-lg text-label-lg">Vault</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 transition-all duration-200 hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-lg text-label-lg">Recent</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 transition-all duration-200 hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-label-lg text-label-lg">AI Assistant</span>
+</div>
+<!-- Active Tab: Settings (assuming Permissions lives under Settings) -->
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.permission-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body></html>

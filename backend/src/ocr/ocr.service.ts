@@ -7,6 +7,7 @@
 
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { StorageService } from '../common/storage/storage.service';
 import { EncryptionService } from '../common/encryption/encryption.service';
@@ -23,17 +24,17 @@ const FIELD_PATTERNS: Record<string, RegExp[]> = {
     /^[A-Z][a-z]+\s+([A-Z][a-z]+)/m,
   ],
   date_of_birth: [
-    /(?:date\s*of\s*birth|dob|born)[:\s]+(\d{1,2}[\-\/\.]\d{1,2}[\-\/\.]\d{2,4})/i,
-    /(\d{2}[\-\/\.]\d{2}[\-\/\.]\d{4})/,
+    /(?:date\s*of\s*birth|dob|born)[:\s]+(\d{1,2}[-/.]\d{1,2}[-/.]\d{2,4})/i,
+    /(\d{2}[-/.]\d{2}[-/.]\d{4})/,
   ],
   passport_number: [/(?:passport\s*no?\.?|document\s*no?\.?)[:\s]*([A-Z0-9]{6,12})/i],
   nationality: [/(?:nationality|citizenship)[:\s]+([A-Za-z\s]+)/i],
   expiry_date: [
-    /(?:expiry|expiration|valid\s*until|expires?)[:\s]+(\d{1,2}[\-\/\.]\d{1,2}[\-\/\.]\d{2,4})/i,
+    /(?:expiry|expiration|valid\s*until|expires?)[:\s]+(\d{1,2}[-/.]\d{1,2}[-/.]\d{2,4})/i,
   ],
-  license_number: [/(?:license\s*no?\.?|dl\s*no?\.?)[:\s]*([A-Z0-9\-]{5,15})/i],
+  license_number: [/(?:license\s*no?\.?|dl\s*no?\.?)[:\s]*([A-Z0-9-]{5,15})/i],
   address: [/(?:address|addr\.?)[:\s]+(.{10,80})/i],
-  email: [/\b([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})\b/],
+  email: [/\b([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\b/],
   phone: [/\b(\+?[\d\s\-().]{7,20})\b/],
 };
 
@@ -67,11 +68,13 @@ export class OcrService {
     if (credentialsJson) {
       try {
         this.visionClient = new ImageAnnotatorClient({
-          credentials: JSON.parse(credentialsJson),
+          credentials: JSON.parse(credentialsJson) as Record<string, unknown>,
         });
         this.logger.log('Google Vision client initialised');
       } catch {
-        this.logger.warn('Failed to parse GOOGLE_VISION_CREDENTIALS_JSON — falling back to Tesseract');
+        this.logger.warn(
+          'Failed to parse GOOGLE_VISION_CREDENTIALS_JSON — falling back to Tesseract',
+        );
       }
     } else {
       this.logger.warn('GOOGLE_VISION_CREDENTIALS_JSON not set — OCR will use Tesseract fallback');
@@ -96,7 +99,7 @@ export class OcrService {
     let result: OcrResult;
 
     if (this.visionClient) {
-      result = await this.runGoogleVision(fileBuffer, doc.contentType);
+      result = await this.runGoogleVision(fileBuffer);
     } else {
       result = await this.runTesseract(fileBuffer);
     }
@@ -107,7 +110,7 @@ export class OcrService {
         documentId,
         provider: result.provider === 'google_vision' ? 'GOOGLE_VISION' : 'TESSERACT',
         rawResponse: { rawText: result.rawText, error: result.error ?? null },
-        extractedFields: result.extractedFields as any,
+        extractedFields: result.extractedFields as unknown as Prisma.InputJsonValue,
         overallConfidence: result.overallConfidence,
       },
     });
@@ -125,7 +128,7 @@ export class OcrService {
 
   // ── GOOGLE VISION ────────────────────────────────────────
 
-  private async runGoogleVision(buffer: Buffer, mimeType: string): Promise<OcrResult> {
+  private async runGoogleVision(buffer: Buffer): Promise<OcrResult> {
     try {
       const [response] = await this.visionClient!.documentTextDetection({
         image: { content: buffer },
@@ -160,7 +163,9 @@ export class OcrService {
         overallConfidence,
       };
     } catch (err) {
-      this.logger.error(`Google Vision failed: ${(err as Error).message} — falling back to Tesseract`);
+      this.logger.error(
+        `Google Vision failed: ${(err as Error).message} — falling back to Tesseract`,
+      );
       return this.runTesseract(buffer);
     }
   }
@@ -222,18 +227,21 @@ export class OcrService {
 
   // ── AUTO POPULATE PROFILE ─────────────────────────────────
 
-  private async populateProfileFields(
-    userId: string,
-    fields: OcrExtractedField[],
-  ) {
+  private async populateProfileFields(userId: string, fields: OcrExtractedField[]) {
     if (fields.length === 0) return;
 
     const profile = await this.prisma.profile.findUnique({ where: { userId } });
     if (!profile) return;
 
     const PERSONAL_KEYS = new Set([
-      'first_name', 'last_name', 'date_of_birth', 'nationality',
-      'passport_number', 'license_number', 'email', 'phone',
+      'first_name',
+      'last_name',
+      'date_of_birth',
+      'nationality',
+      'passport_number',
+      'license_number',
+      'email',
+      'phone',
     ]);
 
     for (const field of fields) {

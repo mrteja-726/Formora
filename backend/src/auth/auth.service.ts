@@ -132,7 +132,8 @@ export class AuthService {
     const valid = await bcrypt.compare(password, user.passwordHash);
     if (!valid) return null;
 
-    const { passwordHash: _, ...result } = user;
+    const result = { ...user };
+    delete (result as { passwordHash?: string | null }).passwordHash;
     return result;
   }
 
@@ -157,7 +158,7 @@ export class AuthService {
       }
 
       const valid = speakeasy.totp.verify({
-        secret: mfaConfig!.totpSecret,
+        secret: mfaConfig.totpSecret,
         encoding: 'base32',
         token: dto.mfaCode,
         window: 1,
@@ -171,12 +172,7 @@ export class AuthService {
 
   // ── TOKEN MANAGEMENT ─────────────────────────────────────
 
-  async issueTokens(
-    userId: string,
-    email: string,
-    ipAddress?: string,
-    userAgent?: string,
-  ) {
+  async issueTokens(userId: string, email: string, ipAddress?: string, userAgent?: string) {
     const accessToken = this.jwt.sign(
       { sub: userId, email },
       {
@@ -364,11 +360,11 @@ export class AuthService {
       where: { userId },
       create: {
         userId,
-        totpSecret: secret.base32!,
+        totpSecret: secret.base32,
         backupCodes: [],
       },
       update: {
-        totpSecret: secret.base32!,
+        totpSecret: secret.base32,
         enabledAt: null,
       },
     });

@@ -1,0 +1,361 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AI Provider Setup | Formora</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fbf8fe",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1b1b1f",
+                        "secondary-fixed": "#dae2f9",
+                        "on-secondary-container": "#5c6478",
+                        "inverse-surface": "#303034",
+                        "primary": "#00478d",
+                        "tertiary-container": "#7e5361",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-tertiary-fixed-variant": "#633b48",
+                        "tertiary-fixed-dim": "#eeb8c8",
+                        "inverse-on-surface": "#f3f0f5",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#dae2f9",
+                        "surface-tint": "#005db6",
+                        "on-secondary-fixed-variant": "#3f4759",
+                        "background": "#fbf8fe",
+                        "secondary-fixed-dim": "#bec6dc",
+                        "on-background": "#1b1b1f",
+                        "surface-container-low": "#f6f2f8",
+                        "outline": "#727783",
+                        "surface-variant": "#e4e1e7",
+                        "outline-variant": "#c2c6d4",
+                        "surface-container-high": "#eae7ed",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#f0edf2",
+                        "inverse-primary": "#a9c7ff",
+                        "surface-container-highest": "#e4e1e7",
+                        "primary-fixed": "#d6e3ff",
+                        "on-tertiary-fixed": "#31111d",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "tertiary": "#643c49",
+                        "surface-bright": "#fbf8fe",
+                        "secondary": "#565e71",
+                        "on-surface-variant": "#424752",
+                        "error": "#ba1a1a",
+                        "primary-container": "#005eb8",
+                        "tertiary-fixed": "#ffd9e3",
+                        "on-primary-fixed": "#001b3d",
+                        "on-primary-container": "#c8daff",
+                        "on-primary-fixed-variant": "#00468c",
+                        "on-secondary-fixed": "#131b2c",
+                        "on-tertiary-container": "#ffcddb",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dcd9de",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "md": "12px",
+                        "margin-desktop": "24px",
+                        "gutter": "16px",
+                        "xl": "24px",
+                        "sm": "8px",
+                        "lg": "16px",
+                        "3xl": "48px",
+                        "2xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "label-lg": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                        "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes modalEntrance {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-modal-entrance {
+            animation: modalEntrance 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        
+        @keyframes successPulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 71, 141, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 71, 141, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 71, 141, 0); }
+        }
+        .success-pulse-active {
+            animation: successPulse 2s infinite;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        .provider-card-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col items-center">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface-container-low flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:scale-95 transition-transform duration-150">
+                arrow_back
+            </button>
+<h1 class="font-title-lg text-title-lg text-primary">AI Providers</h1>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:scale-95 transition-transform duration-150">
+            settings
+        </button>
+</header>
+<main class="max-w-[1200px] w-full px-margin-mobile md:px-margin-desktop py-xl space-y-3xl animate-modal-entrance">
+<!-- Hero Section -->
+<section class="flex flex-col md:flex-row items-center gap-xl md:gap-3xl bg-surface-container-lowest rounded-3xl p-lg md:p-3xl border border-outline-variant/30">
+<div class="w-full md:w-1/2 flex justify-center">
+<div class="relative w-full max-w-sm aspect-video rounded-2xl overflow-hidden bg-primary/5 flex items-center justify-center">
+<img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZTGOSUcxUmhAxdPI2Vfy0UGN_okE5BJKgyAF2JANDWZ4LjnaUFAoEEng6MsbUZTIjyVs6-yY-PCCazbtBM2FP83AXIe3CmfefsI6DJrsV-YQVAKN9R3mBIN8jSQV_B7muHD0SSDxTNOHmn2yWNLlLO-ekpEU_yM6Fsnyo_2XhVEtFPqj9PKRFLMyA8jMR4nOSZxZsjRpC0x6iMmJqfamQ12CeNbvUAyGjuX0OyC2x_nN3mWB6ORCF6kBD87hyWDwOzasOmCrfXlHP">
+</div>
+</div>
+<div class="w-full md:w-1/2 text-center md:text-left space-y-lg">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Bring Your Own AI</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    Formora never provides AI services. Your API key remains under your control, ensuring absolute privacy and data sovereignty.
+                </p>
+</div>
+</section>
+<!-- Provider Selection -->
+<section class="space-y-lg">
+<div class="flex flex-col gap-xs">
+<h3 class="font-title-lg text-title-lg text-on-surface">Select Provider</h3>
+<p class="text-on-surface-variant font-body-md">Choose your preferred LLM infrastructure</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-md">
+<!-- Google Gemini (Selected) -->
+<button class="provider-card-transition flex flex-col items-center justify-center p-xl rounded-2xl bg-primary-container text-on-primary-container ring-2 ring-primary relative group" id="provider-gemini" onclick="selectProvider('gemini')">
+<span class="material-symbols-outlined text-4xl mb-sm" style="font-variation-settings: 'FILL' 1;">hub</span>
+<span class="font-title-md text-title-md">Gemini</span>
+<div class="absolute top-2 right-2 bg-primary rounded-full p-1 shadow-sm">
+<span class="material-symbols-outlined text-sm text-on-primary">check</span>
+</div>
+</button>
+<!-- OpenAI -->
+<button class="provider-card-transition flex flex-col items-center justify-center p-xl rounded-2xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant border border-outline-variant/50" id="provider-openai" onclick="selectProvider('openai')">
+<span class="material-symbols-outlined text-4xl mb-sm">psychology</span>
+<span class="font-title-md text-title-md">OpenAI</span>
+</button>
+<!-- OpenRouter -->
+<button class="provider-card-transition flex flex-col items-center justify-center p-xl rounded-2xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant border border-outline-variant/50" id="provider-openrouter" onclick="selectProvider('openrouter')">
+<span class="material-symbols-outlined text-4xl mb-sm">router</span>
+<span class="font-title-md text-title-md">Router</span>
+</button>
+<!-- Anthropic -->
+<button class="provider-card-transition flex flex-col items-center justify-center p-xl rounded-2xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant border border-outline-variant/50" id="provider-anthropic" onclick="selectProvider('anthropic')">
+<span class="material-symbols-outlined text-4xl mb-sm">token</span>
+<span class="font-title-md text-title-md">Anthropic</span>
+</button>
+<!-- Custom -->
+<button class="provider-card-transition flex flex-col items-center justify-center p-xl rounded-2xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant border border-outline-variant/50" id="provider-custom" onclick="selectProvider('custom')">
+<span class="material-symbols-outlined text-4xl mb-sm">api</span>
+<span class="font-title-md text-title-md">Custom</span>
+</button>
+</div>
+</section>
+<!-- Configuration -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<section class="md:col-span-2 space-y-xl bg-surface-container-low p-xl rounded-3xl border border-outline-variant/30">
+<div class="space-y-lg">
+<div class="flex flex-col gap-xs">
+<h3 class="font-title-lg text-title-lg text-on-surface">Configuration</h3>
+<p class="text-on-surface-variant font-body-md">Enter your credentials for Google Gemini</p>
+</div>
+<div class="space-y-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-lg text-label-lg text-on-surface-variant ml-sm">API KEY</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant">key</span>
+<input class="w-full pl-12 pr-12 py-4 bg-surface-container-highest border-none rounded-2xl focus:ring-2 focus:ring-primary font-body-md transition-all" placeholder="sk-..." type="password">
+<button class="material-symbols-outlined absolute right-4 text-on-surface-variant hover:text-primary transition-colors">visibility</button>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-lg text-label-lg text-on-surface-variant ml-sm">ENDPOINT URL (OPTIONAL)</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant">link</span>
+<input class="w-full pl-12 py-4 bg-surface-container-highest border-none rounded-2xl focus:ring-2 focus:ring-primary font-body-md transition-all" placeholder="https://api.google.com/v1" type="text">
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-lg text-label-lg text-on-surface-variant ml-sm">MODEL SELECTION</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant">model_training</span>
+<select class="w-full pl-12 py-4 bg-surface-container-highest border-none rounded-2xl focus:ring-2 focus:ring-primary font-body-md appearance-none cursor-pointer">
+<option>Gemini 1.5 Pro</option>
+<option>Gemini 1.5 Flash</option>
+<option>Gemini 1.0 Ultra</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col md:flex-row gap-lg pt-lg">
+<button class="flex-1 px-xl py-4 border-2 border-primary text-primary font-title-md rounded-full hover:bg-primary/5 transition-all active:scale-95 flex items-center justify-center gap-md" id="test-connection-btn" onclick="testConnection()">
+<span class="material-symbols-outlined" id="test-icon">network_check</span>
+<span id="test-text" class="">Test Connection</span>
+</button>
+<button class="flex-1 px-xl py-4 bg-primary text-on-primary font-title-md rounded-full shadow-lg hover:shadow-xl hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center gap-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">save</span>
+                        Save Provider
+                    </button>
+</div>
+</section>
+<!-- Security Notice -->
+<aside class="space-y-lg">
+<div class="bg-secondary-container p-xl rounded-3xl space-y-lg border border-outline-variant/20">
+<div class="flex items-center gap-md text-on-secondary-container">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<h4 class="font-title-lg text-title-lg">Security First</h4>
+</div>
+<ul class="space-y-md">
+<li class="flex gap-md">
+<span class="material-symbols-outlined text-on-secondary-container">shield_lock</span>
+<span class="text-on-secondary-container">Keys are stored locally in your device's hardware enclave.</span>
+</li>
+<li class="flex gap-md">
+<span class="material-symbols-outlined text-on-secondary-container">encrypted</span>
+<span class="text-on-secondary-container">AES-256 encrypted storage ensures zero-knowledge access.</span>
+</li>
+<li class="flex gap-md">
+<span class="material-symbols-outlined text-on-secondary-container">cloud_off</span>
+<span class="text-on-secondary-container">Formora servers never see or touch your provider keys.</span>
+</li>
+</ul>
+</div>
+<div class="p-xl border border-outline-variant border-dashed rounded-3xl text-center space-y-md">
+<p class="font-label-lg text-on-surface-variant">Don't have a key?</p>
+<a class="inline-flex items-center gap-sm text-primary font-title-md hover:underline" href="#">
+                        Get Gemini API Key
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl flex justify-around items-center h-20 px-2 pb-safe shadow-md bg-surface-container-low"><a href="#" class="flex flex-col items-center justify-center flex-1 gap-1 text-on-surface-variant opacity-80 hover:bg-surface-variant/30 transition-colors py-2">
+    <span class="material-symbols-outlined">home</span>
+    <span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center flex-1 gap-1 text-on-surface-variant opacity-80 hover:bg-surface-variant/30 transition-colors py-2">
+    <span class="material-symbols-outlined">lock</span>
+    <span class="font-label-lg text-label-lg">Vault</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center flex-1 gap-1 bg-primary-container text-on-primary-container rounded-xl mx-1 py-2 transition-all duration-200">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+    <span class="font-label-lg text-label-lg">Assistant</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center flex-1 gap-1 text-on-surface-variant opacity-80 hover:bg-surface-variant/30 transition-colors py-2">
+    <span class="material-symbols-outlined">settings</span>
+    <span class="font-label-lg text-label-lg">Settings</span>
+</a></nav>
+<script>
+        function selectProvider(id) {
+            const providers = ['gemini', 'openai', 'openrouter', 'anthropic', 'custom'];
+            providers.forEach(p => {
+                const el = document.getElementById(`provider-${p}`);
+                if (p === id) {
+                    el.classList.remove('bg-surface-container', 'text-on-surface-variant', 'border-outline-variant/50');
+                    el.classList.add('bg-primary-container', 'text-on-primary-container', 'ring-2', 'ring-primary');
+                    // Add check icon logic if needed
+                    if (!el.querySelector('.bg-primary')) {
+                        const check = document.createElement('div');
+                        check.className = 'absolute top-2 right-2 bg-primary rounded-full p-1 shadow-sm';
+                        check.innerHTML = '<span class="material-symbols-outlined text-sm text-on-primary">check</span>';
+                        el.appendChild(check);
+                    }
+                    el.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 1";
+                } else {
+                    el.classList.add('bg-surface-container', 'text-on-surface-variant', 'border-outline-variant/50');
+                    el.classList.remove('bg-primary-container', 'text-on-primary-container', 'ring-2', 'ring-primary');
+                    const check = el.querySelector('.bg-primary');
+                    if (check) check.remove();
+                    el.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 0";
+                }
+            });
+        }
+
+        function testConnection() {
+            const btn = document.getElementById('test-connection-btn');
+            const icon = document.getElementById('test-icon');
+            const text = document.getElementById('test-text');
+
+            text.innerText = 'Connecting...';
+            icon.innerText = 'sync';
+            icon.classList.add('animate-spin');
+            btn.disabled = true;
+
+            setTimeout(() => {
+                icon.classList.remove('animate-spin');
+                icon.innerText = 'verified';
+                text.innerText = 'Connection Successful';
+                btn.classList.remove('border-primary', 'text-primary');
+                btn.classList.add('bg-primary', 'text-on-primary', 'success-pulse-active');
+                
+                setTimeout(() => {
+                    btn.classList.remove('success-pulse-active');
+                    btn.classList.add('border-primary', 'text-primary');
+                    btn.classList.remove('bg-primary', 'text-on-primary');
+                    icon.innerText = 'network_check'];
+                    text.innerText = 'Test Connection';
+                    btn.disabled = false;
+                }, 3000);
+            }, 1800);
+        }
+    </script>
+
+
+</body></html>

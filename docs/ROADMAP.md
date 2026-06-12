@@ -42,14 +42,14 @@ Q2 2027   ─── Phase 4: Enterprise & Scale
 
 | # | Feature | Target Date | Status |
 |---|---------|-------------|--------|
-| 1.1 | Authentication System | Week 2 | 🔲 Planned |
-| 1.2 | User Profile (CRUD) | Week 3 | 🔲 Planned |
-| 1.3 | Document Upload Engine | Week 4 | 🔲 Planned |
-| 1.4 | OCR Engine (Google Vision) | Week 5 | 🔲 Planned |
-| 1.5 | AI Mapping Engine (LLM) | Week 7 | 🔲 Planned |
-| 1.6 | Autofill Engine (DOM injection) | Week 8 | 🔲 Planned |
-| 1.7 | Chrome Extension MVP | Week 10 | 🔲 Planned |
-| 1.8 | Mobile App (Flutter) — Profile + Vault | Week 12 | 🔲 Planned |
+| 1.1 | Authentication System | Week 2 | ✅ Completed |
+| 1.2 | User Profile (CRUD) | Week 3 | ✅ Completed |
+| 1.3 | Document Upload Engine | Week 4 | ✅ Completed |
+| 1.4 | OCR Engine (Google Vision) | Week 5 | ✅ Completed |
+| 1.5 | AI Mapping Engine (LLM) | Week 7 | ✅ Completed |
+| 1.6 | Autofill Engine (DOM injection) | Week 8 | ✅ Completed |
+| 1.7 | Chrome Extension MVP | Week 10 | ✅ Completed |
+| 1.8 | Mobile App (Flutter) — Profile + Vault | Week 12 | ✅ Completed |
 
 ### Exit Criteria
 - [ ] End-to-end autofill works on ≥ 20 popular sites
@@ -62,16 +62,16 @@ Q2 2027   ─── Phase 4: Enterprise & Scale
 
 **Goal:** Multi-browser support, desktop app, public launch.
 
-| # | Feature | Notes |
-|---|---------|-------|
-| 2.1 | Firefox & Edge Extension | Port Chrome extension |
-| 2.2 | Safari Extension (macOS) | Web Extensions API |
-| 2.3 | Desktop App — Windows | Flutter desktop + accessibility APIs |
-| 2.4 | Desktop App — macOS | Accessibility API (AXUIElement) |
-| 2.5 | Field-by-field Confirmation Mode | User approves each fill |
-| 2.6 | Site Trust Controls | Allowlist / blocklist |
-| 2.7 | Public Launch & Waitlist | Product Hunt campaign |
-| 2.8 | Payments (Stripe) — Pro Plan | $9.99/month |
+| # | Feature | Notes | Status |
+|---|---------|-------|--------|
+| 2.1 | Firefox & Edge Extension | Port Chrome extension | ✅ Completed |
+| 2.2 | Safari Extension (macOS) | Web Extensions API | 🔲 Planned |
+| 2.3 | Desktop App — Windows | Flutter desktop + accessibility APIs | ✅ Completed |
+| 2.4 | Desktop App — macOS | Accessibility API (AXUIElement) | ✅ Completed |
+| 2.5 | Field-by-field Confirmation Mode | User approves each fill | ✅ Completed |
+| 2.6 | Site Trust Controls | Allowlist / blocklist | ✅ Completed |
+| 2.7 | Public Launch & Waitlist | Product Hunt campaign | 🔲 Planned |
+| 2.8 | Payments (Stripe) — Pro Plan | $9.99/month | ✅ Completed |
 
 ### Exit Criteria
 - [ ] 5,000 MAU post-launch
@@ -82,15 +82,15 @@ Q2 2027   ─── Phase 4: Enterprise & Scale
 
 ## Phase 3 — Growth & Monetisation (Q1 2027)
 
-| # | Feature | Notes |
-|---|---------|-------|
-| 3.1 | Profile Import (LinkedIn, résumé PDF) | Reduce onboarding friction |
-| 3.2 | Shared Profiles (Teams) | Up to 5 members on Business plan |
-| 3.3 | API Access | RESTful API for enterprise integrations |
-| 3.4 | Audit Logs UI | Exportable CSV/PDF |
-| 3.5 | GDPR Data Export | One-click JSON download |
-| 3.6 | Mobile Autofill (iOS QuickType / Android Autofill) | OS-level integration |
-| 3.7 | Referral Program | Viral growth loop |
+| # | Feature | Notes | Status |
+|---|---------|-------|--------|
+| 3.1 | Profile Import (LinkedIn, résumé PDF) | Reduce onboarding friction | 🔄 In Progress |
+| 3.2 | Shared Profiles (Teams) | Up to 5 members on Business plan | 🔲 Planned |
+| 3.3 | API Access | RESTful API for enterprise integrations | 🔲 Planned |
+| 3.4 | Audit Logs UI | Exportable CSV/PDF | 🔲 Planned |
+| 3.5 | GDPR Data Export | One-click JSON download | 🔄 In Progress |
+| 3.6 | Mobile Autofill (iOS QuickType / Android Autofill) | OS-level integration | 🔲 Planned |
+| 3.7 | Referral Program | Viral growth loop | 🔲 Planned |
 
 ### Exit Criteria
 - [ ] 25,000 MAU

@@ -2,15 +2,7 @@
 // OCR Controller — /api/v1/ocr/*
 // ============================================================
 
-import {
-  Controller,
-  Post,
-  Get,
-  Param,
-  UseGuards,
-  HttpCode,
-  HttpStatus,
-} from '@nestjs/common';
+import { Controller, Post, Get, Param, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth, ApiParam } from '@nestjs/swagger';
 import { InjectQueue } from '@nestjs/bullmq';
 import { Queue } from 'bullmq';
@@ -36,10 +28,7 @@ export class OcrController {
   @HttpCode(HttpStatus.ACCEPTED)
   @ApiOperation({ summary: 'Queue a document for OCR processing (async)' })
   @ApiParam({ name: 'documentId', description: 'UUID of the uploaded document' })
-  async triggerOcr(
-    @CurrentUser() user: { id: string },
-    @Param('documentId') documentId: string,
-  ) {
+  async triggerOcr(@CurrentUser() user: { id: string }, @Param('documentId') documentId: string) {
     const job = await this.ocrQueue.add(
       'process-document',
       { documentId, userId: user.id },
@@ -67,10 +56,7 @@ export class OcrController {
   @Get('documents/:documentId/results')
   @ApiOperation({ summary: 'Get OCR results for a document' })
   @ApiParam({ name: 'documentId', description: 'UUID of the document' })
-  async getResults(
-    @CurrentUser() _user: { id: string },
-    @Param('documentId') documentId: string,
-  ) {
+  async getResults(@CurrentUser() _user: { id: string }, @Param('documentId') documentId: string) {
     return {
       success: true,
       data: await this.ocrService.getResults(documentId),

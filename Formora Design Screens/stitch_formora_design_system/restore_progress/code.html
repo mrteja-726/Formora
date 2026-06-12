@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Restore Progress - Formora</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#005db6",
+                        "inverse-on-surface": "#f3f0f5",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#dae2f9",
+                        "on-secondary-fixed": "#131b2c",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#a9c7ff",
+                        "surface-bright": "#fbf8fe",
+                        "tertiary-fixed": "#ffd9e3",
+                        "tertiary-container": "#7e5361",
+                        "surface-container-low": "#f6f2f8",
+                        "primary": "#00478d",
+                        "tertiary-fixed-dim": "#eeb8c8",
+                        "on-primary-fixed-variant": "#00468c",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#f0edf2",
+                        "tertiary": "#643c49",
+                        "on-tertiary-fixed": "#31111d",
+                        "secondary": "#565e71",
+                        "on-surface": "#1b1b1f",
+                        "error": "#ba1a1a",
+                        "surface": "#fbf8fe",
+                        "primary-container": "#005eb8",
+                        "on-surface-variant": "#424752",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary-fixed": "#001b3d",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fbf8fe",
+                        "surface-container-high": "#eae7ed",
+                        "on-primary-container": "#c8daff",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dcd9de",
+                        "on-secondary-container": "#5c6478",
+                        "surface-container-highest": "#e4e1e7",
+                        "outline-variant": "#c2c6d4",
+                        "on-secondary-fixed-variant": "#3f4759",
+                        "surface-variant": "#e4e1e7",
+                        "secondary-fixed-dim": "#bec6dc",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303034",
+                        "on-tertiary-container": "#ffcddb",
+                        "secondary-fixed": "#dae2f9",
+                        "on-tertiary-fixed-variant": "#633b48",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "outline": "#727783",
+                        "on-background": "#1b1b1f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xs": "4px",
+                        "margin-desktop": "24px",
+                        "3xl": "48px",
+                        "2xl": "32px",
+                        "xl": "24px",
+                        "margin-mobile": "16px",
+                        "lg": "16px",
+                        "gutter": "16px",
+                        "md": "12px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "label-lg": ["JetBrains Mono", "monospace"],
+                        "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "title-md": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                        "display-lg": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "display-lg": ["57px", { "lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom Animations for Premium Motion Feel */
+        @keyframes subtlePulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.9;
+                filter: drop-shadow(0 0 10px rgba(0, 71, 141, 0.3));
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+                filter: drop-shadow(0 0 20px rgba(0, 71, 141, 0.6));
+            }
+        }
+
+        @keyframes smoothRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fillProgress {
+            from { stroke-dashoffset: 283; }
+            to { stroke-dashoffset: 164; } /* roughly 42% of 283 */
+        }
+
+        .animate-shield {
+            animation: subtlePulse 3s ease-in-out infinite;
+        }
+
+        .animate-ring-bg {
+            animation: smoothRotate 20s linear infinite;
+        }
+
+        .animate-progress-fill {
+            stroke-dasharray: 283; /* 2 * pi * 45 */
+            stroke-dashoffset: 283;
+            animation: fillProgress 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<!-- Nav Shell Suppressed: Transactional/Focused State -->
+<body class="bg-surface text-on-surface min-h-screen flex flex-col items-center justify-center relative overflow-hidden font-body-lg">
+<!-- Ambient Background Effects -->
+<div class="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] bg-secondary-container/20 rounded-full blur-[80px] pointer-events-none"></div>
+<main class="relative z-10 flex flex-col items-center justify-center w-full max-w-md px-margin-mobile md:px-margin-desktop text-center">
+<!-- Large Circular Progress Indicator -->
+<div class="relative w-64 h-64 mb-2xl">
+<!-- Background Rotating Ring for motion feel -->
+<div class="absolute inset-0 animate-ring-bg opacity-30">
+<svg class="w-full h-full text-outline-variant" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="48" stroke="currentColor" stroke-dasharray="4 8" stroke-width="1"></circle>
+</svg>
+</div>
+<!-- Main Progress Track & Fill -->
+<svg class="w-full h-full transform -rotate-90 drop-shadow-md" viewbox="0 0 100 100">
+<!-- Track -->
+<circle class="text-surface-variant" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="4"></circle>
+<!-- Progress Fill (Animates to 42%) -->
+<circle class="text-primary animate-progress-fill" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<!-- Inner Content: Shield & Percentage -->
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<!-- Animated Icon -->
+<span class="material-symbols-outlined text-[40px] text-primary animate-shield mb-xs" style="font-variation-settings: 'FILL' 1;">
+                    security
+                </span>
+<!-- Percentage Number -->
+<span class="font-display-lg text-display-lg text-on-surface tracking-tighter" id="progress-text">42%</span>
+</div>
+</div>
+<!-- Status Texts -->
+<h1 class="font-headline-md text-headline-md text-on-surface mb-sm">
+            Restoring Vault Data...
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            Merging 1,240 documents and 2 profiles
+        </p>
+<!-- Actions -->
+<div class="mt-3xl w-full flex justify-center">
+<button class="flex items-center justify-center space-x-sm bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant px-xl py-md rounded-full font-label-lg text-label-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+<span class="material-symbols-outlined text-[18px]">pause</span>
+<span>Pause</span>
+</button>
+</div>
+</main>
+<!-- Optional JS for subtle number ticking effect to enhance motion -->
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const percentageElement = document.getElementById('progress-text');
+            let currentVal = 0;
+            const targetVal = 42;
+            const duration = 2000; // Match CSS animation duration
+            const steps = 60;
+            const stepTime = duration / steps;
+            
+            // Initial fast count up to match the circle fill
+            let interval = setInterval(() => {
+                if (currentVal >= targetVal) {
+                    clearInterval(interval);
+                    // Slow periodic simulated progress tick
+                    setInterval(() => {
+                        if(Math.random() > 0.7 && currentVal < 99) {
+                            currentVal += 1;
+                            percentageElement.innerText = currentVal + "%";
+                        }
+                    }, 4000);
+                } else {
+                    currentVal += Math.ceil(targetVal / steps);
+                    if(currentVal > targetVal) currentVal = targetVal;
+                    percentageElement.innerText = currentVal + "%";
+                }
+            }, stepTime);
+        });
+    </script>
+</body></html>

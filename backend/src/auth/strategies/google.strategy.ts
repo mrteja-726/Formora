@@ -20,12 +20,15 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     super({
       clientID: config.getOrThrow<string>('GOOGLE_CLIENT_ID'),
       clientSecret: config.getOrThrow<string>('GOOGLE_CLIENT_SECRET'),
-      callbackURL: config.get('GOOGLE_CALLBACK_URL', 'http://localhost:3000/api/v1/auth/oauth/google/callback'),
+      callbackURL: config.get(
+        'GOOGLE_CALLBACK_URL',
+        'http://localhost:3000/api/v1/auth/oauth/google/callback',
+      ),
       scope: ['email', 'profile'],
     });
   }
 
-  async validate(
+  validate(
     accessToken: string,
     _refreshToken: string,
     profile: GoogleProfile,

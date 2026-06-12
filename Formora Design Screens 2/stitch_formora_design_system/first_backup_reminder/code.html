@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora | Protect Your Progress</title>
+<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#001b3d",
+                    "primary-fixed": "#d6e3ff",
+                    "on-tertiary-container": "#ffcddb",
+                    "on-background": "#1b1b1f",
+                    "on-secondary-container": "#5c6478",
+                    "surface": "#fbf8fe",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#eae7ed",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "on-surface-variant": "#424752",
+                    "on-primary-container": "#c8daff",
+                    "tertiary-fixed": "#ffd9e3",
+                    "inverse-surface": "#303034",
+                    "tertiary-container": "#7e5361",
+                    "primary-container": "#005eb8",
+                    "outline": "#727783",
+                    "inverse-on-surface": "#f3f0f5",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#f0edf2",
+                    "primary": "#00478d",
+                    "surface-tint": "#005db6",
+                    "surface-bright": "#fbf8fe",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-low": "#f6f2f8",
+                    "secondary-fixed": "#dae2f9",
+                    "surface-variant": "#e4e1e7",
+                    "tertiary": "#643c49",
+                    "secondary-container": "#dae2f9",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e4e1e7",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1b1f",
+                    "surface-dim": "#dcd9de",
+                    "on-tertiary-fixed": "#31111d",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "secondary": "#565e71",
+                    "inverse-primary": "#a9c7ff",
+                    "on-secondary-fixed": "#131b2c",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#fbf8fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "24px",
+                    "xl": "24px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "2xl": "32px",
+                    "3xl": "48px",
+                    "lg": "16px",
+                    "gutter": "16px",
+                    "md": "12px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-lg": ["JetBrains Mono"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .vault-glow {
+            box-shadow: 0 0 40px -10px rgba(0, 94, 184, 0.2);
+        }
+        .mesh-bg {
+            background-color: #fbf8fe;
+            background-image: radial-gradient(at 0% 0%, rgba(214, 227, 255, 0.5) 0px, transparent 50%), 
+                              radial-gradient(at 100% 100%, rgba(255, 217, 227, 0.3) 0px, transparent 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col mesh-bg">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface/80 backdrop-blur-md flex justify-between items-center px-margin-mobile py-sm md:px-margin-desktop">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary font-headline-md text-headline-md" data-icon="shield_lock">shield_lock</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Formora</h1>
+</div>
+<div class="flex items-center gap-lg">
+<!-- Desktop Nav Items -->
+<nav class="hidden md:flex items-center gap-xl">
+<a class="font-title-md text-title-md text-primary hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Home</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Vault</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Assistant</a>
+</nav>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-outline-variant active:scale-95 duration-150 cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a person with a friendly expression, set against a clean and minimal studio background. The lighting is soft and even, emphasizing a high-trust and secure digital identity atmosphere. The overall style is modern, professional, and refined, consistent with a premium privacy-first application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXWp5uRjPwmdTgbmwLhSdOzvYX_qHPfaF7vGcWmgi9fknZ7nP2_gbNNsTy-uvUFWI83-dfVJjhbiTs1x6zumJEjb17Z1xcR_ks5whKsDwxdouzCSnxzFZ3zLY98jv3qdzSBJ6QS3ZrZ9BvuD3Z9mSeSt6R-dqBGov-veAc5CFFRWw3WxQf5EaH4h1oZrZsmdFsR7Sg51TkNyQjGHtEUcleVBC8e6lMBA7GsZRJ8NoH7YkbKGlOvaj-aWdlQG97D_9yrB7XveK5SICe"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile py-xl md:py-3xl">
+<div class="max-w-2xl w-full flex flex-col items-center space-y-xl">
+<!-- Hero Illustration Section -->
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary-fixed opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500 rounded-full"></div>
+<div class="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+<!-- Security Illustration -->
+<div class="vault-glow rounded-3xl bg-surface-container-lowest p-8 border border-outline-variant/30 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px] md:text-[160px] text-primary" data-icon="archive" style="font-variation-settings: 'FILL' 1;">archive</span>
+<div class="absolute -top-2 -right-2 bg-tertiary-container text-on-tertiary-container p-2 rounded-xl shadow-lg border border-white/20">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Card -->
+<section class="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl p-lg md:p-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="space-y-lg text-center md:text-left">
+<div class="space-y-sm">
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Protect Your Progress</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            You've reached a major milestone! Create your first encrypted backup to ensure your data is always safe and accessible.
+                        </p>
+</div>
+<!-- Benefits List -->
+<ul class="grid grid-cols-1 md:grid-cols-1 gap-md py-sm">
+<li class="flex items-start gap-md p-md bg-surface-container-highest/30 rounded-lg group hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-primary bg-primary-fixed rounded-full p-1" data-icon="check">check</span>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Data Safety</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Full end-to-end encryption.</span>
+</div>
+</li>
+<li class="flex items-start gap-md p-md bg-surface-container-highest/30 rounded-lg group hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-primary bg-primary-fixed rounded-full p-1" data-icon="check">check</span>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Device Migration</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Seamless move to new devices.</span>
+</div>
+</li>
+<li class="flex items-start gap-md p-md bg-surface-container-highest/30 rounded-lg group hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-primary bg-primary-fixed rounded-full p-1" data-icon="check">check</span>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Recovery Protection</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Restore data if your device is lost.</span>
+</div>
+</li>
+</ul>
+<!-- Action Buttons -->
+<div class="flex flex-col md:flex-row gap-lg pt-lg">
+<button class="flex-grow flex items-center justify-center gap-sm bg-primary text-on-primary font-title-lg text-title-lg py-4 px-xl rounded-xl hover:bg-primary/90 active:scale-[0.98] transition-all shadow-md">
+<span class="material-symbols-outlined" data-icon="backup">backup</span>
+                            Create Backup
+                        </button>
+<button class="flex-grow flex items-center justify-center font-title-lg text-title-lg text-primary border border-outline-variant py-4 px-xl rounded-xl hover:bg-surface-variant/50 active:scale-[0.98] transition-all">
+                            Remind Me Later
+                        </button>
+</div>
+</div>
+</section>
+<!-- Small Hint/Privacy Message -->
+<p class="font-label-lg text-label-lg text-outline flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="info">info</span>
+                Formora backups are zero-knowledge. Even we can't access them.
+            </p>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container border-t border-outline-variant shadow-md flex justify-around items-center px-4 pb-4 pt-2 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+<span class="font-label-lg text-label-lg">Vault</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-label-lg text-label-lg">Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-[0.98]');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-[0.98]');
+            });
+        });
+
+        // Subtle hover movement for the hero archive icon
+        const archiveHero = document.querySelector('.group');
+        if (archiveHero) {
+            archiveHero.addEventListener('mousemove', (e) => {
+                const rect = archiveHero.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+                const dx = (x - xc) / 15;
+                const dy = (y - yc) / 15;
+                archiveHero.querySelector('.vault-glow').style.transform = `perspective(1000px) rotateX(${-dy}deg) rotateY(${dx}deg) scale(1.05)`;
+            });
+
+            archiveHero.addEventListener('mouseleave', () => {
+                archiveHero.querySelector('.vault-glow').style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+            });
+        }
+    </script>
+</body></html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Conflict Resolution - Formora</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#005db6",
+                    "inverse-on-surface": "#f3f0f5",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#dae2f9",
+                    "on-secondary-fixed": "#131b2c",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#a9c7ff",
+                    "surface-bright": "#fbf8fe",
+                    "tertiary-fixed": "#ffd9e3",
+                    "tertiary-container": "#7e5361",
+                    "surface-container-low": "#f6f2f8",
+                    "primary": "#00478d",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0edf2",
+                    "tertiary": "#643c49",
+                    "on-tertiary-fixed": "#31111d",
+                    "secondary": "#565e71",
+                    "on-surface": "#1b1b1f",
+                    "error": "#ba1a1a",
+                    "surface": "#fbf8fe",
+                    "primary-container": "#005eb8",
+                    "on-surface-variant": "#424752",
+                    "primary-fixed": "#d6e3ff",
+                    "on-primary-fixed": "#001b3d",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#fbf8fe",
+                    "surface-container-high": "#eae7ed",
+                    "on-primary-container": "#c8daff",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dcd9de",
+                    "on-secondary-container": "#5c6478",
+                    "surface-container-highest": "#e4e1e7",
+                    "outline-variant": "#c2c6d4",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "surface-variant": "#e4e1e7",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#303034",
+                    "on-tertiary-container": "#ffcddb",
+                    "secondary-fixed": "#dae2f9",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "outline": "#727783",
+                    "on-background": "#1b1b1f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "xs": "4px",
+                    "margin-desktop": "24px",
+                    "3xl": "48px",
+                    "2xl": "32px",
+                    "xl": "24px",
+                    "margin-mobile": "16px",
+                    "lg": "16px",
+                    "gutter": "16px",
+                    "md": "12px"
+            },
+            "fontFamily": {
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-lg": ["JetBrains Mono"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+                    "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400" }],
+                    "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                    "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                    "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                    "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                    "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500" }],
+                    "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                    "display-lg": ["57px", { "lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col">
+<!-- Top App Bar (Suppressed on this transactional step, but requested to show as a header based on prompt, so we will use a simpler top bar for the transactional flow) -->
+<header class="bg-surface dark:bg-surface-dim w-full top-0 sticky flat no shadows flex justify-between items-center px-lg py-sm w-full border-b border-surface-variant z-10">
+<div class="flex items-center gap-sm">
+<button class="p-sm rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 ease-in-out text-on-surface-variant dark:text-outline">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="text-title-lg font-title-lg font-bold text-primary dark:text-primary-fixed">Formora</div>
+</div>
+<div class="flex gap-xs items-center">
+<span class="text-label-lg font-label-lg text-outline">Step 4 of 5</span>
+<div class="flex gap-[2px]">
+<div class="h-1 w-4 bg-primary rounded-full"></div>
+<div class="h-1 w-4 bg-primary rounded-full"></div>
+<div class="h-1 w-4 bg-primary rounded-full"></div>
+<div class="h-1 w-4 bg-primary rounded-full"></div>
+<div class="h-1 w-4 bg-surface-variant rounded-full"></div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 w-full max-w-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl md:py-3xl flex flex-col gap-xl">
+<!-- Header Section -->
+<section class="flex flex-col gap-sm">
+<div class="flex items-center gap-sm text-error">
+<span class="material-symbols-outlined fill-icon text-3xl">warning</span>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Data Conflicts Detected</h1>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                The backup you are trying to restore contains records that already exist in your current vault. Please select how you want to handle these conflicts.
+            </p>
+</section>
+<!-- Warning Box -->
+<div class="bg-error-container text-on-error-container rounded-xl p-lg flex gap-md items-start border border-error/20">
+<span class="material-symbols-outlined mt-1">info</span>
+<div>
+<h3 class="font-title-md text-title-md mb-1">Warning: Overwriting Data</h3>
+<p class="font-body-md text-body-md opacity-90">Choosing to replace existing data will permanently overwrite your current records with the versions from the backup. This action cannot be undone.</p>
+</div>
+</div>
+<!-- Choice Cards -->
+<section class="flex flex-col gap-md">
+<!-- Option 1: Replace -->
+<label class="cursor-pointer group relative bg-surface-container-lowest border-2 border-outline-variant hover:border-primary rounded-xl p-lg flex gap-md items-center transition-all duration-200 has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/20 shadow-sm hover:shadow-md">
+<input class="peer sr-only" name="conflict_resolution" type="radio" value="replace"/>
+<div class="w-6 h-6 rounded-full border-2 border-outline peer-checked:border-primary peer-checked:border-[6px] transition-all flex-shrink-0"></div>
+<div class="flex-shrink-0 w-12 h-12 bg-error-container text-on-error-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined fill-icon">delete_history</span>
+</div>
+<div class="flex-1">
+<h3 class="font-title-md text-title-md text-on-surface">Replace Existing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Overwrite current data with the backup version.</p>
+</div>
+</label>
+<!-- Option 2: Merge -->
+<label class="cursor-pointer group relative bg-surface-container-lowest border-2 border-outline-variant hover:border-primary rounded-xl p-lg flex gap-md items-center transition-all duration-200 has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/20 shadow-sm hover:shadow-md">
+<input checked="" class="peer sr-only" name="conflict_resolution" type="radio" value="merge"/>
+<div class="w-6 h-6 rounded-full border-2 border-outline peer-checked:border-primary peer-checked:border-[6px] transition-all flex-shrink-0"></div>
+<div class="flex-shrink-0 w-12 h-12 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">call_merge</span>
+</div>
+<div class="flex-1">
+<h3 class="font-title-md text-title-md text-on-surface">Merge Data</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Combine unique items from both sources. Keep newest versions.</p>
+</div>
+<div class="absolute top-0 right-0 transform translate-x-2 -translate-y-2 bg-primary text-on-primary font-label-lg text-label-lg px-2 py-1 rounded-full shadow-sm">
+                    Recommended
+                </div>
+</label>
+<!-- Option 3: Separate -->
+<label class="cursor-pointer group relative bg-surface-container-lowest border-2 border-outline-variant hover:border-primary rounded-xl p-lg flex gap-md items-center transition-all duration-200 has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/20 shadow-sm hover:shadow-md">
+<input class="peer sr-only" name="conflict_resolution" type="radio" value="separate"/>
+<div class="w-6 h-6 rounded-full border-2 border-outline peer-checked:border-primary peer-checked:border-[6px] transition-all flex-shrink-0"></div>
+<div class="flex-shrink-0 w-12 h-12 bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">file_copy</span>
+</div>
+<div class="flex-1">
+<h3 class="font-title-md text-title-md text-on-surface">Create New Profiles</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Keep both versions as separate, clearly marked profiles.</p>
+</div>
+</label>
+</section>
+<!-- Actions -->
+<div class="mt-auto pt-xl flex flex-col sm:flex-row gap-sm sm:justify-end border-t border-surface-variant">
+<button class="px-xl py-sm rounded-full font-title-md text-title-md text-primary border border-outline hover:bg-surface-variant transition-colors w-full sm:w-auto">
+                Cancel Restore
+            </button>
+<button class="px-xl py-sm rounded-full font-title-md text-title-md bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm flex items-center justify-center gap-sm w-full sm:w-auto">
+<span class="material-symbols-outlined">shield_lock</span>
+                Confirm &amp; Restore
+            </button>
+</div>
+</main>
+</body></html>

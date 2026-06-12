@@ -1,0 +1,224 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Vault - Formora</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#7e5361",
+                    "outline-variant": "#c2c6d4",
+                    "on-surface": "#1b1b1f",
+                    "inverse-on-surface": "#f3f0f5",
+                    "outline": "#727783",
+                    "on-secondary-fixed": "#131b2c",
+                    "surface-container": "#f0edf2",
+                    "on-primary-fixed": "#001b3d",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e4e1e7",
+                    "on-background": "#1b1b1f",
+                    "surface-container-low": "#f6f2f8",
+                    "on-tertiary-fixed": "#31111d",
+                    "on-tertiary-container": "#ffcddb",
+                    "surface-dim": "#dcd9de",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#eae7ed",
+                    "secondary-fixed": "#dae2f9",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "tertiary-fixed": "#ffd9e3",
+                    "surface": "#fbf8fe",
+                    "surface-bright": "#fbf8fe",
+                    "primary-container": "#005eb8",
+                    "tertiary": "#643c49",
+                    "inverse-surface": "#303034",
+                    "surface-variant": "#e4e1e7",
+                    "surface-tint": "#005db6",
+                    "primary-fixed": "#d6e3ff",
+                    "primary": "#00478d",
+                    "on-primary-container": "#c8daff",
+                    "secondary-container": "#dae2f9",
+                    "on-surface-variant": "#424752",
+                    "on-secondary-container": "#5c6478",
+                    "inverse-primary": "#a9c7ff",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#00468c",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "secondary": "#565e71",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "on-error-container": "#93000a",
+                    "background": "#fbf8fe",
+                    "secondary-fixed-dim": "#bec6dc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "gutter": "16px",
+                    "lg": "16px",
+                    "md": "12px",
+                    "margin-desktop": "24px",
+                    "3xl": "48px",
+                    "xl": "24px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "2xl": "32px"
+            },
+            "fontFamily": {
+                    "label-lg": ["JetBrains Mono"],
+                    "title-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes folderEntrance {
+            0% { transform: scale(0.85) rotateX(15deg) translateY(20px); opacity: 0; }
+            100% { transform: scale(1) rotateX(0deg) translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(16px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-folder {
+            animation: folderEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            perspective: 1000px;
+        }
+
+        .animate-content {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.3s forwards;
+        }
+
+        .animate-delay-1 { animation-delay: 0.4s; }
+        .animate-delay-2 { animation-delay: 0.5s; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-surface-dim flex items-center justify-between px-margin-mobile h-16 w-full"><div class="flex items-center gap-md"><button class="p-2 hover:bg-surface-container-high rounded-full transition-all active:scale-95"><span class="material-symbols-outlined text-on-surface">menu</span></button><h1 class="font-headline-md text-headline-md font-bold text-on-surface">Vault</h1></div><div class="w-10 h-10 rounded-full overflow-hidden border-2 border-outline-variant active:scale-95 duration-100 cursor-pointer"><img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAemdcwno4n-eoVmHilvLWuy6eKlhX_FPBubsesjJhxG0hrfk858YxV-czSa09dFYnBIDXgcoGX2xAkuDN03uU3oZijQy91D79qNUEJl117UwPw9oI6Fls18xXEECoTOcDMIpwudZCKd0WBoAoIPErJqGnDVtemBajqnsDEGz1JpV3fMU-pNuCegH3KrRFfcQ449YMv7RbnWWMBfCDBb1dxZ-oX9fQ-EGshgbvA80i7MQDyzZqMB5FOX2xxho9MIYfojs6923DcksH"></div></header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col items-center justify-center px-margin-mobile pb-32 pt-8 max-w-lg mx-auto text-center">
+<!-- Illustration Area -->
+<div class="animate-folder mb-xl relative group">
+<div class="absolute -inset-4 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all duration-700"></div>
+<img alt="Vault empty state" class="relative w-48 h-48 md:w-64 md:h-64 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ29acfFkFYBCtRxxmSagYg0_q4c88z2nVN3_UFW0Apggp0WwqOKsM9He5kO_ywW9-6cHVpP6ghR05JSeyJcGJW0-vU62o6i1heq4boKHBi-88DDJu_0c2Jkx_tzpoRmoRJtccVB5C8PSfsUb07btKjm1TcmDaiMEHlNY0ZYkg_sENjKIZcoOu03OF5G8nTW5PF9vbpLJWeIBi9w0Wkw0i3GcBFEWnKsbna2aSfe8DWRhBLsvNnqQz_DhOiuGc9KwnblMpwGa1KnqT">
+</div>
+<!-- Text Content -->
+<div class="animate-content space-y-md mb-xl">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">Your Vault Is Empty</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant px-4">
+                Upload documents to securely organize and manage your information.
+            </p>
+</div>
+<!-- Action Chips -->
+<div class="animate-content animate-delay-1 flex flex-wrap justify-center gap-sm mb-2xl">
+<button class="flex items-center gap-xs px-lg py-sm bg-surface-container-high hover:bg-surface-container-highest rounded-full border border-outline-variant transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">document_scanner</span>
+<span class="font-label-lg text-label-lg text-on-surface">Scan Document</span>
+</button>
+<button class="flex items-center gap-xs px-lg py-sm bg-surface-container-high hover:bg-surface-container-highest rounded-full border border-outline-variant transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+<span class="font-label-lg text-label-lg text-on-surface">Upload PDF</span>
+</button>
+<button class="flex items-center gap-xs px-lg py-sm bg-surface-container-high hover:bg-surface-container-highest rounded-full border border-outline-variant transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">cloud_download</span>
+<span class="font-label-lg text-label-lg text-on-surface">Import Files</span>
+</button>
+</div>
+<!-- Primary CTA -->
+<div class="animate-content animate-delay-2 w-full">
+<button class="w-full py-4 bg-primary hover:bg-primary-container text-on-primary font-title-md text-title-md rounded-xl shadow-sm hover:shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+                Upload Document
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface-container shadow-md rounded-t-xl z-50"><!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<!-- Documents (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-lg text-label-lg">Documents</span>
+</a>
+<!-- AI Assistant -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-lg text-label-lg">AI Assistant</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a></nav>
+<!-- Micro-interaction script -->
+<script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const ripple = document.createElement('div');
+                ripple.className = 'absolute bg-white/20 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 animate-ping';
+                ripple.style.width = '100px';
+                ripple.style.height = '100px';
+                ripple.style.left = e.offsetX + 'px';
+                ripple.style.top = e.offsetY + 'px';
+                btn.classList.add('relative', 'overflow-hidden');
+                btn.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
+
+
+
+
+</body></html>

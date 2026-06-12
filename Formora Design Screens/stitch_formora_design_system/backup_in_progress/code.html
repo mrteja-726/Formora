@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Backup Progress - Privacy Vault</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#a9c7ff",
+                        "on-tertiary-fixed-variant": "#633b48",
+                        "on-primary-fixed-variant": "#00468c",
+                        "on-surface-variant": "#424752",
+                        "surface-container-low": "#f6f2f8",
+                        "surface-container-highest": "#e4e1e7",
+                        "tertiary-fixed": "#ffd9e3",
+                        "secondary-container": "#dae2f9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f0edf2",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e4e1e7",
+                        "surface": "#fbf8fe",
+                        "primary": "#00478d",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dcd9de",
+                        "on-secondary-fixed": "#131b2c",
+                        "inverse-on-surface": "#f3f0f5",
+                        "inverse-surface": "#303034",
+                        "tertiary": "#643c49",
+                        "on-surface": "#1b1b1f",
+                        "tertiary-fixed-dim": "#eeb8c8",
+                        "secondary-fixed": "#dae2f9",
+                        "secondary": "#565e71",
+                        "on-primary-fixed": "#001b3d",
+                        "primary-fixed": "#d6e3ff",
+                        "on-tertiary-container": "#ffcddb",
+                        "on-background": "#1b1b1f",
+                        "on-primary-container": "#c8daff",
+                        "on-error": "#ffffff",
+                        "background": "#fbf8fe",
+                        "outline": "#727783",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#005eb8",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#7e5361",
+                        "surface-container-high": "#eae7ed",
+                        "on-tertiary-fixed": "#31111d",
+                        "on-secondary-container": "#5c6478",
+                        "surface-tint": "#005db6",
+                        "surface-bright": "#fbf8fe",
+                        "secondary-fixed-dim": "#bec6dc",
+                        "outline-variant": "#c2c6d4",
+                        "on-secondary-fixed-variant": "#3f4759",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "16px",
+                        "xl": "24px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "md": "12px",
+                        "margin-desktop": "24px",
+                        "3xl": "48px",
+                        "2xl": "32px",
+                        "sm": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-lg": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                        "display-lg": ["57px", { "lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Custom Animations for Premium Feel -->
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        @keyframes dash {
+            0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -35px;
+            }
+            100% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -124px;
+            }
+        }
+        
+        .animate-svg-dash {
+            animation: dash 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        .pulse-ring-effect {
+            animation: pulse-ring 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-hidden antialiased">
+<!-- TopAppBar (JSON Sourced - Adapted for Transactional Flow) -->
+<header class="w-full top-0 sticky bg-surface flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 z-50">
+<button aria-label="Go back" class="text-primary hover:bg-surface-container-low transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Vault Backup</h1>
+<div class="text-primary p-2 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+</header>
+<!-- Main Content Canvas - Linear/Transactional Intent (No Nav Shells) -->
+<main class="flex-1 flex flex-col items-center justify-center p-margin-desktop relative">
+<!-- Ambient Background Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary-container/20 rounded-full blur-[80px] pointer-events-none z-0"></div>
+<!-- Central Interactive Progress Area -->
+<div class="relative flex flex-col items-center z-10 w-full max-w-md">
+<!-- Immersive Progress Circle -->
+<div class="relative w-64 h-64 mb-10 flex items-center justify-center">
+<!-- Outer pulsing ring for depth -->
+<div class="absolute inset-0 border-[1px] border-primary-container/30 rounded-full pulse-ring-effect z-0"></div>
+<!-- SVG Spinner Base Track -->
+<svg class="absolute inset-0 w-full h-full -rotate-90 z-10" viewbox="0 0 100 100">
+<circle class="stroke-surface-container-highest" cx="50" cy="50" fill="none" r="46" stroke-width="2"></circle>
+</svg>
+<!-- SVG Spinner Animated Track -->
+<svg class="absolute inset-0 w-full h-full -rotate-90 z-20 animate-[spin_2s_linear_infinite]" viewbox="0 0 100 100">
+<circle class="stroke-primary animate-svg-dash drop-shadow-[0_0_8px_rgba(0,94,184,0.4)]" cx="50" cy="50" fill="none" r="46" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<!-- Inner Content (Lock Icon & Percentage) -->
+<div class="absolute inset-0 flex flex-col items-center justify-center z-30">
+<div class="bg-surface rounded-full p-4 shadow-sm mb-2 border border-surface-container-highest">
+<span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<span class="font-title-lg text-title-lg text-on-surface tabular-nums">68%</span>
+</div>
+</div>
+<!-- Status Typography -->
+<div class="text-center space-y-3 w-full">
+<h2 class="font-headline-lg text-headline-lg md:hidden text-on-surface tracking-tight">Backup in Progress</h2>
+<h2 class="font-headline-lg text-headline-lg hidden md:block text-on-surface tracking-tight">Backup in Progress</h2>
+<div class="bg-surface-container-low rounded-xl p-4 border border-surface-container-highest/50 shadow-sm backdrop-blur-sm">
+<p class="font-title-md text-title-md text-primary mb-1">Creating Secure Backup...</p>
+<div class="flex items-center justify-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] animate-spin">sync</span>
+<p class="font-body-md text-body-md">Encrypting OCR Data...</p>
+</div>
+</div>
+</div>
+<!-- Optional Linear Action (Cancel) -->
+<button class="mt-12 px-6 py-2.5 rounded-full border border-outline hover:bg-surface-variant text-on-surface font-title-md text-title-md transition-all duration-200 active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">close</span>
+                Cancel Operation
+            </button>
+</div>
+</main>
+<!-- Contextual FAB Suppression: Linear flow, FAB is hidden. -->
+<!-- Navigation Shell Suppression: Linear flow, BottomNavBar is hidden. -->
+</body></html>

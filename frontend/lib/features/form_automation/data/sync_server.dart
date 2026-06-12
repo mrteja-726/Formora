@@ -2,25 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:formora/core/storage/secure_storage.dart';
-import 'package:formora/features/auth/presentation/auth_controller.dart';
 import 'package:formora/features/form_automation/data/desktop_autofill_service.dart';
-
-final syncServerProvider = StateNotifierProvider<SyncServerNotifier, SyncServerState>((ref) {
-  final notifier = SyncServerNotifier(ref);
-  ref.onDispose(() {
-    notifier.stop();
-  });
-  
-  // Listen to local auth state changes to broadcast to extension
-  ref.listen(authProvider, (previous, next) async {
-    if (previous?.user != next.user) {
-      await notifier.broadcastLocalAuth();
-    }
-  });
-
-  return notifier;
-});
 
 class SyncServerState {
   final bool isRunning;
@@ -46,16 +28,24 @@ class SyncServerState {
   }
 }
 
-class SyncServerNotifier extends StateNotifier<SyncServerState> {
-  final Ref _ref;
+final syncServerProvider = NotifierProvider<SyncServerNotifier, SyncServerState>(SyncServerNotifier.new);
+
+class SyncServerNotifier extends Notifier<SyncServerState> {
   HttpServer? _server;
   final List<WebSocket> _clients = [];
 
-  SyncServerNotifier(this._ref) : super(SyncServerState(isRunning: false, clientCount: 0)) {
+  @override
+  SyncServerState build() {
+    ref.onDispose(() {
+      stop();
+    });
+
     // Only auto-start if running on desktop (non-web and windows/macos/linux)
     if (!kIsWeb && (Platform.isWindows || Platform.isMacOS || Platform.isLinux)) {
-      start();
+      Future.microtask(() => start());
     }
+
+    return SyncServerState(isRunning: false, clientCount: 0);
   }
 
   Future<void> start() async {
@@ -123,42 +113,7 @@ class SyncServerNotifier extends StateNotifier<SyncServerState> {
       final type = msg['type'];
       debugPrint('[Formora Sync Server] Received msg: $type');
 
-      if (type == 'AUTH_SYNC') {
-        final accessToken = msg['accessToken'] as String?;
-        final refreshToken = msg['refreshToken'] as String?;
-        final expiresAt = msg['expiresAt'] as int?;
-
-        final currentAccess = await SecureStorage.getAccessToken();
-        if (currentAccess != accessToken) {
-          if (accessToken != null && refreshToken != null) {
-            await SecureStorage.saveTokens(
-              accessToken: accessToken,
-              refreshToken: refreshToken,
-              expiresAtMs: expiresAt ?? (DateTime.now().millisecondsSinceEpoch + 15 * 60 * 1000),
-            );
-            // Trigger UI reload in auth controller
-            await _ref.read(authProvider.notifier).tryAutoLogin();
-            debugPrint('[Formora Sync Server] Local auth storage updated from client.');
-          } else {
-            await SecureStorage.clear();
-            await _ref.read(authProvider.notifier).logout();
-            debugPrint('[Formora Sync Server] Local auth storage cleared.');
-          }
-          // Broadcast to other connected clients
-          _broadcast(data, exclude: sender);
-        }
-      } else if (type == 'GET_AUTH') {
-        final accessToken = await SecureStorage.getAccessToken();
-        final refreshToken = await SecureStorage.getRefreshToken();
-        final expiresAt = await SecureStorage.getExpiresAt();
-
-        sender.add(jsonEncode({
-          'type': 'AUTH_SYNC',
-          'accessToken': accessToken,
-          'refreshToken': refreshToken,
-          'expiresAt': expiresAt,
-        }));
-      } else if (type == 'TRIGGER_DESKTOP_FILL') {
+      if (type == 'TRIGGER_DESKTOP_FILL') {
         final values = Map<String, dynamic>.from(msg['values'] as Map);
         await _executeSmartFill(values);
       }
@@ -209,22 +164,6 @@ class SyncServerNotifier extends StateNotifier<SyncServerState> {
         }));
       }
     }
-  }
-
-  Future<void> broadcastLocalAuth() async {
-    final accessToken = await SecureStorage.getAccessToken();
-    final refreshToken = await SecureStorage.getRefreshToken();
-    final expiresAt = await SecureStorage.getExpiresAt();
-
-    final payload = jsonEncode({
-      'type': 'AUTH_SYNC',
-      'accessToken': accessToken,
-      'refreshToken': refreshToken,
-      'expiresAt': expiresAt,
-    });
-    
-    _broadcast(payload);
-    debugPrint('[Formora Sync Server] Broadcast local auth state to clients.');
   }
 
   void _broadcast(String message, {WebSocket? exclude}) {

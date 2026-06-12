@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Formora Profile Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffd9e3",
+                    "surface-container": "#f0edf2",
+                    "surface-dim": "#dcd9de",
+                    "background": "#fbf8fe",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "inverse-surface": "#303034",
+                    "outline": "#727783",
+                    "surface-tint": "#005db6",
+                    "on-tertiary-container": "#ffcddb",
+                    "on-tertiary-fixed": "#31111d",
+                    "tertiary-container": "#7e5361",
+                    "tertiary": "#643c49",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "primary-fixed": "#d6e3ff",
+                    "inverse-primary": "#a9c7ff",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "surface-container-low": "#f6f2f8",
+                    "primary": "#00478d",
+                    "outline-variant": "#c2c6d4",
+                    "on-primary-fixed": "#001b3d",
+                    "surface": "#fbf8fe",
+                    "secondary-fixed": "#dae2f9",
+                    "primary-container": "#005eb8",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#eae7ed",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1b1b1f",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "on-secondary-container": "#5c6478",
+                    "surface-variant": "#e4e1e7",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e4e1e7",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "on-background": "#1b1b1f",
+                    "on-primary-container": "#c8daff",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#131b2c",
+                    "secondary": "#565e71",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f3f0f5",
+                    "secondary-container": "#dae2f9",
+                    "surface-bright": "#fbf8fe",
+                    "on-surface-variant": "#424752",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "24px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "16px",
+                    "margin-desktop": "24px",
+                    "md": "12px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "gutter": "16px",
+                    "2xl": "32px",
+                    "xl": "24px",
+                    "margin-mobile": "16px",
+                    "3xl": "48px"
+            },
+            "fontFamily": {
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-lg": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32">
+<!-- Top Navigation -->
+<header class="w-full sticky top-0 z-50 bg-surface-container-low/80 backdrop-blur-md">
+<div class="flex items-center justify-between px-margin-mobile h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100 rounded-full">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Profile Hub</h1>
+</div>
+<button class="p-2 hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100 rounded-full">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile pt-lg space-y-xl">
+<!-- Hero Profile Card -->
+<section class="bg-primary-container rounded-2xl p-xl relative overflow-hidden shadow-sm">
+<div class="absolute -right-16 -top-16 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute -left-12 -bottom-12 w-40 h-40 bg-primary/20 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="relative mb-lg">
+<div class="w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional, high-resolution close-up portrait of a mid-30s man with a friendly and intelligent expression. He is set against a clean, architectural minimalist background with soft blue secondary lighting that matches the Formora tech-vault aesthetic. The lighting is bright and crisp, highlighting his clear skin and neat hairstyle, evoking a sense of trust and security in a premium digital environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Bziw7PIn2KPVuB8gJWigTa5NjmbAyw9OpowRSxeiFZ2JvFksOhKLgcCTJPD5zPJ-aG3MSA1lHeZIjbHK6G-TbAxy2_ZQG21vW3QUojG3lQKWBqLbmFiQoCB3B2uPmBRRgyyNyenIobVQVOz8FSSm9tomdUJCjbVgMAQqD16oRW-PMTyfqD9hyP0lD8w6pLpoZ4Qo1CxxtOfDRhYg82n3xzBvknhlWlcy4Rw967CcAVtINB5LP1UeCkpUleMquDqHdJEp7BDmrrfi"/>
+</div>
+<!-- Progress Ring -->
+<div class="absolute -top-1 -right-1 flex items-center justify-center">
+<svg class="w-12 h-12">
+<circle class="text-white/30" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-white progress-ring-circle" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="35.1" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute text-[10px] font-bold text-white">72%</span>
+</div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-primary-container text-center">Jonathan Alexander Smith</h2>
+<div class="mt-sm inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full text-on-primary-container">
+<span class="material-symbols-outlined text-sm">description</span>
+<span class="font-label-lg text-label-lg">1,248 Documents Securely Stored</span>
+</div>
+</div>
+</section>
+<!-- Quick Actions Row -->
+<section class="grid grid-cols-3 gap-md">
+<button class="flex flex-col items-center gap-sm p-lg bg-surface-container rounded-2xl hover:bg-surface-variant transition-all active:scale-95">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface-variant text-center leading-tight">Create Profile</span>
+</button>
+<button class="flex flex-col items-center gap-sm p-lg bg-surface-container rounded-2xl hover:bg-surface-variant transition-all active:scale-95">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">backup</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface-variant text-center leading-tight">Export Backup</span>
+</button>
+<button class="flex flex-col items-center gap-sm p-lg bg-surface-container rounded-2xl hover:bg-surface-variant transition-all active:scale-95">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface-variant text-center leading-tight">Security Check</span>
+</button>
+</section>
+<!-- Vertical Sections -->
+<div class="space-y-lg">
+<!-- Profiles Section -->
+<section class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant/30">
+<h3 class="font-title-lg text-title-lg mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">group</span> Profiles
+                </h3>
+<div class="space-y-sm">
+<div class="flex items-center justify-between p-md bg-surface-container-highest rounded-xl">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">J</div>
+<div>
+<p class="font-title-md text-title-md">Current Profile</p>
+<p class="text-body-md text-on-surface-variant">Default Vault</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<button class="w-full flex items-center gap-md p-md bg-white/50 border border-dashed border-outline-variant rounded-xl text-primary hover:bg-primary-fixed/30 transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-title-md text-title-md">Add New Profile</span>
+</button>
+</div>
+</section>
+<!-- Storage Usage -->
+<section class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant/30">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-title-lg text-title-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">cloud</span> Storage
+                    </h3>
+<button class="text-primary font-title-md text-title-md">Manage</button>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Used: 1.2 GB</span>
+<span class="text-on-surface-variant">Total: 10 GB</span>
+</div>
+<div class="w-full h-3 bg-surface-variant rounded-full overflow-hidden">
+<div class="w-[12%] h-full bg-primary rounded-full transition-all duration-1000" style="width: 12%;"></div>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">Encrypted storage status: Healthy</p>
+</div>
+</section>
+<!-- Backup & Restore -->
+<section class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant/30">
+<h3 class="font-title-lg text-title-lg mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span> Backup &amp; Restore
+                </h3>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center justify-between p-md bg-white/40 rounded-xl">
+<div>
+<p class="font-title-md text-title-md">Cloud Sync</p>
+<p class="text-body-md text-on-surface-variant">Last backup: 2 hours ago</p>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-full font-title-md">Sync Now</button>
+</div>
+<button class="w-full text-left p-md hover:bg-surface-variant/20 rounded-xl flex items-center justify-between group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">settings_backup_restore</span>
+<span class="font-title-md text-title-md">Restore Data from Archive</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Security Section -->
+<section class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant/30">
+<h3 class="font-title-lg text-title-lg mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">security</span> Security
+                </h3>
+<div class="divide-y divide-outline-variant/20">
+<div class="py-md flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">fingerprint</span>
+<div>
+<p class="font-title-md text-title-md">Biometric Lock</p>
+<p class="text-body-md text-on-surface-variant">Active</p>
+</div>
+</div>
+<div class="w-10 h-6 bg-primary rounded-full relative flex items-center px-1">
+<div class="w-4 h-4 bg-white rounded-full ml-auto shadow-sm"></div>
+</div>
+</div>
+<div class="py-md flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">key</span>
+<div>
+<p class="font-title-md text-title-md">Encryption Keys</p>
+<p class="text-body-md text-on-surface-variant">256-bit AES Managed</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Achievements -->
+<section class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant/30">
+<h3 class="font-title-lg text-title-lg mb-md">Achievements</h3>
+<div class="flex gap-lg overflow-x-auto pb-2 no-scrollbar">
+<div class="flex-shrink-0 flex flex-col items-center gap-xs">
+<div class="w-14 h-14 rounded-full bg-gradient-to-br from-primary-container to-primary flex items-center justify-center text-on-primary-container shadow-inner">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Power User</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-xs">
+<div class="w-14 h-14 rounded-full bg-gradient-to-br from-tertiary-container to-tertiary flex items-center justify-center text-on-tertiary-container shadow-inner">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Privacy Shield</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-xs">
+<div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center text-outline shadow-inner">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant opacity-50">Early Bird</span>
+</div>
+</div>
+</section>
+<!-- Recent Activity -->
+<section class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant/30">
+<h3 class="font-title-lg text-title-lg mb-md">Recent Activity</h3>
+<ul class="space-y-md">
+<li class="flex items-start gap-md">
+<div class="mt-1 w-2 h-2 rounded-full bg-primary"></div>
+<div>
+<p class="font-title-md text-title-md">Document Scanned</p>
+<p class="text-body-md text-on-surface-variant">"Quarterly_Tax_2023.pdf" added</p>
+<p class="text-[10px] text-outline mt-1">1 hour ago</p>
+</div>
+</li>
+<li class="flex items-start gap-md">
+<div class="mt-1 w-2 h-2 rounded-full bg-secondary"></div>
+<div>
+<p class="font-title-md text-title-md">Backup Exported</p>
+<p class="text-body-md text-on-surface-variant">Full encrypted archive generated</p>
+<p class="text-[10px] text-outline mt-1">2 hours ago</p>
+</div>
+</li>
+<li class="flex items-start gap-md">
+<div class="mt-1 w-2 h-2 rounded-full bg-tertiary"></div>
+<div>
+<p class="font-title-md text-title-md">Security Audit</p>
+<p class="text-body-md text-on-surface-variant">Password strength verified</p>
+<p class="text-[10px] text-outline mt-1">Yesterday</p>
+</div>
+</li>
+</ul>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface-container dark:bg-surface-container shadow-md rounded-t-xl z-50">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out p-2">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out p-2">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-lg text-label-lg">Documents</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out p-2">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-lg text-label-lg">AI Assistant</span>
+</button>
+<!-- Active Settings Tab -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 transition-all duration-200 ease-in-out">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</button>
+</nav>
+<script>
+        // Micro-interaction for ripple or haptic-like feel
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Future implementation of subtle haptic feel or animation
+                this.classList.add('scale-95');
+                setTimeout(() => this.classList.remove('scale-95'), 100);
+            });
+        });
+
+        // Dynamic progress bar animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.progress-ring-circle');
+            bars.forEach(bar => {
+                // Simple logic to ensure the SVG animation feels alive
+            });
+        });
+    </script>
+</body></html>

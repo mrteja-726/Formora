@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Profile Wizard - Vault AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-selected {
+            border-color: #005eb8 !important;
+            background-color: #d6e3ff !important;
+            transform: scale(1.02);
+        }
+        .card-selected .icon-container {
+            background-color: #005eb8 !important;
+            color: #ffffff !important;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#dae2f9",
+                        "surface-tint": "#005db6",
+                        "on-secondary-fixed-variant": "#3f4759",
+                        "background": "#fbf8fe",
+                        "secondary-fixed-dim": "#bec6dc",
+                        "on-background": "#1b1b1f",
+                        "surface-container-low": "#f6f2f8",
+                        "outline": "#727783",
+                        "surface": "#fbf8fe",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1b1b1f",
+                        "secondary-fixed": "#dae2f9",
+                        "on-secondary-container": "#5c6478",
+                        "inverse-surface": "#303034",
+                        "primary": "#00478d",
+                        "tertiary-container": "#7e5361",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-tertiary-fixed-variant": "#633b48",
+                        "tertiary-fixed-dim": "#eeb8c8",
+                        "inverse-on-surface": "#f3f0f5",
+                        "secondary": "#565e71",
+                        "on-surface-variant": "#424752",
+                        "error": "#ba1a1a",
+                        "primary-container": "#005eb8",
+                        "tertiary-fixed": "#ffd9e3",
+                        "on-primary-fixed": "#001b3d",
+                        "on-primary-container": "#c8daff",
+                        "on-primary-fixed-variant": "#00468c",
+                        "on-secondary-fixed": "#131b2c",
+                        "on-tertiary-container": "#ffcddb",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dcd9de",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e4e1e7",
+                        "outline-variant": "#c2c6d4",
+                        "surface-container-high": "#eae7ed",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#f0edf2",
+                        "inverse-primary": "#a9c7ff",
+                        "surface-container-highest": "#e4e1e7",
+                        "primary-fixed": "#d6e3ff",
+                        "on-tertiary-fixed": "#31111d",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "tertiary": "#643c49",
+                        "surface-bright": "#fbf8fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "12px",
+                        "margin-desktop": "24px",
+                        "gutter": "16px",
+                        "xl": "24px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "2xl": "32px",
+                        "sm": "8px",
+                        "lg": "16px",
+                        "3xl": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-lg": ["JetBrains Mono"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                        "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md">
+<!-- TopAppBar from Shared Components -->
+<header class="w-full top-0 sticky bg-surface-container-low z-40 shadow-sm">
+<div class="flex justify-between items-center px-lg py-sm w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Vault AI</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-primary">settings</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center px-margin-mobile md:px-margin-desktop py-xl max-w-4xl mx-auto w-full pb-32">
+<!-- Progress Indicator -->
+<div class="w-full mb-2xl">
+<div class="flex justify-between items-end mb-sm">
+<span class="font-label-lg text-label-lg text-primary uppercase tracking-widest">Step 1 of 6</span>
+<span class="font-label-lg text-label-lg text-outline">15% Complete</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[16.66%] transition-all duration-500 ease-out"></div>
+</div>
+</div>
+<!-- Heading -->
+<div class="text-center mb-2xl">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-sm">What type of profile are you creating?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto">Select the relationship or entity type to tailor your security and automation settings.</p>
+</div>
+<!-- Profile Selection Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-lg w-full mb-3xl">
+<!-- Personal -->
+<button class="group flex flex-col items-center p-xl bg-surface-container-low border border-outline-variant rounded-2xl transition-all duration-200 hover:border-primary hover:shadow-md active:scale-[0.98]" onclick="selectCard(this)">
+<div class="icon-container w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md transition-colors">
+<span class="material-symbols-outlined">person</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Personal</span>
+</button>
+<!-- Father -->
+<button class="group flex flex-col items-center p-xl bg-surface-container-low border border-outline-variant rounded-2xl transition-all duration-200 hover:border-primary hover:shadow-md active:scale-[0.98]" onclick="selectCard(this)">
+<div class="icon-container w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md transition-colors">
+<span class="material-symbols-outlined">man</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Father</span>
+</button>
+<!-- Mother -->
+<button class="group flex flex-col items-center p-xl bg-surface-container-low border border-outline-variant rounded-2xl transition-all duration-200 hover:border-primary hover:shadow-md active:scale-[0.98]" onclick="selectCard(this)">
+<div class="icon-container w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md transition-colors">
+<span class="material-symbols-outlined">woman</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Mother</span>
+</button>
+<!-- Spouse -->
+<button class="group flex flex-col items-center p-xl bg-surface-container-low border border-outline-variant rounded-2xl transition-all duration-200 hover:border-primary hover:shadow-md active:scale-[0.98]" onclick="selectCard(this)">
+<div class="icon-container w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Spouse</span>
+</button>
+<!-- Child -->
+<button class="group flex flex-col items-center p-xl bg-surface-container-low border border-outline-variant rounded-2xl transition-all duration-200 hover:border-primary hover:shadow-md active:scale-[0.98]" onclick="selectCard(this)">
+<div class="icon-container w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md transition-colors">
+<span class="material-symbols-outlined">child_care</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Child</span>
+</button>
+<!-- Employee -->
+<button class="group flex flex-col items-center p-xl bg-surface-container-low border border-outline-variant rounded-2xl transition-all duration-200 hover:border-primary hover:shadow-md active:scale-[0.98]" onclick="selectCard(this)">
+<div class="icon-container w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md transition-colors">
+<span class="material-symbols-outlined">badge</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Employee</span>
+</button>
+<!-- Client -->
+<button class="group flex flex-col items-center p-xl bg-surface-container-low border border-outline-variant rounded-2xl transition-all duration-200 hover:border-primary hover:shadow-md active:scale-[0.98]" onclick="selectCard(this)">
+<div class="icon-container w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md transition-colors">
+<span class="material-symbols-outlined">handshake</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Client</span>
+</button>
+<!-- Custom -->
+<button class="group flex flex-col items-center p-xl bg-surface-container-low border border-outline-variant rounded-2xl transition-all duration-200 hover:border-primary hover:shadow-md active:scale-[0.98]" onclick="selectCard(this)">
+<div class="icon-container w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md transition-colors">
+<span class="material-symbols-outlined">dashboard_customize</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">Custom</span>
+</button>
+</div>
+<!-- Action Area -->
+<div class="w-full flex flex-col items-center">
+<button class="w-full max-w-sm py-lg px-2xl bg-outline text-surface rounded-full font-title-md text-title-md transition-all duration-300 opacity-50 cursor-not-allowed shadow-sm active:scale-95 disabled:hover:scale-100" disabled="" id="next-btn">
+                Next Step
+            </button>
+<p class="mt-lg text-outline text-label-lg font-label-lg">You can change this later in profile settings</p>
+</div>
+</main>
+<!-- BottomNavBar from Shared Components -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-high shadow-lg rounded-t-3xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-colors active:scale-90">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-lg text-label-lg">Chat</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-colors active:scale-90">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-lg text-label-lg">Files</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-colors active:scale-90">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-lg text-label-lg">Search</span>
+</button>
+<!-- Profile is active as we are in the Create Profile wizard -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</button>
+</nav>
+<script>
+        function selectCard(element) {
+            // Remove selection from all other cards
+            document.querySelectorAll('main .grid button').forEach(btn => {
+                btn.classList.remove('card-selected');
+                btn.querySelector('.icon-container').classList.replace('bg-primary-container', 'bg-secondary-container');
+                btn.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 0";
+            });
+
+            // Add selection to clicked card
+            element.classList.add('card-selected');
+            const iconSpan = element.querySelector('.material-symbols-outlined');
+            iconSpan.style.fontVariationSettings = "'FILL' 1";
+
+            // Enable Next Button
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('bg-outline', 'opacity-50', 'cursor-not-allowed');
+            nextBtn.classList.add('bg-primary-container', 'text-on-primary-container', 'opacity-100', 'cursor-pointer', 'hover:shadow-lg', 'hover:brightness-110');
+            
+            // Interaction feedback
+            console.log('Selected profile type:', element.innerText.trim());
+        }
+
+        // Add some micro-interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('main .grid button');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body></html>

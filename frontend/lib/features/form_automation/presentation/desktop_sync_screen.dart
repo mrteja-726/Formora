@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:formora/features/auth/presentation/auth_controller.dart';
+import 'package:formora/features/profile/application/profile_notifier.dart';
 import 'package:formora/features/form_automation/data/desktop_autofill_service.dart';
 import 'package:formora/features/form_automation/data/sync_server.dart';
 
@@ -88,7 +88,8 @@ class _DesktopSyncScreenState extends ConsumerState<DesktopSyncScreen> {
   @override
   Widget build(BuildContext context) {
     final serverState = ref.watch(syncServerProvider);
-    final authState = ref.watch(authProvider);
+    final activeProfileAsync = ref.watch(activeProfileProvider);
+    final activeProfile = activeProfileAsync.value;
 
     return Scaffold(
       backgroundColor: const Color(0xFF0F0F1A),
@@ -331,7 +332,7 @@ class _DesktopSyncScreenState extends ConsumerState<DesktopSyncScreen> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'To pair with your browser, open the Formora Extension and it will automatically connect on Port 19190. Signed-in state is synced instantly. Active User: ${authState.user?.fullName ?? authState.user?.email ?? "Guest"}',
+                    'To pair with your browser, open the Formora Extension and it will automatically connect on Port 19190. Signed-in state is synced instantly. Active Profile: ${activeProfile?.name ?? "Guest"}',
                     style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 13, height: 1.4),
                   ),
                 ],

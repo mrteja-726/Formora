@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Data Ownership Notice - Formora</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dcd9de",
+                    "secondary-fixed": "#dae2f9",
+                    "primary-fixed": "#d6e3ff",
+                    "on-secondary-container": "#5c6478",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#7e5361",
+                    "on-secondary-fixed": "#131b2c",
+                    "primary-container": "#005eb8",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "surface-tint": "#005db6",
+                    "surface-container-low": "#f6f2f8",
+                    "on-primary-fixed-variant": "#00468c",
+                    "background": "#fbf8fe",
+                    "outline": "#727783",
+                    "on-tertiary-fixed": "#31111d",
+                    "on-primary-fixed": "#001b3d",
+                    "tertiary": "#643c49",
+                    "secondary": "#565e71",
+                    "on-secondary": "#ffffff",
+                    "primary": "#00478d",
+                    "surface-container": "#f0edf2",
+                    "surface-container-highest": "#e4e1e7",
+                    "tertiary-fixed": "#ffd9e3",
+                    "inverse-surface": "#303034",
+                    "surface-variant": "#e4e1e7",
+                    "on-surface": "#1b1b1f",
+                    "on-background": "#1b1b1f",
+                    "inverse-on-surface": "#f3f0f5",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#fbf8fe",
+                    "on-tertiary-container": "#ffcddb",
+                    "on-surface-variant": "#424752",
+                    "surface-container-high": "#eae7ed",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "on-primary-container": "#c8daff",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fbf8fe",
+                    "inverse-primary": "#a9c7ff",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#dae2f9",
+                    "outline-variant": "#c2c6d4",
+                    "tertiary-fixed-dim": "#eeb8c8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "2xl": "32px",
+                    "xs": "4px",
+                    "lg": "16px",
+                    "margin-mobile": "16px",
+                    "xl": "24px",
+                    "margin-desktop": "24px",
+                    "3xl": "48px",
+                    "md": "12px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "title-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-lg": [
+                            "JetBrains Mono"
+                    ],
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "title-md": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "display-lg": [
+                            "57px",
+                            {
+                                    "lineHeight": "64px",
+                                    "letterSpacing": "-0.25px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "title-lg": [
+                            "22px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.25px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-lg": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.5px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "letterSpacing": "0.5px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "title-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "letterSpacing": "0.15px",
+                                    "fontWeight": "500"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen flex flex-col font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<main class="flex-1 flex flex-col w-full max-w-2xl mx-auto px-margin-mobile py-2xl md:px-margin-desktop justify-center relative z-10">
+<div class="flex justify-center mb-xl animate-fade-in-up">
+<img class="w-48 h-48 md:w-56 md:h-56 object-contain drop-shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1rFEQFB9B9p87WgPN4AV7eeAdPLHnuGK7-3Sw5K_UvTQoucnW7Y56vySknIWxsNBaYToQ_uIeP0A1HYYkp12YOLB_egASE0f_eY-4dTkbw1cfmdmkFyUYa_T5Y5pQQ_q_mNQhJo23uhDuf-xuVlvkKVBQCr95OiCOeMhh36Zi0e2mxrFcVPuolGfraCV4_pnTk3xcDWhbHs_1_63vMFgRDlsL-T-d56e6WFpVeBqfd3C-6cJs4rzIYs43I1TIEHpM_koa1G8PtGcS"/>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold text-center mb-xl tracking-tight">
+            Your Data Stays On Your Device
+        </h1>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-xl px-sm">
+<div class="flex items-center gap-md p-md rounded-xl bg-surface-container/30 border border-outline-variant/20 backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-title-md text-on-surface">No Accounts</span>
+</div>
+<div class="flex items-center gap-md p-md rounded-xl bg-surface-container/30 border border-outline-variant/20 backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-title-md text-on-surface">No Cloud Storage</span>
+</div>
+<div class="flex items-center gap-md p-md rounded-xl bg-surface-container/30 border border-outline-variant/20 backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-title-md text-on-surface">No Tracking</span>
+</div>
+<div class="flex items-center gap-md p-md rounded-xl bg-surface-container/30 border border-outline-variant/20 backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-title-md text-on-surface">No Formora Servers</span>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-xl p-lg flex items-start gap-md mb-2xl shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined text-error mt-0.5 shrink-0" style="font-variation-settings: 'FILL' 1;">warning</span>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                If you delete the app without a backup, your data may be permanently lost.
+            </p>
+</div>
+<div class="mt-auto md:mt-0 flex flex-col gap-xl">
+<label class="flex items-center gap-md p-sm rounded-lg hover:bg-surface-container-low cursor-pointer transition-colors group -mx-sm">
+<div class="relative flex items-center justify-center shrink-0">
+<input class="peer appearance-none w-6 h-6 border-2 border-outline rounded-md checked:bg-primary checked:border-primary transition-all cursor-pointer focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-lowest" id="backup-confirm" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-on-primary text-sm opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors select-none">
+                    I understand that I am responsible for my backups.
+                </span>
+</label>
+<button class="w-full bg-primary text-on-primary rounded-full py-md font-title-md shadow-sm hover:bg-on-primary-fixed-variant disabled:bg-surface-variant disabled:text-outline disabled:cursor-not-allowed disabled:shadow-none transition-all duration-200 active:scale-[0.98]" disabled="" id="continue-btn" type="button">
+                Continue
+            </button>
+</div>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkbox = document.getElementById('backup-confirm');
+            const button = document.getElementById('continue-btn');
+
+            checkbox.addEventListener('change', (e) => {
+                button.disabled = !e.target.checked;
+            });
+            
+            button.addEventListener('click', () => {
+                if(!button.disabled) {
+                    // Visual feedback for click before navigation
+                    button.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm" style="font-variation-settings: \'FILL\' 1;">progress_activity</span>';
+                    setTimeout(() => {
+                        window.location.href = '#next-step'; // Placeholder for actual navigation
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body></html>

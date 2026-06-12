@@ -8,8 +8,8 @@ import { ConfigService } from '@nestjs/config';
 import * as crypto from 'crypto';
 
 const ALGORITHM = 'aes-256-gcm';
-const IV_BYTES = 12;   // 96-bit IV for GCM
-const TAG_BYTES = 16;  // 128-bit auth tag
+const IV_BYTES = 12; // 96-bit IV for GCM
+const TAG_BYTES = 16; // 128-bit auth tag
 
 @Injectable()
 export class EncryptionService {
@@ -31,10 +31,7 @@ export class EncryptionService {
       authTagLength: TAG_BYTES,
     });
 
-    const encrypted = Buffer.concat([
-      cipher.update(plaintext, 'utf8'),
-      cipher.final(),
-    ]);
+    const encrypted = Buffer.concat([cipher.update(plaintext, 'utf8'), cipher.final()]);
     const tag = cipher.getAuthTag();
 
     // Pack as: iv(12) | tag(16) | ciphertext
@@ -56,7 +53,8 @@ export class EncryptionService {
     });
     decipher.setAuthTag(tag);
 
-    return decipher.update(ciphertext) + decipher.final('utf8');
+    const decrypted = Buffer.concat([decipher.update(ciphertext), decipher.final()]);
+    return decrypted.toString('utf8');
   }
 
   /**

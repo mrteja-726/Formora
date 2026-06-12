@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vault AI - Create Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#dae2f9",
+                    "surface-tint": "#005db6",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "background": "#fbf8fe",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "on-background": "#1b1b1f",
+                    "surface-container-low": "#f6f2f8",
+                    "outline": "#727783",
+                    "surface": "#fbf8fe",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1b1b1f",
+                    "secondary-fixed": "#dae2f9",
+                    "on-secondary-container": "#5c6478",
+                    "inverse-surface": "#303034",
+                    "primary": "#00478d",
+                    "tertiary-container": "#7e5361",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "inverse-on-surface": "#f3f0f5",
+                    "secondary": "#565e71",
+                    "on-surface-variant": "#424752",
+                    "error": "#ba1a1a",
+                    "primary-container": "#005eb8",
+                    "tertiary-fixed": "#ffd9e3",
+                    "on-primary-fixed": "#001b3d",
+                    "on-primary-container": "#c8daff",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-secondary-fixed": "#131b2c",
+                    "on-tertiary-container": "#ffcddb",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dcd9de",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e4e1e7",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-high": "#eae7ed",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#f0edf2",
+                    "inverse-primary": "#a9c7ff",
+                    "surface-container-highest": "#e4e1e7",
+                    "primary-fixed": "#d6e3ff",
+                    "on-tertiary-fixed": "#31111d",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "tertiary": "#643c49",
+                    "surface-bright": "#fbf8fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "12px",
+                    "margin-desktop": "24px",
+                    "gutter": "16px",
+                    "xl": "24px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "2xl": "32px",
+                    "sm": "8px",
+                    "lg": "16px",
+                    "3xl": "48px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-lg": ["JetBrains Mono"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-pill {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .input-group:focus-within label {
+            transform: translateY(-24px) scale(0.85);
+            color: var(--tw-color-primary);
+        }
+        .input-group label {
+            transition: all 0.2s ease-out;
+            pointer-events: none;
+        }
+        .input-field:not(:placeholder-shown) + label {
+            transform: translateY(-24px) scale(0.85);
+        }
+        .glass-card {
+            background: rgba(251, 248, 254, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col items-center">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-40 bg-surface-container-low shadow-sm">
+<div class="flex justify-between items-center px-lg py-sm w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Vault AI</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
+<span class="material-symbols-outlined text-primary">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 w-full max-w-2xl px-margin-mobile md:px-margin-desktop py-xl pb-32">
+<!-- Progress Header -->
+<div class="mb-3xl">
+<div class="flex justify-between items-center mb-sm">
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Step 2 of 6</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">Basic Information</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 33.33%"></div>
+</div>
+</div>
+<!-- Wizard Content -->
+<div class="space-y-3xl">
+<!-- Photo Upload Section -->
+<div class="flex flex-col items-center gap-lg">
+<div class="relative">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-surface-container-high bg-surface-container overflow-hidden group cursor-pointer relative shadow-md">
+<img alt="Profile Placeholder" class="w-full h-full object-cover" data-alt="A professional, minimalist close-up portrait of a diverse person against a soft, blurred studio background. The lighting is clean and high-key, matching a premium privacy-focused app aesthetic. The color palette consists of soft whites, cool greys, and a hint of deep blue, creating a serene and intelligent atmosphere. The image is framed perfectly for a circular profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP5D7AX6LEFhnKqpyuvlTsPeA_teufUdAaflZyz57YaNN9jQ01Zpp5oEAg-vt5zMLqJT-77nHE1OeHZbzXM1I6cGH1DZcGFdOrMUOSV1N-qmrSxuiC-GRCFtiMEI_xdV3IZq6ig5idfBXs9WktJZdJ7LdV2bCH2eGn7qklXjSAgSe7Ukvk9DKIwZYLEEJ2SvXzgeOOcMh3OrpxBv8eiNu4BYwB6aTClbegn0eIyaPa43xVeBzAAVaNZJKYMpB9yV1-J1E9K_i9P4Mi"/>
+<div class="absolute inset-0 bg-on-surface/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">add_a_photo</span>
+</div>
+</div>
+<button class="absolute bottom-1 right-1 bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-primary-container active:scale-90 transition-all border-4 border-background">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+</div>
+<div class="text-center">
+<h2 class="font-title-lg text-title-lg text-on-surface">Upload your photo</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">This helps your team recognize you in secure chats.</p>
+</div>
+</div>
+<!-- Form Section -->
+<div class="space-y-xl">
+<!-- Name Field -->
+<div class="relative input-group">
+<input class="w-full h-14 px-lg pt-4 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 rounded-t-xl transition-all font-body-lg text-body-lg text-on-surface input-field" id="full-name" placeholder=" " type="text"/>
+<label class="absolute left-lg top-4 text-on-surface-variant font-body-lg pointer-events-none" for="full-name">Full Name</label>
+</div>
+<!-- DOB Field -->
+<div class="relative input-group">
+<input class="w-full h-14 px-lg pt-4 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 rounded-t-xl transition-all font-body-lg text-body-lg text-on-surface input-field" id="dob" placeholder=" " type="date"/>
+<label class="absolute left-lg top-4 text-on-surface-variant font-body-lg pointer-events-none" for="dob">Date of Birth</label>
+<span class="material-symbols-outlined absolute right-lg top-4 text-on-surface-variant pointer-events-none">calendar_today</span>
+</div>
+<!-- Gender Field -->
+<div class="space-y-sm">
+<p class="font-label-lg text-label-lg text-on-surface-variant px-sm">Gender</p>
+<div class="grid grid-cols-3 gap-sm">
+<button class="gender-btn h-12 flex items-center justify-center gap-xs border border-outline-variant rounded-xl hover:bg-surface-container-high transition-colors active:scale-95 group data-[selected=true]:bg-primary-container data-[selected=true]:border-primary data-[selected=true]:text-on-primary-container" onclick="selectGender(this)">
+<span class="material-symbols-outlined text-xl group-data-[selected=true]:text-primary">male</span>
+<span class="font-label-lg">Male</span>
+</button>
+<button class="gender-btn h-12 flex items-center justify-center gap-xs border border-outline-variant rounded-xl hover:bg-surface-container-high transition-colors active:scale-95 group data-[selected=true]:bg-primary-container data-[selected=true]:border-primary data-[selected=true]:text-on-primary-container" onclick="selectGender(this)">
+<span class="material-symbols-outlined text-xl group-data-[selected=true]:text-primary">female</span>
+<span class="font-label-lg">Female</span>
+</button>
+<button class="gender-btn h-12 flex items-center justify-center gap-xs border border-outline-variant rounded-xl hover:bg-surface-container-high transition-colors active:scale-95 group data-[selected=true]:bg-primary-container data-[selected=true]:border-primary data-[selected=true]:text-on-primary-container" onclick="selectGender(this)">
+<span class="material-symbols-outlined text-xl group-data-[selected=true]:text-primary">diversity_3</span>
+<span class="font-label-lg">Other</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="flex items-center justify-between pt-xl border-t border-outline-variant/30">
+<button class="flex items-center gap-sm px-xl py-3 rounded-full text-primary font-title-md hover:bg-surface-container-high transition-colors active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+                    Back
+                </button>
+<button class="flex items-center gap-sm px-3xl py-3 bg-primary text-on-primary rounded-full font-title-md shadow-lg hover:bg-primary-container active:scale-95 transition-all">
+                    Next
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Contextual Profile Mapping) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-high shadow-lg rounded-t-3xl flex justify-around items-center px-4 py-3 pb-safe">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-colors cursor-pointer active:scale-90 transition-transform">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-lg text-label-lg">Chat</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-colors cursor-pointer active:scale-90 transition-transform">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-lg text-label-lg">Files</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-colors cursor-pointer active:scale-90 transition-transform">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-lg text-label-lg">Search</span>
+</div>
+<!-- Active: Profile (Since we are in profile wizard) -->
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 cursor-pointer active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</div>
+</nav>
+<script>
+        function selectGender(element) {
+            // Remove selection from all buttons
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.setAttribute('data-selected', 'false');
+            });
+            // Add to clicked button
+            element.setAttribute('data-selected', 'true');
+        }
+
+        // Logic to simulate focus on load if needed
+        window.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('.input-field');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.classList.add('focused');
+                });
+                input.addEventListener('blur', () => {
+                    if (input.value === '') {
+                        input.parentElement.classList.remove('focused');
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

@@ -1,9 +1,14 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:formora/features/vault/presentation/vault_controller.dart';
-import 'package:formora/features/vault/domain/user_document.dart';
+
+import 'package:formora/features/documents/data/local_document_repository.dart';
+import 'package:formora/features/documents/domain/document_entities.dart';
+import 'package:formora/features/documents/application/document_upload_pipeline.dart';
+import 'package:formora/features/profile/application/profile_notifier.dart';
+import 'package:formora/features/ocr/domain/ocr_field_mapper.dart';
 
 class VaultScreen extends ConsumerStatefulWidget {
   const VaultScreen({super.key});
@@ -13,28 +18,20 @@ class VaultScreen extends ConsumerStatefulWidget {
 }
 
 class _VaultScreenState extends ConsumerState<VaultScreen> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(vaultProvider.notifier).fetchDocuments();
-    });
-  }
-
   Future<void> _pickAndUpload() async {
-    final type = await showDialog<String>(
+    final type = await showDialog<DocumentType>(
       context: context,
       builder: (context) => SimpleDialog(
-        title: const Text('Select Document Type', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text('Select Document Type', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
         backgroundColor: const Color(0xFF1A1A2E),
-        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 16),
         children: [
-          _typeOption(context, 'PASSPORT', 'Passport'),
-          _typeOption(context, 'DRIVERS_LICENSE', "Driver's License"),
-          _typeOption(context, 'NATIONAL_ID', 'National ID'),
-          _typeOption(context, 'RESUME', 'Resume'),
-          _typeOption(context, 'CERTIFICATE', 'Certificate'),
-          _typeOption(context, 'OTHER', 'Other'),
+          _typeOption(context, DocumentType.passport, 'Passport'),
+          _typeOption(context, DocumentType.drivingLicense, "Driver's License"),
+          _typeOption(context, DocumentType.nationalId, 'National ID'),
+          _typeOption(context, DocumentType.aadhaarCard, 'Aadhaar Card (India)'),
+          _typeOption(context, DocumentType.panCard, 'PAN Card (India)'),
+          _typeOption(context, DocumentType.bankStatement, 'Bank Statement'),
+          _typeOption(context, DocumentType.other, 'Other'),
         ],
       ),
     );
@@ -43,30 +40,35 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
 
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['pdf', 'png', 'jpg', 'jpeg', 'tiff', 'webp', 'docx'],
+      allowedExtensions: ['pdf', 'png', 'jpg', 'jpeg'],
     );
 
     if (result != null && result.files.single.path != null) {
       final path = result.files.single.path!;
-      final name = result.files.single.name;
-      final success = await ref.read(vaultProvider.notifier).uploadDocument(
-            filePath: path,
-            filename: name,
-            documentType: type,
-          );
+      final file = File(path);
 
-      if (success && mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Document uploaded successfully! Starting OCR mapping...'),
-            backgroundColor: Color(0xFF22C55E),
-          ),
-        );
+      final activeProfile = ref.read(activeProfileProvider).value;
+      if (activeProfile == null) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Please create or select an active profile first.'),
+              backgroundColor: Color(0xFFBA1A1A),
+            ),
+          );
+        }
+        return;
       }
+
+      await ref.read(uploadPipelineProvider.notifier).startUpload(
+            file: file,
+            documentType: type,
+            profileId: activeProfile.id,
+          );
     }
   }
 
-  Widget _typeOption(BuildContext context, String value, String label) {
+  Widget _typeOption(BuildContext context, DocumentType value, String label) {
     return SimpleDialogOption(
       onPressed: () => Navigator.pop(context, value),
       child: Padding(
@@ -79,238 +81,22 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
   }
 
-  String _formatBytes(int bytes) {
-    if (bytes <= 0) return '0 B';
-    const suffixes = ['B', 'KB', 'MB', 'GB'];
-    var i = 0;
-    double size = bytes.toDouble();
-    while (size >= 1024 && i < suffixes.length - 1) {
-      size /= 1024;
-      i++;
-    }
-    return '${size.toStringAsFixed(1)} ${suffixes[i]}';
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final vaultState = ref.watch(vaultProvider);
-
-    return Scaffold(
-      backgroundColor: const Color(0xFF0F0F1A),
-      appBar: AppBar(
-        title: const Text('Document Vault', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        backgroundColor: const Color(0xFF1A1A2E),
-        elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: () => ref.read(vaultProvider.notifier).fetchDocuments(),
-            icon: const Icon(Icons.refresh, color: Colors.white),
-          ),
-        ],
-      ),
-      body: vaultState.isLoading && vaultState.documents.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // ── Action Header ──
-                  ElevatedButton.icon(
-                    onPressed: vaultState.isUploading ? null : _pickAndUpload,
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      backgroundColor: const Color(0xFF6366F1),
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 0,
-                    ),
-                    icon: vaultState.isUploading
-                        ? const SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation(Colors.white)),
-                          )
-                        : const Icon(Icons.cloud_upload_outlined),
-                    label: Text(
-                      vaultState.isUploading ? 'Uploading & Processing…' : 'Upload Document',
-                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Error Display
-                  if (vaultState.errorMessage != null) ...[
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEF4444).withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: const Color(0xFFEF4444).withOpacity(0.3)),
-                      ),
-                      child: Text(
-                        vaultState.errorMessage!,
-                        style: const TextStyle(color: Color(0xFFFCA5A5), fontSize: 13),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
-
-                  // ── Documents List ──
-                  Expanded(
-                    child: vaultState.documents.isEmpty
-                        ? Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.folder_open_outlined, size: 64, color: Colors.white.withOpacity(0.2)),
-                                const SizedBox(height: 16),
-                                Text(
-                                  'Your vault is empty',
-                                  style: TextStyle(color: Colors.white.withOpacity(0.4), fontSize: 14),
-                                ),
-                              ],
-                            ),
-                          )
-                        : ListView.builder(
-                            itemCount: vaultState.documents.length,
-                            itemBuilder: (context, index) {
-                              final doc = vaultState.documents[index];
-                              return _documentCard(doc);
-                            },
-                          ),
-                  ),
-                ],
-              ),
-            ),
+  void _showReviewDialog(BuildContext context, UploadPipelineState uploadState) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return OcrReviewDialog(uploadState: uploadState);
+      },
     );
   }
 
-  Widget _documentCard(UserDocument doc) {
-    IconData icon;
-    switch (doc.documentType) {
-      case 'PASSPORT':
-        icon = Icons.import_contacts_outlined;
-        break;
-      case 'DRIVERS_LICENSE':
-        icon = Icons.drive_eta_outlined;
-        break;
-      case 'NATIONAL_ID':
-        icon = Icons.badge_outlined;
-        break;
-      case 'RESUME':
-        icon = Icons.description_outlined;
-        break;
-      case 'CERTIFICATE':
-        icon = Icons.workspace_premium_outlined;
-        break;
-      default:
-        icon = Icons.insert_drive_file_outlined;
-    }
-
-    final dateStr = DateFormat.yMMMd().format(doc.createdAt);
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1A1A2E),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: const Color(0xFF6366F1).withOpacity(0.15),
-          width: 1,
-        ),
-      ),
-      child: Row(
-        children: [
-          // Doc Icon
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: const Color(0xFF0F0F1A),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Icon(icon, color: const Color(0xFF6366F1), size: 24),
-          ),
-          const SizedBox(width: 16),
-
-          // Details
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  doc.filename,
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '${_formatBytes(doc.sizeBytes)} • $dateStr',
-                  style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 12),
-                ),
-                const SizedBox(height: 8),
-
-                // OCR Confidence Tag
-                if (doc.ocrConfidence != null)
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF22C55E).withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(99),
-                    ),
-                    child: Text(
-                      'OCR Match: ${doc.ocrConfidence}%',
-                      style: const TextStyle(color: Color(0xFF22C55E), fontSize: 10, fontWeight: FontWeight.bold),
-                    ),
-                  )
-                else if (doc.virusScanned == true && doc.virusClean == true)
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF6366F1).withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(99),
-                    ),
-                    child: const Text(
-                      'Processing OCR…',
-                      style: TextStyle(color: Color(0xFF6366F1), fontSize: 10, fontWeight: FontWeight.bold),
-                    ),
-                  )
-                else
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF59E0B).withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(99),
-                    ),
-                    child: const Text(
-                      'Scanning file…',
-                      style: TextStyle(color: Color(0xFFF59E0B), fontSize: 10, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-
-          // Actions
-          IconButton(
-            onPressed: () => _confirmDelete(doc.id, doc.filename),
-            icon: const Icon(Icons.delete_outline, color: Color(0xFFEF4444)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<void> _confirmDelete(String id, String filename) async {
+  Future<void> _deleteDocument(Document doc) async {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Delete Document', style: TextStyle(color: Colors.white)),
-        content: Text('Are you sure you want to delete "$filename"?', style: const TextStyle(color: Colors.white70)),
+        content: Text('Are you sure you want to delete "${doc.filename}"? This will permanently remove the encrypted file from your device.', style: const TextStyle(color: Colors.white70)),
         backgroundColor: const Color(0xFF1A1A2E),
         actions: [
           TextButton(
@@ -326,7 +112,407 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
 
     if (confirm == true && mounted) {
-      await ref.read(vaultProvider.notifier).deleteDocument(id);
+      await ref.read(documentRepositoryProvider).deleteDocument(doc);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Document deleted successfully'),
+            backgroundColor: Color(0xFF22C55E),
+          ),
+        );
+      }
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final docsAsync = ref.watch(activeProfileDocumentsProvider);
+    final uploadState = ref.watch(uploadPipelineProvider);
+
+    // Listen to upload pipeline state transitions
+    ref.listen<UploadPipelineState>(uploadPipelineProvider, (prev, next) {
+      if (next.step == UploadStep.awaitingReview && next.reviewFields.isNotEmpty) {
+        _showReviewDialog(context, next);
+      } else if (next.step == UploadStep.done && prev?.step != UploadStep.done) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Document processed successfully!'),
+            backgroundColor: Color(0xFF22C55E),
+          ),
+        );
+        ref.read(uploadPipelineProvider.notifier).reset();
+      } else if (next.step == UploadStep.error && next.errorMessage != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to process document: ${next.errorMessage}'),
+            backgroundColor: const Color(0xFFEF4444),
+          ),
+        );
+        ref.read(uploadPipelineProvider.notifier).reset();
+      }
+    });
+
+    return Scaffold(
+      backgroundColor: const Color(0xFF0F0F1A),
+      appBar: AppBar(
+        title: const Text('Document Vault', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        backgroundColor: const Color(0xFF1A1A2E),
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // ── Upload Button ──
+            ElevatedButton.icon(
+              onPressed: uploadState.isProcessing ? null : _pickAndUpload,
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                backgroundColor: const Color(0xFF00478D),
+                foregroundColor: Colors.white,
+                disabledBackgroundColor: const Color(0xFF00478D).withOpacity(0.5),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 0,
+              ),
+              icon: uploadState.isProcessing
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation(Colors.white)),
+                    )
+                  : const Icon(Icons.cloud_upload_outlined),
+              label: Text(
+                uploadState.isProcessing
+                    ? 'Processing (${(uploadState.progress * 100).round()}%)...'
+                    : 'Upload Document',
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // ── Documents List ──
+            Expanded(
+              child: docsAsync.when(
+                data: (documents) {
+                  if (documents.isEmpty) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.folder_open_outlined, size: 64, color: Colors.white.withOpacity(0.2)),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Your vault is empty',
+                            style: TextStyle(color: Colors.white.withOpacity(0.4), fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                  return ListView.builder(
+                    itemCount: documents.length,
+                    itemBuilder: (context, index) {
+                      final doc = documents[index];
+                      return _documentCard(doc);
+                    },
+                  );
+                },
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (e, st) => Center(
+                  child: Text(
+                    'Error: $e',
+                    style: const TextStyle(color: Color(0xFFEF4444)),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _documentCard(Document doc) {
+    IconData icon;
+    switch (doc.documentType) {
+      case DocumentType.passport:
+        icon = Icons.import_contacts_outlined;
+        break;
+      case DocumentType.drivingLicense:
+        icon = Icons.drive_eta_outlined;
+        break;
+      case DocumentType.nationalId:
+      case DocumentType.aadhaarCard:
+      case DocumentType.voterId:
+        icon = Icons.badge_outlined;
+        break;
+      case DocumentType.bankStatement:
+        icon = Icons.account_balance_wallet_outlined;
+        break;
+      default:
+        icon = Icons.insert_drive_file_outlined;
+    }
+
+    final dateStr = DateFormat.yMMMd().format(doc.uploadedAt);
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1A1A2E),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: const Color(0xFF00478D).withOpacity(0.15),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: const Color(0xFF0F0F1A),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(icon, color: const Color(0xFF00478D), size: 24),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  doc.filename,
+                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '${doc.displaySize} • $dateStr',
+                  style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 12),
+                ),
+                const SizedBox(height: 8),
+
+                // OCR Status Tag
+                _buildStatusTag(doc.ocrStatus),
+              ],
+            ),
+          ),
+          IconButton(
+            onPressed: () => _deleteDocument(doc),
+            icon: const Icon(Icons.delete_outline, color: Color(0xFFEF4444)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatusTag(OcrStatus status) {
+    String text;
+    Color color;
+    switch (status) {
+      case OcrStatus.pending:
+        text = 'Pending OCR';
+        color = const Color(0xFFF59E0B);
+        break;
+      case OcrStatus.processing:
+        text = 'Processing...';
+        color = const Color(0xFF6366F1);
+        break;
+      case OcrStatus.completed:
+        text = 'OCR Completed';
+        color = const Color(0xFF22C55E);
+        break;
+      case OcrStatus.failed:
+        text = 'OCR Failed';
+        color = const Color(0xFFEF4444);
+        break;
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(99),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(color: color, fontSize: 10, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class OcrReviewDialog extends ConsumerStatefulWidget {
+  final UploadPipelineState uploadState;
+
+  const OcrReviewDialog({
+    super.key,
+    required this.uploadState,
+  });
+
+  @override
+  ConsumerState<OcrReviewDialog> createState() => _OcrReviewDialogState();
+}
+
+class _OcrReviewDialogState extends ConsumerState<OcrReviewDialog> {
+  final List<TextEditingController> _controllers = [];
+
+  @override
+  void initState() {
+    super.initState();
+    for (final field in widget.uploadState.reviewFields) {
+      _controllers.add(TextEditingController(text: field.value));
+    }
+  }
+
+  @override
+  void dispose() {
+    for (final controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  String _formatLabel(String key) {
+    // Convert camelCase or snake_case to human readable Title Case
+    final exp = RegExp(r'(?<=[a-z])[A-Z]|_');
+    var result = key.replaceAllMapped(exp, (Match m) => ' ${m.group(0) == '_' ? '' : m.group(0)}');
+    if (result.isNotEmpty) {
+      result = result[0].toUpperCase() + result.substring(1);
+    }
+    return result;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final fields = widget.uploadState.reviewFields;
+    final doc = widget.uploadState.document!;
+
+    return AlertDialog(
+      backgroundColor: const Color(0xFF1A1A2E),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Review Extracted Data',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'OCR matched values from "${doc.filename}". Please verify before saving.',
+            style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 12),
+          ),
+        ],
+      ),
+      content: SizedBox(
+        width: double.maxFinite,
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: fields.length,
+          itemBuilder: (context, index) {
+            final field = fields[index];
+            final controller = _controllers[index];
+
+            // Badge color based on confidence
+            final Color confidenceColor = field.confidence >= 80
+                ? const Color(0xFF22C55E)
+                : field.confidence >= 50
+                    ? const Color(0xFFF59E0B)
+                    : const Color(0xFFEF4444);
+
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        _formatLabel(field.fieldKey).toUpperCase(),
+                        style: const TextStyle(
+                          color: Color(0xFF6366F1),
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.8,
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: confidenceColor.withOpacity(0.15),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Text(
+                          '${field.confidence.round()}% Match',
+                          style: TextStyle(color: confidenceColor, fontSize: 9, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  TextFormField(
+                    controller: controller,
+                    style: const TextStyle(color: Colors.white, fontSize: 14),
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xFF0F0F1A),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            ref.read(uploadPipelineProvider.notifier).discardOcrResults();
+            Navigator.pop(context);
+          },
+          child: const Text('Discard', style: TextStyle(color: Color(0xFF94A3B8))),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            final List<MappedField> editedFields = [];
+            for (var i = 0; i < fields.length; i++) {
+              editedFields.add(MappedField(
+                section: fields[i].section,
+                fieldKey: fields[i].fieldKey,
+                value: _controllers[i].text.trim(),
+                confidence: fields[i].confidence,
+                dataType: fields[i].dataType,
+                source: fields[i].source,
+              ));
+            }
+            await ref.read(uploadPipelineProvider.notifier).confirmReviewedFields(
+                  confirmedFields: editedFields,
+                  profileId: doc.profileId,
+                  documentId: doc.id,
+                );
+            if (context.mounted) {
+              Navigator.pop(context);
+            }
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF00478D),
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+          child: const Text('Save to Profile', style: TextStyle(fontWeight: FontWeight.bold)),
+        ),
+      ],
+    );
   }
 }

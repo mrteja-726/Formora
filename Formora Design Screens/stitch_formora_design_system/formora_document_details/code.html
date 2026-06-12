@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora - Document Details</title>
+<!-- Fonts and Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: 0;
+            width: 2px;
+            background-color: #eae7ed;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#131b2c",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "surface-tint": "#005db6",
+                        "primary": "#00478d",
+                        "surface-bright": "#fbf8fe",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5c6478",
+                        "outline": "#727783",
+                        "inverse-primary": "#a9c7ff",
+                        "secondary-fixed": "#dae2f9",
+                        "inverse-surface": "#303034",
+                        "on-secondary-fixed-variant": "#3f4759",
+                        "secondary-container": "#dae2f9",
+                        "surface": "#fbf8fe",
+                        "tertiary-fixed-dim": "#eeb8c8",
+                        "surface-container": "#f0edf2",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#00468c",
+                        "surface-container-high": "#eae7ed",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#31111d",
+                        "surface-variant": "#e4e1e7",
+                        "secondary-fixed-dim": "#bec6dc",
+                        "on-background": "#1b1b1f",
+                        "tertiary-container": "#7e5361",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#633b48",
+                        "tertiary-fixed": "#ffd9e3",
+                        "surface-container-low": "#f6f2f8",
+                        "on-tertiary-container": "#ffcddb",
+                        "surface-dim": "#dcd9de",
+                        "outline-variant": "#c2c6d4",
+                        "on-surface": "#1b1b1f",
+                        "on-primary-container": "#c8daff",
+                        "on-surface-variant": "#424752",
+                        "surface-container-highest": "#e4e1e7",
+                        "primary-fixed": "#d6e3ff",
+                        "tertiary": "#643c49",
+                        "primary-container": "#005eb8",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001b3d",
+                        "on-primary": "#ffffff",
+                        "secondary": "#565e71",
+                        "inverse-on-surface": "#f3f0f5",
+                        "background": "#fbf8fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "12px",
+                        "2xl": "16px",
+                        "3xl": "24px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "3xl": "48px",
+                        "2xl": "32px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "margin-desktop": "24px",
+                        "lg": "16px",
+                        "xl": "24px",
+                        "md": "12px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "label-lg": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                        "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                        "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top App Bar -->
+<header class="bg-surface-container-low sticky top-0 z-50 flex items-center justify-between px-margin-mobile h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-title-lg text-title-lg truncate max-w-[200px] md:max-w-md font-bold text-primary">Passport_Scan_2024.pdf</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">share</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</header>
+<main class="max-w-5xl mx-auto px-margin-mobile pt-lg pb-32 space-y-xl">
+<!-- Preview Section -->
+<section class="relative group">
+<div class="w-full aspect-[3/4] md:aspect-video bg-surface-container-highest rounded-3xl overflow-hidden shadow-sm flex items-center justify-center border border-outline-variant/30">
+<img alt="Passport Document Preview" class="w-full h-full object-cover" data-alt="A high-fidelity close-up of a realistic passport document resting on a sleek dark marble surface. The lighting is dramatic and clinical, highlighting the textured paper, holographic security elements, and embossed lettering. The overall aesthetic is clean and secure, reflecting a premium digital vault environment with soft shadows and deep blue and crisp white highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH3A6yc3p_JjuzW9502bZd5PTGAGTij9VCTHKTouvFIaZ4eNxI5rb0m1hS8vAtrSe_P305fFicE8Cn0mkBRbJ85JvipWZfQNTCVj78G-8KK8oYC1Qsb1u9w-MM-To90WG6dX_vOPJ4Ap80mFasL60ngNizF1bmq90A9amWPLubSKaXONDyshzJQOdAde0dx3zxcdmHwYGpVw6ZZ7jiRSs14CJajXbwKOmzFTKwIY1wCdu8-5DfWNy21y6VSG7GOtzydPCzN-UdvGtQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<button class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur p-3 rounded-2xl shadow-lg hover:bg-white transition-all active:scale-90 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">fullscreen</span>
+</button>
+<div class="absolute bottom-4 left-4 bg-primary text-on-primary px-3 py-1 rounded-full text-label-lg font-label-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">shield_lock</span>
+                    OCR Verified
+                </div>
+</div>
+</section>
+<!-- Document Information & Actions -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-xl">
+<!-- Metadata Card -->
+<div class="md:col-span-8 space-y-xl">
+<div class="bg-surface-container-low rounded-3xl p-xl shadow-sm border border-outline-variant/20">
+<div class="flex flex-col gap-lg">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="text-label-lg font-label-lg text-primary tracking-widest uppercase">Identity Document</span>
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile font-bold text-on-surface">Passport_Scan_2024.pdf</h2>
+</div>
+<span class="bg-primary-container text-on-primary-container px-4 py-2 rounded-2xl text-label-lg font-label-lg">Vault #104</span>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-lg py-lg border-y border-outline-variant/30">
+<div class="flex flex-col gap-1">
+<span class="text-label-lg font-label-lg text-on-surface-variant">Uploaded</span>
+<span class="text-title-md font-title-md">Oct 12, 2024</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-label-lg font-label-lg text-on-surface-variant">Size</span>
+<span class="text-title-md font-title-md">1.2 MB</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-label-lg font-label-lg text-on-surface-variant">OCR Status</span>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+<span class="text-title-md font-title-md">Secure</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-label-lg font-label-lg text-on-surface-variant">Owner</span>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-[10px] text-white">UP</div>
+<span class="text-title-md font-title-md">User Profile</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-md pt-md">
+<button class="flex-1 min-w-[140px] h-12 bg-primary text-on-primary rounded-2xl font-title-md flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-95">
+<span class="material-symbols-outlined">download</span>
+                                Export
+                            </button>
+<button class="flex-1 min-w-[140px] h-12 bg-secondary-container text-on-secondary-container rounded-2xl font-title-md flex items-center justify-center gap-2 hover:bg-secondary-fixed-dim transition-all active:scale-95">
+<span class="material-symbols-outlined">edit</span>
+                                Rename
+                            </button>
+<button class="h-12 w-12 bg-error-container text-on-error-container rounded-2xl flex items-center justify-center hover:bg-error/10 transition-all active:scale-95">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- OCR Extracted Info -->
+<div class="bg-surface-container-low rounded-3xl p-xl shadow-sm border border-outline-variant/20">
+<div class="flex items-center justify-between mb-xl">
+<h3 class="text-title-lg font-title-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">psychology</span>
+                            Extracted Information
+                        </h3>
+<div class="text-label-lg font-label-lg text-on-surface-variant bg-surface-variant/30 px-3 py-1 rounded-full">
+                            AI Confidence: 98.4%
+                        </div>
+</div>
+<div class="space-y-lg">
+<!-- Field 1 -->
+<div class="relative group">
+<div class="flex items-end gap-4">
+<div class="flex-grow space-y-1">
+<label class="text-label-lg font-label-lg text-on-surface-variant ml-2">Document Number</label>
+<div class="bg-surface-container-highest px-4 py-3 rounded-2xl border border-transparent focus-within:border-primary transition-all">
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-title-md font-title-md" type="text" value="PZ-2099384-X"/>
+</div>
+</div>
+<div class="flex flex-col items-center gap-1 mb-2">
+<span class="text-[10px] font-label-lg text-primary">99%</span>
+<div class="w-12 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[99%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Field 2 -->
+<div class="relative group">
+<div class="flex items-end gap-4">
+<div class="flex-grow space-y-1">
+<label class="text-label-lg font-label-lg text-on-surface-variant ml-2">Expiry Date</label>
+<div class="bg-surface-container-highest px-4 py-3 rounded-2xl border border-transparent focus-within:border-primary transition-all">
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-title-md font-title-md" type="text" value="Jan 15, 2032"/>
+</div>
+</div>
+<div class="flex flex-col items-center gap-1 mb-2">
+<span class="text-[10px] font-label-lg text-primary">97%</span>
+<div class="w-12 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[97%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Field 3 -->
+<div class="relative group">
+<div class="flex items-end gap-4">
+<div class="flex-grow space-y-1">
+<label class="text-label-lg font-label-lg text-on-surface-variant ml-2">Issuing Country</label>
+<div class="bg-surface-container-highest px-4 py-3 rounded-2xl border border-transparent focus-within:border-primary transition-all">
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-title-md font-title-md" type="text" value="United States of America"/>
+</div>
+</div>
+<div class="flex flex-col items-center gap-1 mb-2">
+<span class="text-[10px] font-label-lg text-primary">100%</span>
+<div class="w-12 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="bg-primary h-full w-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Rail: Activity & Related -->
+<div class="md:col-span-4 space-y-xl">
+<!-- Activity Timeline -->
+<div class="bg-surface-container-low rounded-3xl p-xl shadow-sm border border-outline-variant/20">
+<h3 class="text-title-md font-title-md font-bold mb-xl">Activity History</h3>
+<div class="relative space-y-xl timeline-line">
+<div class="relative flex gap-4">
+<div class="z-10 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[14px]">upload</span>
+</div>
+<div class="space-y-1">
+<p class="text-title-md font-title-md leading-tight">Uploaded by you</p>
+<p class="text-label-lg font-label-lg text-on-surface-variant">Oct 12, 10:45 AM</p>
+</div>
+</div>
+<div class="relative flex gap-4">
+<div class="z-10 w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-[14px]">auto_awesome</span>
+</div>
+<div class="space-y-1">
+<p class="text-title-md font-title-md leading-tight">OCR Processed</p>
+<p class="text-label-lg font-label-lg text-on-surface-variant">Oct 12, 10:46 AM</p>
+</div>
+</div>
+<div class="relative flex gap-4">
+<div class="z-10 w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center border-2 border-primary">
+<span class="material-symbols-outlined text-primary text-[14px]">verified</span>
+</div>
+<div class="space-y-1">
+<p class="text-title-md font-title-md leading-tight">Verified by Vault</p>
+<p class="text-label-lg font-label-lg text-on-surface-variant">Oct 12, 11:02 AM</p>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Insights Card -->
+<div class="bg-gradient-to-br from-tertiary-container to-tertiary rounded-3xl p-xl text-on-tertiary shadow-lg relative overflow-hidden group">
+<div class="relative z-10 space-y-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">tips_and_updates</span>
+<span class="font-title-md">AI Insights</span>
+</div>
+<p class="font-body-md opacity-90">This document expires in 8 years. I've scheduled a reminder for Oct 2031.</p>
+<button class="w-full py-2 bg-on-tertiary text-tertiary rounded-xl font-title-md text-sm hover:bg-tertiary-fixed transition-colors">
+                            Manage Reminder
+                        </button>
+</div>
+<!-- Decorative blur -->
+<div class="absolute -right-10 -bottom-10 w-32 h-32 bg-white/20 blur-3xl rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Related Documents -->
+<section class="space-y-lg">
+<div class="flex items-center justify-between">
+<h3 class="text-title-lg font-title-lg font-bold">Related Documents</h3>
+<button class="text-primary font-title-md flex items-center gap-1 hover:underline">
+                    View All <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="flex gap-lg overflow-x-auto pb-4 hide-scrollbar -mx-margin-mobile px-margin-mobile">
+<!-- Related Card 1 -->
+<div class="min-w-[200px] w-48 bg-surface-container-low p-4 rounded-3xl border border-outline-variant/30 hover:shadow-md transition-all cursor-pointer group">
+<div class="w-full aspect-[4/3] bg-surface-container rounded-2xl mb-3 overflow-hidden">
+<img alt="Related Document 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A clean, flat-lay photograph of a business visa document on a desk with a pair of eyeglasses and a fountain pen nearby. The lighting is bright and airy, using the Formora light-mode theme with soft blue accents and professional, high-contrast typography in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpR4ZRY1LVXsnPnIofwLxQOtQjeB3rC0TcD_-64dcj83wd-4w3mlgqos_VRjHiqwDowJmF9OyVZUNnSRd8waLHLDcyPONxNRNAfl9JHx58iqRzQ5DLKUpDUbRVtk6nrf5P0iY7PQ9oVf1ijixlwKOtHqSayIqO3jKUSuRhoXCKcJIKF-pCj1ikwZK7IRePeBh-DRxbm-V0UjpWUdPWIJDE5-juRhgCShRB5DnvEfhYYZCRPEBs-2GvfchrIj-atJK1BnamITTgwME8"/>
+</div>
+<p class="text-title-md font-title-md truncate">Visa_Entry_2024.jpg</p>
+<p class="text-label-lg font-label-lg text-on-surface-variant">Jan 02, 2024</p>
+</div>
+<!-- Related Card 2 -->
+<div class="min-w-[200px] w-48 bg-surface-container-low p-4 rounded-3xl border border-outline-variant/30 hover:shadow-md transition-all cursor-pointer group">
+<div class="w-full aspect-[4/3] bg-surface-container rounded-2xl mb-3 overflow-hidden">
+<img alt="Related Document 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A stack of official-looking folded certificates on a high-end designer table. The color palette is composed of muted grays, whites, and deep blues. The aesthetic is extremely premium, echoing the Material Design 3 and Notion style with sharp focus and professional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOdQnLWR0Q8WM6Yy0wTctreXhvq2z6wzoLhZM-heW-Ur6ahGr-G67yeWM1mFX8ShiALkusWRB1lprkqyCj6PRIvky1_3gNUjHLt_vFoyS_iQ-dYQK7DZp2wtahhQvQDma2ZDxAALLotCKEDb7C2oSfG2e6DsZlOuehwpOeb2VZO1XCfNqRPfJ-9W3kLdZxftnM4uY47cpe4hfIW7eQxkHQG_Ne_HMQWBYUSITk83IM0AgRBpNGcA6SHQDXUJQSsuAlCqM29HPgtTyk"/>
+</div>
+<p class="text-title-md font-title-md truncate">Birth_Cert_Scan.pdf</p>
+<p class="text-label-lg font-label-lg text-on-surface-variant">Aug 15, 2023</p>
+</div>
+<!-- Related Card 3 -->
+<div class="min-w-[200px] w-48 bg-surface-container-low p-4 rounded-3xl border border-outline-variant/30 hover:shadow-md transition-all cursor-pointer group">
+<div class="w-full aspect-[4/3] bg-surface-container rounded-2xl mb-3 overflow-hidden">
+<img alt="Related Document 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A top-down view of a driver's license on a clean, light wood texture. The composition is balanced and minimalist, with bright daylight coming from the side creating long, soft shadows. The visual style matches the intelligent and secure brand personality of Formora." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0aIDvMzGF138SQVT8N0BNXJzJgEVHeLwSyHj0Uu6tpDpN1pJLqhAmHOuop04NvgwDdmZBOdn7Chy50Pbb4B2gV_VYLT-ohnZJCZ6nHIf-Qnd6S4GCgTeTV5NSaPeL0_jO8AzyVUQoOEjuosGnHoi4FYrLYjf-cUX3Xlz5wJu2cwy86avaq3rb3ks1g_KItZcIEL9ZvLdVokOIR2UAM-RGbsu5Yd2S-ID0PGUsWNdVSeLr8fTal0NGRPVEIrQVlkxvpC87rnLZ5EPh"/>
+</div>
+<p class="text-title-md font-title-md truncate">DL_Front_Back.pdf</p>
+<p class="text-label-lg font-label-lg text-on-surface-variant">Dec 10, 2023</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Nav Bar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-high rounded-t-3xl shadow-md z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-lg font-label-lg mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="text-label-lg font-label-lg mt-1">Documents</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="text-label-lg font-label-lg mt-1">AI</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-lg font-label-lg mt-1">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for input fields
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('shadow-lg', 'scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('shadow-lg', 'scale-[1.01]');
+            });
+        });
+
+        // Floating Action simulation if needed
+        console.log("Formora Document Detail Screen Initialized.");
+    </script>
+</body></html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile Created | Vault AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "secondary-container": "#dae2f9",
+                      "surface-tint": "#005db6",
+                      "on-secondary-fixed-variant": "#3f4759",
+                      "background": "#fbf8fe",
+                      "secondary-fixed-dim": "#bec6dc",
+                      "on-background": "#1b1b1f",
+                      "surface-container-low": "#f6f2f8",
+                      "outline": "#727783",
+                      "surface": "#fbf8fe",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#1b1b1f",
+                      "secondary-fixed": "#dae2f9",
+                      "on-secondary-container": "#5c6478",
+                      "inverse-surface": "#303034",
+                      "primary": "#00478d",
+                      "tertiary-container": "#7e5361",
+                      "primary-fixed-dim": "#a9c7ff",
+                      "on-tertiary-fixed-variant": "#633b48",
+                      "tertiary-fixed-dim": "#eeb8c8",
+                      "inverse-on-surface": "#f3f0f5",
+                      "secondary": "#565e71",
+                      "on-surface-variant": "#424752",
+                      "error": "#ba1a1a",
+                      "primary-container": "#005eb8",
+                      "tertiary-fixed": "#ffd9e3",
+                      "on-primary-fixed": "#001b3d",
+                      "on-primary-container": "#c8daff",
+                      "on-primary-fixed-variant": "#00468c",
+                      "on-secondary-fixed": "#131b2c",
+                      "on-tertiary-container": "#ffcddb",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#dcd9de",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e4e1e7",
+                      "outline-variant": "#c2c6d4",
+                      "surface-container-high": "#eae7ed",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#f0edf2",
+                      "inverse-primary": "#a9c7ff",
+                      "surface-container-highest": "#e4e1e7",
+                      "primary-fixed": "#d6e3ff",
+                      "on-tertiary-fixed": "#31111d",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "tertiary": "#643c49",
+                      "surface-bright": "#fbf8fe"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "12px",
+                      "margin-desktop": "24px",
+                      "gutter": "16px",
+                      "xl": "24px",
+                      "xs": "4px",
+                      "margin-mobile": "16px",
+                      "2xl": "32px",
+                      "sm": "8px",
+                      "lg": "16px",
+                      "3xl": "48px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "title-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "body-lg": ["Inter"],
+                      "title-md": ["Inter"],
+                      "label-lg": ["JetBrains Mono"],
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                      "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                      "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                      "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes checkDraw {
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-scale-in { animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .animate-fade-up { animation: fadeUp 0.8s ease-out forwards; }
+        .check-path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: checkDraw 0.6s 0.4s ease-in-out forwards;
+        }
+        .bg-mesh {
+            background: radial-gradient(at 0% 0%, rgba(0, 71, 141, 0.05) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(0, 94, 184, 0.05) 0px, transparent 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden bg-mesh">
+<!-- Top AppBar (from JSON guidance) -->
+<header class="w-full top-0 sticky bg-surface-container-low shadow-sm z-50">
+<div class="flex justify-between items-center px-lg py-sm w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Vault AI</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-lg md:p-3xl">
+<div class="max-w-md w-full flex flex-col items-center text-center">
+<!-- Success Illustration (Animated Checkmark) -->
+<div class="relative w-32 h-32 mb-xl animate-scale-in">
+<div class="absolute inset-0 bg-primary-container/20 rounded-full blur-2xl"></div>
+<svg class="w-full h-full relative z-10" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" opacity="0.2" r="48" stroke="#005eb8" stroke-linecap="round" stroke-width="4"></circle>
+<circle class="check-path" cx="50" cy="50" fill="none" r="48" stroke="#005eb8" stroke-linecap="round" stroke-width="4" style="stroke-dasharray: 302; stroke-dashoffset: 302;"></circle>
+<path class="check-path" d="M30 50 L45 65 L70 35" fill="none" stroke="#005eb8" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></path>
+</svg>
+</div>
+<!-- Headline -->
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary font-bold mb-sm opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
+                Profile Successfully Created
+            </h2>
+<p class="font-body-lg text-on-surface-variant mb-2xl opacity-0 animate-fade-up" style="animation-delay: 0.3s;">
+                Your intelligent privacy vault is ready. We've optimized your security settings for maximum protection.
+            </p>
+<!-- Summary Card -->
+<div class="w-full bg-surface-container rounded-2xl p-lg shadow-sm border border-outline-variant/30 mb-3xl opacity-0 animate-fade-up" style="animation-delay: 0.4s;">
+<div class="flex items-center gap-lg">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-fixed-dim">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional studio portrait of a confident young man with a slight smile, set against a minimalist and clean light grey background. The lighting is soft and flattering, creating a high-end corporate or creative professional look that fits a premium technology application aesthetic. The overall mood is intelligent, approachable, and refined." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE9gswJLzWhIxsuAKuI1QxANZqmi-LH5zlbhPcJ52qW-YdJlDHP_SPiQPk66I8wYGw9M0rSZXc-w4_LmXhtS9Nlgn3wLqv82vpTJlhC5ygbtopZtrudm1VXAiQ7uxV58J1H8TzozZFrNCv_iOF6m2xQelSxkM1I2lwUEyzWYHtgETjACJM7OoOYcUpEOuXgyLMxy3Q_kXF_p0z2jkI0UalZnkUG9iisrA-LzhFpLY__JSo2_Upy_I_9mMQTP-zSmKdr4KHdudw4rBz"/>
+</div>
+<div class="text-left">
+<p class="font-label-lg text-primary uppercase tracking-wider mb-xs">Identity Confirmed</p>
+<h3 class="font-title-lg text-title-lg text-on-surface">Alex Rivera</h3>
+<p class="font-body-md text-on-surface-variant">Premium Vault Member</p>
+</div>
+</div>
+<div class="mt-lg pt-lg border-t border-outline-variant/30 flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-lg text-on-surface">Encryption Active</span>
+</div>
+<span class="font-label-lg text-secondary bg-secondary-container px-sm py-1 rounded-full">v2.4.0</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-md opacity-0 animate-fade-up" style="animation-delay: 0.5s;">
+<button class="w-full bg-primary text-on-primary font-title-md py-lg rounded-xl hover:bg-primary/90 transition-all active:scale-95 flex items-center justify-center gap-sm">
+                    Go to Dashboard
+                    <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="w-full bg-surface-container-highest text-on-surface font-title-md py-lg rounded-xl hover:bg-surface-variant transition-all active:scale-95 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                    Add First Document
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Contextual suppression check: This is a success splash, normally hidden, but user specifically asked for it) -->
+<!-- Applying BottomNavBar JSON styles -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-high shadow-lg rounded-t-3xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-label-lg text-label-lg">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-lg text-label-lg">Files</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-lg text-label-lg">Search</span>
+</a>
+<!-- Active Tab: Profile (Closest match to "Profile Created") -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</a>
+</nav>
+<!-- Desktop Navigation Rail (Applying Style Guidance principles for layout) -->
+<aside class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-20 flex-col items-center py-xl bg-surface-container-low border-r border-outline-variant/20 z-40">
+<div class="flex flex-col gap-3xl">
+<button class="p-md rounded-2xl text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</button>
+<button class="p-md rounded-2xl text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+<button class="p-md rounded-2xl text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</button>
+<button class="p-md rounded-2xl bg-primary-container text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</button>
+</div>
+</aside>
+<!-- Simple Sparkle Interaction JS -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const createSparkle = (e) => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'absolute pointer-events-none w-2 h-2 bg-primary rounded-full opacity-70';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                document.body.appendChild(sparkle);
+                
+                const anim = sparkle.animate([
+                    { transform: 'translate(0,0) scale(1)', opacity: 0.7 },
+                    { transform: `translate(${(Math.random()-0.5)*100}px, ${(Math.random()-0.5)*100}px) scale(0)`, opacity: 0 }
+                ], { duration: 1000, easing: 'ease-out' });
+                
+                anim.onfinish = () => sparkle.remove();
+            };
+
+            // Optional interaction for feedback on buttons
+            document.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    for(let i=0; i<8; i++) createSparkle(e);
+                });
+            });
+        });
+    </script>
+</body></html>

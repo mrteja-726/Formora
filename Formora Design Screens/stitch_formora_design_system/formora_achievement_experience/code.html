@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora Achievement Experience</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f6f2f8",
+                        "surface-container-highest": "#e4e1e7",
+                        "on-primary-fixed": "#001b3d",
+                        "surface-container-high": "#eae7ed",
+                        "on-secondary-fixed-variant": "#3f4759",
+                        "on-secondary-container": "#5c6478",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#dcd9de",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#303034",
+                        "surface-variant": "#e4e1e7",
+                        "on-background": "#1b1b1f",
+                        "on-tertiary-fixed": "#31111d",
+                        "inverse-primary": "#a9c7ff",
+                        "on-tertiary-fixed-variant": "#633b48",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#00478d",
+                        "secondary-container": "#dae2f9",
+                        "secondary-fixed": "#dae2f9",
+                        "primary-container": "#005eb8",
+                        "inverse-on-surface": "#f3f0f5",
+                        "secondary-fixed-dim": "#bec6dc",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#424752",
+                        "on-tertiary-container": "#ffcddb",
+                        "background": "#fbf8fe",
+                        "tertiary-fixed": "#ffd9e3",
+                        "surface": "#fbf8fe",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary-container": "#c8daff",
+                        "on-surface": "#1b1b1f",
+                        "tertiary-fixed-dim": "#eeb8c8",
+                        "outline": "#727783",
+                        "outline-variant": "#c2c6d4",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#7e5361",
+                        "surface-container": "#f0edf2",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "error": "#ba1a1a",
+                        "secondary": "#565e71",
+                        "on-primary-fixed-variant": "#00468c",
+                        "tertiary": "#643c49",
+                        "surface-bright": "#fbf8fe",
+                        "surface-tint": "#005db6",
+                        "on-secondary-fixed": "#131b2c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "24px",
+                        "lg": "16px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "md": "12px",
+                        "gutter": "16px",
+                        "margin-desktop": "24px",
+                        "2xl": "32px",
+                        "3xl": "48px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "title-md": ["Inter"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["JetBrains Mono"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500" }],
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                        "display-lg": ["57px", { "lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes modal-entrance {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes success-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 94, 184, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(0, 94, 184, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 94, 184, 0); }
+        }
+        .animate-modal-entrance {
+            animation: modal-entrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-success-pulse {
+            animation: success-pulse 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .achievement-glow {
+            filter: drop-shadow(0 0 12px rgba(0, 94, 184, 0.3));
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center p-gutter">
+<!-- Blurred Background Context -->
+<div class="fixed inset-0 z-0">
+<img alt="Dashboard background" class="w-full h-full object-cover blur-md brightness-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6971hfVH__dGDR1yZf2vv3pXiHR71jl2a19m0ur1MTQN9wRWCSnTPsRMdzdv2Zt5WFb5tUGSDeMxZDVCO3EzkQMcRBajrFOJFbX6wdO6xR1Eptp9je4MSuVAfMB5H-Qnr9Wk84vTD9PLU1FMviRWd0r-QnTZNq6wf8txUivlTbLlL1lagYomPOq0baSPmpmomsD0D47TDakfws7AJZwvFIsunQKaqvt-dY1a7KnHfc0bFxxN1glKAoacWE72-pyLqCF2o4cRaF6lG"/>
+<div class="absolute inset-0 bg-on-background/10"></div>
+</div>
+<!-- Achievement Modal -->
+<main class="relative z-10 w-full max-w-md animate-modal-entrance">
+<div class="bg-surface rounded-2xl p-xl shadow-2xl border border-outline-variant/30 flex flex-col items-center text-center">
+<!-- Achievement Icon Header -->
+<div class="mb-xl relative">
+<div class="animate-success-pulse rounded-full p-2 bg-primary-container/10">
+<div class="achievement-glow w-24 h-24 flex items-center justify-center bg-surface rounded-full border-2 border-primary-container overflow-hidden">
+<img alt="100% Completion Shield Icon" class="w-20 h-20 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC42UprwV7uOmRRBQCY0sFIkC4WEcSJB_jsfgOjwW3X3wpChi8RlFlqdkahKe-Ci5IWTvzB_b8ChOWK4orK5d5RJV6uEJTZ-xXctMyj7wVCWJm5h2JO0sNfFdyxDSLaCWF-pHmZDwHgSupCW8XP3C6Zgwxc3AzRngIn7PxYLPWvfVJNNis7YODWJg5w5Lxs8SmcW4bYbnOx9IgIvZ7IKBzfEysrNVDdcvLSGAlzPUn--Ipz2DScYLEoCQBnZdO1SbLFCpDMrdwzxcZ4"/>
+</div>
+</div>
+</div>
+<!-- Content -->
+<div class="space-y-sm mb-xl">
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">
+                    100% Profile Security Reached
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[280px] mx-auto">
+                    Your digital vault is now fully optimized and secured with local-first AI intelligence.
+                </p>
+</div>
+<!-- Improvement Summary Card -->
+<div class="w-full bg-surface-container-low rounded-xl p-lg mb-2xl grid grid-cols-1 gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Encrypted</span>
+<div class="flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-title-md text-title-md">Yes</span>
+</div>
+</div>
+<div class="h-[1px] bg-outline-variant/20"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Backups</span>
+<div class="flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+<span class="font-title-md text-title-md">Active</span>
+</div>
+</div>
+<div class="h-[1px] bg-outline-variant/20"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">AI Model</span>
+<div class="flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">memory</span>
+<span class="font-title-md text-title-md">Local</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-md">
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-title-md text-title-md hover:brightness-110 active:scale-[0.98] transition-all shadow-md">
+                    Continue to Vault
+                </button>
+<button class="w-full py-3 text-primary font-title-md text-title-md hover:bg-primary/5 rounded-xl transition-colors">
+                    View Progress Details
+                </button>
+</div>
+</div>
+</main>
+<script>
+        // Simple interactive feedback on buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                button.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora - Validating Backup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#005db6",
+                        "inverse-on-surface": "#f3f0f5",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#dae2f9",
+                        "on-secondary-fixed": "#131b2c",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#a9c7ff",
+                        "surface-bright": "#fbf8fe",
+                        "tertiary-fixed": "#ffd9e3",
+                        "tertiary-container": "#7e5361",
+                        "surface-container-low": "#f6f2f8",
+                        "primary": "#00478d",
+                        "tertiary-fixed-dim": "#eeb8c8",
+                        "on-primary-fixed-variant": "#00468c",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#f0edf2",
+                        "tertiary": "#643c49",
+                        "on-tertiary-fixed": "#31111d",
+                        "secondary": "#565e71",
+                        "on-surface": "#1b1b1f",
+                        "error": "#ba1a1a",
+                        "surface": "#fbf8fe",
+                        "primary-container": "#005eb8",
+                        "on-surface-variant": "#424752",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary-fixed": "#001b3d",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fbf8fe",
+                        "surface-container-high": "#eae7ed",
+                        "on-primary-container": "#c8daff",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dcd9de",
+                        "on-secondary-container": "#5c6478",
+                        "surface-container-highest": "#e4e1e7",
+                        "outline-variant": "#c2c6d4",
+                        "on-secondary-fixed-variant": "#3f4759",
+                        "surface-variant": "#e4e1e7",
+                        "secondary-fixed-dim": "#bec6dc",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303034",
+                        "on-tertiary-container": "#ffcddb",
+                        "secondary-fixed": "#dae2f9",
+                        "on-tertiary-fixed-variant": "#633b48",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "outline": "#727783",
+                        "on-background": "#1b1b1f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xs": "4px",
+                        "margin-desktop": "24px",
+                        "3xl": "48px",
+                        "2xl": "32px",
+                        "xl": "24px",
+                        "margin-mobile": "16px",
+                        "lg": "16px",
+                        "gutter": "16px",
+                        "md": "12px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["JetBrains Mono"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "display-lg": ["57px", { "lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .pulse-bg {
+            animation: pulse-light 3s infinite alternate;
+        }
+        @keyframes pulse-light {
+            0% { background-color: rgba(0, 94, 184, 0.02); }
+            100% { background-color: rgba(0, 94, 184, 0.08); }
+        }
+        .scanning-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #005eb8, transparent);
+            animation: scan 2s linear infinite;
+            opacity: 0.5;
+        }
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg min-h-screen flex flex-col relative overflow-hidden">
+<!-- Top App Bar (Suppressed for transactional flow, but keeping brand anchor as per instruction "Use exact labels... TopAppBar". Deciding to show a minimal version for brand presence but no navigation) -->
+<header class="bg-surface dark:bg-surface-dim text-primary dark:text-primary-fixed font-title-lg text-title-lg w-full top-0 sticky bg-surface dark:bg-surface-dim flat no shadows flex justify-between items-center px-lg py-sm w-full z-10 border-b border-surface-variant">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-title-lg" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-title-lg font-title-lg font-bold text-primary dark:text-primary-fixed">Formora</span>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop relative z-10">
+<!-- Animated Background Pulse specific to the flow -->
+<div class="absolute inset-0 pulse-bg -z-10 pointer-events-none rounded-3xl m-margin-desktop shadow-[inset_0_0_100px_rgba(0,94,184,0.05)] border border-primary-container/10">
+<div class="scanning-line"></div>
+</div>
+<div class="max-w-md w-full flex flex-col items-center">
+<!-- Icon & Heading -->
+<div class="mb-xl flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-full bg-primary-container/10 flex items-center justify-center mb-lg relative">
+<span class="material-symbols-outlined text-[48px] text-primary-container spinner" style="font-variation-settings: 'FILL' 0;">sync</span>
+<span class="material-symbols-outlined absolute text-[24px] text-primary-container" style="font-variation-settings: 'FILL' 1;">cloud_sync</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-xs">Validating Backup</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Please wait while we verify your data security and integrity.</p>
+</div>
+<!-- Validation Checklist (Bento/Card Style) -->
+<div class="w-full bg-surface-container-low rounded-xl border border-surface-variant p-lg shadow-sm mb-3xl flex flex-col gap-lg">
+<!-- Item 1: Active -->
+<div class="flex items-center justify-between p-sm rounded-lg bg-surface relative overflow-hidden shadow-sm border border-primary-container/20">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-container"></div>
+<div class="flex items-center gap-md ml-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[16px] spinner">progress_activity</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Integrity Check</p>
+<p class="font-label-lg text-label-lg text-primary-container">Validating...</p>
+</div>
+</div>
+</div>
+<!-- Item 2: Pending -->
+<div class="flex items-center justify-between p-sm rounded-lg bg-surface opacity-70">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">bug_report</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Corruption Scan</p>
+<p class="font-label-lg text-label-lg text-on-surface-variant">Pending</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-50">pending</span>
+</div>
+<!-- Item 3: Pending -->
+<div class="flex items-center justify-between p-sm rounded-lg bg-surface opacity-70">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">extension</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Compatibility Check</p>
+<p class="font-label-lg text-label-lg text-on-surface-variant">Pending</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-50">pending</span>
+</div>
+</div>
+<!-- Action Area -->
+<div class="w-full mt-auto mb-margin-desktop md:mb-0">
+<button class="w-full py-md px-lg rounded-full border border-outline font-title-md text-title-md text-primary hover:bg-surface-variant transition-colors duration-200 flex justify-center items-center gap-sm">
+<span class="material-symbols-outlined">close</span>
+                    Cancel Validation
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Suppressed due to Transactional Flow Intent -->
+</body></html>

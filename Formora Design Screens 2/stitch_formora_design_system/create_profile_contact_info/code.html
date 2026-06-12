@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#dae2f9",
+                    "surface-tint": "#005db6",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "background": "#fbf8fe",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "on-background": "#1b1b1f",
+                    "surface-container-low": "#f6f2f8",
+                    "outline": "#727783",
+                    "surface": "#fbf8fe",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1b1b1f",
+                    "secondary-fixed": "#dae2f9",
+                    "on-secondary-container": "#5c6478",
+                    "inverse-surface": "#303034",
+                    "primary": "#00478d",
+                    "tertiary-container": "#7e5361",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "inverse-on-surface": "#f3f0f5",
+                    "secondary": "#565e71",
+                    "on-surface-variant": "#424752",
+                    "error": "#ba1a1a",
+                    "primary-container": "#005eb8",
+                    "tertiary-fixed": "#ffd9e3",
+                    "on-primary-fixed": "#001b3d",
+                    "on-primary-container": "#c8daff",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-secondary-fixed": "#131b2c",
+                    "on-tertiary-container": "#ffcddb",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dcd9de",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e4e1e7",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-high": "#eae7ed",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#f0edf2",
+                    "inverse-primary": "#a9c7ff",
+                    "surface-container-highest": "#e4e1e7",
+                    "primary-fixed": "#d6e3ff",
+                    "on-tertiary-fixed": "#31111d",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "tertiary": "#643c49",
+                    "surface-bright": "#fbf8fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "12px",
+                    "margin-desktop": "24px",
+                    "gutter": "16px",
+                    "xl": "24px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "2xl": "32px",
+                    "sm": "8px",
+                    "lg": "16px",
+                    "3xl": "48px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-lg": ["JetBrains Mono"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .input-focus-ring:focus-within {
+            box-shadow: 0 0 0 2px var(--tw-shadow-color);
+        }
+        body {
+            background-color: #fbf8fe;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-40 bg-surface-container-low shadow-sm">
+<div class="flex justify-between items-center px-lg py-sm w-full max-w-screen-2xl mx-auto h-16">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-100">menu</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">Vault AI</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-100">settings</button>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-start pt-xl pb-3xl px-margin-mobile md:px-margin-desktop w-full max-w-2xl mx-auto">
+<!-- Progress Indicator -->
+<div class="w-full mb-2xl">
+<div class="flex justify-between items-end mb-sm">
+<div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">Contact Information</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Step 3 of 6</p>
+</div>
+<span class="font-label-lg text-label-lg text-primary bg-primary-fixed px-3 py-1 rounded-full">50% Complete</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-1/2 rounded-full step-transition" style="width: 50%;"></div>
+</div>
+</div>
+<!-- Form Section -->
+<form class="w-full space-y-xl">
+<!-- Information Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm">
+<div class="flex gap-md items-start">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-lg">shield_person</span>
+<div>
+<h2 class="font-title-md text-title-md text-on-surface">Secure Communication</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Your contact details are encrypted using post-quantum algorithms within the vault. Only verified agents can access this data.</p>
+</div>
+</div>
+</div>
+<!-- Email Field -->
+<div class="flex flex-col gap-xs">
+<label class="font-title-md text-title-md text-on-surface px-1" for="email">Email Address</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant">mail</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-xl border-outline-variant bg-surface text-on-surface focus:border-primary focus:ring-2 focus:ring-primary transition-all font-body-lg text-body-lg" id="email" placeholder="alex@example.ai" type="email"/>
+</div>
+</div>
+<!-- Phone Field -->
+<div class="flex flex-col gap-xs">
+<label class="font-title-md text-title-md text-on-surface px-1" for="phone">Phone Number</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant">call</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-xl border-outline-variant bg-surface text-on-surface focus:border-primary focus:ring-2 focus:ring-primary transition-all font-body-lg text-body-lg" id="phone" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+<p class="font-label-lg text-label-lg text-on-surface-variant px-1 mt-1">Used for multi-factor authentication only.</p>
+</div>
+<!-- Physical Address Field -->
+<div class="flex flex-col gap-xs">
+<label class="font-title-md text-title-md text-on-surface px-1" for="address">Physical Address</label>
+<div class="relative flex items-start">
+<span class="material-symbols-outlined absolute left-4 top-4 text-on-surface-variant">location_on</span>
+<textarea class="w-full pl-12 pr-4 py-4 rounded-xl border-outline-variant bg-surface text-on-surface focus:border-primary focus:ring-2 focus:ring-primary transition-all font-body-lg text-body-lg resize-none" id="address" placeholder="Enter your full mailing address..." rows="4"></textarea>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-lg pt-xl">
+<button class="flex-1 px-xl py-4 rounded-full border border-outline text-primary font-title-md text-title-md hover:bg-surface-container-high transition-colors active:scale-95 duration-100 flex items-center justify-center gap-sm" type="button">
+<span class="material-symbols-outlined">arrow_back</span>
+                    Back
+                </button>
+<button class="flex-1 px-xl py-4 rounded-full bg-primary-container text-on-primary-container font-title-md text-title-md hover:opacity-90 shadow-sm transition-all active:scale-95 duration-100 flex items-center justify-center gap-sm" type="submit">
+                    Next
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Decorative Vault Elements -->
+<div class="mt-3xl w-full grid grid-cols-3 gap-lg opacity-40 grayscale pointer-events-none">
+<div class="h-24 bg-surface-container rounded-xl border border-dashed border-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl">fingerprint</span>
+</div>
+<div class="h-24 bg-surface-container rounded-xl border border-dashed border-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl">verified</span>
+</div>
+<div class="h-24 bg-surface-container rounded-xl border border-dashed border-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl">lock</span>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar (From Home Dashboard) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-high shadow-lg rounded-t-3xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-lg text-label-lg">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-lg text-label-lg">Files</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:text-primary transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-lg text-label-lg">Search</span>
+</a>
+<!-- Active Tab: Profile (Closest match for Profile Wizard) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</a>
+</nav>
+<!-- Desktop Navigation Side Rail Mock (Visual reinforcement for "Wizard" context) -->
+<aside class="fixed left-0 top-16 bottom-0 w-20 hidden md:flex flex-col items-center py-xl bg-surface-container-low border-r border-outline-variant">
+<div class="flex flex-col gap-2xl">
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<div class="p-3 rounded-2xl bg-primary-container text-on-primary-container group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</div>
+<span class="font-label-lg text-label-lg text-primary">Profile</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer opacity-50">
+<div class="p-3 rounded-2xl hover:bg-surface-container-high transition-transform">
+<span class="material-symbols-outlined">chat</span>
+</div>
+<span class="font-label-lg text-label-lg">Chat</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer opacity-50">
+<div class="p-3 rounded-2xl hover:bg-surface-container-high transition-transform">
+<span class="material-symbols-outlined">description</span>
+</div>
+<span class="font-label-lg text-label-lg">Files</span>
+</div>
+</div>
+</aside>
+<script>
+        // Simple micro-interaction for input fields
+        document.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.parentElement.classList.add('scale-[1.01]');
+                input.parentElement.parentElement.style.transition = 'all 0.2s ease-out';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Form submission prevention for demo
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Step 3 saved! Proceeding to Step 4...');
+        });
+    </script>
+</body></html>

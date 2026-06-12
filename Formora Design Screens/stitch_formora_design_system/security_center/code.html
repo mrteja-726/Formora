@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora Security Center</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#7e5361",
+                      "secondary": "#565e71",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#eeb8c8",
+                      "secondary-fixed": "#dae2f9",
+                      "on-tertiary-container": "#ffcddb",
+                      "outline-variant": "#c2c6d4",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f6f2f8",
+                      "surface-bright": "#fbf8fe",
+                      "surface-container": "#f0edf2",
+                      "on-secondary": "#ffffff",
+                      "on-background": "#1b1b1f",
+                      "on-tertiary-fixed-variant": "#633b48",
+                      "tertiary": "#643c49",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-container": "#c8daff",
+                      "tertiary-fixed": "#ffd9e3",
+                      "secondary-container": "#dae2f9",
+                      "outline": "#727783",
+                      "inverse-on-surface": "#f3f0f5",
+                      "primary": "#00478d",
+                      "on-surface-variant": "#424752",
+                      "on-surface": "#1b1b1f",
+                      "on-primary-fixed": "#001b3d",
+                      "surface-container-high": "#eae7ed",
+                      "on-secondary-fixed-variant": "#3f4759",
+                      "on-primary-fixed-variant": "#00468c",
+                      "primary-fixed-dim": "#a9c7ff",
+                      "on-tertiary-fixed": "#31111d",
+                      "inverse-primary": "#a9c7ff",
+                      "secondary-fixed-dim": "#bec6dc",
+                      "surface": "#fbf8fe",
+                      "on-secondary-fixed": "#131b2c",
+                      "on-secondary-container": "#5c6478",
+                      "surface-variant": "#e4e1e7",
+                      "on-primary": "#ffffff",
+                      "surface-tint": "#005db6",
+                      "surface-dim": "#dcd9de",
+                      "error": "#ba1a1a",
+                      "background": "#fbf8fe",
+                      "primary-fixed": "#d6e3ff",
+                      "on-error": "#ffffff",
+                      "surface-container-highest": "#e4e1e7",
+                      "primary-container": "#005eb8",
+                      "inverse-surface": "#303034"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "3xl": "48px",
+                      "gutter": "16px",
+                      "2xl": "32px",
+                      "xl": "24px",
+                      "margin-desktop": "24px",
+                      "lg": "16px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "md": "12px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "title-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-lg": [
+                              "JetBrains Mono"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.25px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0.15px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0.5px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-lg": [
+                              "22px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-lg": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.5px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "57px",
+                              {
+                                      "lineHeight": "64px",
+                                      "letterSpacing": "-0.25px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #005eb8; /* primary-container */
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #005eb8; /* primary-container */
+        }
+        .toggle-checkbox:checked + .toggle-label:after {
+            transform: translateX(100%);
+            border-color: #fff;
+        }
+        
+        .score-circle {
+            stroke-dasharray: 283; /* 2 * pi * 45 */
+            stroke-dashoffset: 22.64; /* 283 - (283 * 0.92) for 92% */
+            transition: stroke-dashoffset 1s ease-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased font-body-md min-h-screen flex flex-col md:max-w-md md:mx-auto md:shadow-2xl md:my-xl md:rounded-[32px] md:overflow-hidden relative">
+<!-- TopAppBar -->
+<header class="bg-surface flex items-center px-margin-mobile h-16 w-full max-w-7xl mx-auto sticky top-0 z-40 transition-colors">
+<button class="flex items-center justify-center p-sm -ml-sm rounded-full text-on-surface hover:bg-surface-container-low transition-colors active:scale-95 duration-100 mr-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<h1 class="font-title-lg text-title-lg font-bold text-on-surface flex-1">Security Center</h1>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto px-margin-mobile pb-[100px] flex flex-col gap-xl">
+<!-- Security Score Card -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-[24px] p-xl flex flex-col items-center relative overflow-hidden shadow-sm mt-sm">
+<!-- Decorative gradient bg -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/10 to-transparent pointer-events-none"></div>
+<h2 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider z-10 mb-md">System Health</h2>
+<div class="relative w-40 h-40 flex items-center justify-center z-10 mb-lg">
+<!-- Background Circle -->
+<svg class="absolute inset-0 w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle class="text-surface-variant" cx="50" cy="50" fill="transparent" r="45" stroke="currentColor" stroke-width="8"></circle>
+</svg>
+<!-- Active Circle -->
+<svg class="absolute inset-0 w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle class="text-primary-container score-circle drop-shadow-sm" cx="50" cy="50" fill="transparent" r="45" stroke="currentColor" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="flex flex-col items-center">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">92<span class="text-title-lg">%</span></span>
+<span class="font-label-lg text-label-lg text-primary font-medium flex items-center gap-xs mt-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                        Protected
+                    </span>
+</div>
+</div>
+<!-- Quick Status -->
+<div class="w-full flex justify-between gap-sm z-10">
+<div class="flex flex-col items-center bg-surface-container rounded-xl p-md flex-1 text-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary mb-xs" style="font-variation-settings: 'FILL' 1;">fingerprint</span>
+<span class="font-label-lg text-label-lg text-on-surface">Biometrics</span>
+<span class="font-body-md text-[10px] text-on-surface-variant leading-tight mt-1">Enabled</span>
+</div>
+<div class="flex flex-col items-center bg-surface-container rounded-xl p-md flex-1 text-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary mb-xs" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+<span class="font-label-lg text-label-lg text-on-surface">Backup</span>
+<span class="font-body-md text-[10px] text-on-surface-variant leading-tight mt-1">Healthy</span>
+</div>
+<div class="flex flex-col items-center bg-surface-container rounded-xl p-md flex-1 text-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary mb-xs" style="font-variation-settings: 'FILL' 1;">app_blocking</span>
+<span class="font-label-lg text-label-lg text-on-surface">App Lock</span>
+<span class="font-body-md text-[10px] text-on-surface-variant leading-tight mt-1">Active</span>
+</div>
+</div>
+</section>
+<!-- Security Features -->
+<section class="flex flex-col gap-md">
+<h3 class="font-title-md text-title-md text-on-surface flex items-center gap-sm px-xs">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">settings_suggest</span>
+                Active Protections
+            </h3>
+<div class="flex flex-col bg-surface-container-lowest rounded-[20px] overflow-hidden border border-outline-variant/30">
+<!-- Toggle Item -->
+<div class="flex justify-between items-center p-lg border-b border-outline-variant/20 bg-surface hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fingerprint</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Biometric Lock</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px]">Require FaceID to open</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-checkbox" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full border-2 border-transparent transition-colors toggle-label relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+</label>
+</div>
+<!-- Toggle Item -->
+<div class="flex justify-between items-center p-lg border-b border-outline-variant/20 bg-surface hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">password</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">PIN Protection</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px]">Fallback access method</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-checkbox" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full border-2 border-transparent transition-colors toggle-label relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+</label>
+</div>
+<!-- Toggle Item -->
+<div class="flex justify-between items-center p-lg border-b border-outline-variant/20 bg-surface hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">visibility_off</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Screen Privacy</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px]">Hides content in app switcher</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only toggle-checkbox" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full border-2 border-transparent transition-colors toggle-label relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+</label>
+</div>
+<!-- Feature Item (Non-toggle) -->
+<button class="flex justify-between items-center p-lg bg-surface hover:bg-surface-container-low transition-colors w-full text-left">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">timer</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Auto Lock</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px]">Immediately</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Privacy Dashboard (Bento Grid) -->
+<section class="flex flex-col gap-md">
+<h3 class="font-title-md text-title-md text-on-surface flex items-center gap-sm px-xs">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                Privacy Dashboard
+            </h3>
+<div class="grid grid-cols-2 gap-sm">
+<!-- Data Stored -->
+<div class="bg-surface-container rounded-[20px] p-lg flex flex-col gap-md border border-outline-variant/20 hover:bg-surface-container-high transition-colors">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">sd_storage</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-on-surface font-semibold mb-xs">4.2 GB</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px] leading-tight">Data Stored Locally</p>
+</div>
+</div>
+<!-- AI Connections -->
+<div class="bg-surface-container rounded-[20px] p-lg flex flex-col gap-md border border-outline-variant/20 hover:bg-surface-container-high transition-colors">
+<div class="w-8 h-8 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">neurology</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-on-surface font-semibold mb-xs">2</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px] leading-tight">Active AI Connections</p>
+</div>
+</div>
+<!-- Permissions (Spans full width) -->
+<div class="col-span-2 bg-surface-container-lowest border border-outline-variant/30 rounded-[20px] p-lg flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">policy</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Permissions Granted</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px]">Camera, Storage</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Recent Security Activity -->
+<section class="flex flex-col gap-md">
+<h3 class="font-title-md text-title-md text-on-surface flex items-center gap-sm px-xs">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">history</span>
+                Recent Activity
+            </h3>
+<div class="bg-surface-container-lowest rounded-[20px] border border-outline-variant/30 p-sm flex flex-col">
+<!-- Activity Item -->
+<div class="flex items-start gap-md p-md rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">devices</span>
+</div>
+<div class="flex-1">
+<p class="font-title-md text-title-md text-on-surface text-[14px]">New Device Authorized</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px]">MacBook Pro · San Francisco</p>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface-variant text-[10px]">2h ago</span>
+</div>
+<!-- Activity Item -->
+<div class="flex items-start gap-md p-md rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="mt-1">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 0;">cloud_sync</span>
+</div>
+<div class="flex-1">
+<p class="font-title-md text-title-md text-on-surface text-[14px]">Backup Verified</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px]">End-to-end encryption confirmed</p>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface-variant text-[10px]">Yesterday</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container shadow-md rounded-t-xl transition-all">
+<!-- Vault (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-secondary-fixed-variant px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">lock</span>
+<span class="font-label-lg text-label-lg mt-1">Vault</span>
+</button>
+<!-- Activity (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-secondary-fixed-variant px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+<span class="font-label-lg text-label-lg mt-1">Activity</span>
+</button>
+<!-- Security (Active) -->
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="font-label-lg text-label-lg mt-1 font-bold">Security</span>
+</button>
+<!-- Assistant (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-secondary-fixed-variant px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-full transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">auto_awesome</span>
+<span class="font-label-lg text-label-lg mt-1">Assistant</span>
+</button>
+</nav>
+</body></html>

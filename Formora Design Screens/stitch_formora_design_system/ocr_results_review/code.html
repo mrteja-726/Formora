@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora | OCR Results</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#fbf8fe",
+                    "tertiary": "#643c49",
+                    "primary-fixed": "#d6e3ff",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "surface": "#fbf8fe",
+                    "on-tertiary-fixed": "#31111d",
+                    "on-primary-fixed-variant": "#00468c",
+                    "tertiary-container": "#7e5361",
+                    "surface-variant": "#e4e1e7",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "inverse-primary": "#a9c7ff",
+                    "surface-container": "#f0edf2",
+                    "surface-container-highest": "#e4e1e7",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f3f0f5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#ffcddb",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#c8daff",
+                    "surface-tint": "#005db6",
+                    "outline-variant": "#c2c6d4",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "background": "#fbf8fe",
+                    "outline": "#727783",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "primary": "#00478d",
+                    "on-surface-variant": "#424752",
+                    "surface-container-low": "#f6f2f8",
+                    "inverse-surface": "#303034",
+                    "on-background": "#1b1b1f",
+                    "tertiary-fixed": "#ffd9e3",
+                    "secondary-container": "#dae2f9",
+                    "surface-container-high": "#eae7ed",
+                    "on-secondary-container": "#5c6478",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#565e71",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#dcd9de",
+                    "on-primary-fixed": "#001b3d",
+                    "secondary-fixed": "#dae2f9",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "on-secondary-fixed": "#131b2c",
+                    "primary-container": "#005eb8",
+                    "on-surface": "#1b1b1f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "24px",
+                    "sm": "8px",
+                    "md": "12px",
+                    "2xl": "32px",
+                    "3xl": "48px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "24px",
+                    "lg": "16px",
+                    "gutter": "16px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "label-lg": ["JetBrains Mono"],
+                    "title-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stagger-in {
+            animation: fadeInUp 0.4s ease forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 94, 184, 0.4);
+            box-shadow: 0 0 15px 2px rgba(0, 94, 184, 0.6);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg min-h-screen pb-24">
+<!-- TopAppBar from JSON Authority -->
+<header class="w-full sticky top-0 z-50 flex items-center justify-between px-margin-mobile h-16 w-full bg-surface-container-low">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white overflow-hidden">
+<span class="material-symbols-outlined">person</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary">Formora</span>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100 text-primary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<main class="max-w-screen-md mx-auto">
+<!-- Top Section: Document Preview -->
+<section class="p-margin-mobile">
+<div class="relative w-full aspect-[16/10] bg-surface-container-highest rounded-2xl overflow-hidden shadow-sm group">
+<img alt="Document Scan" class="w-full h-full object-cover grayscale-[0.2]" data-alt="A professional high-fidelity scan of a modern European identification card placed on a clean white surface. The image highlights sharp text, a holographic seal, and a portrait photo with realistic textures. Subtle digital scanning overlays like corner markers and a translucent blue scanning bar are visible, suggesting a high-tech OCR process within a secure digital vault environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB18cnwumL-Mj3pKEVAO5x5yADzwCobMSJi3-ENJxfEsN_yUlL8FpG25GSLMwVvJai5gn34Liqii2BKhBs4gnQVTC-TH9LwAiQ0tVp1kbJ8VmgKP2jbCl1YFH032Kc57pXTvTsznWLAvFhCr3Gl4j8WS7HWDDy3kz23tjpp-92xJdhFeVrHq2edUrPNaCzHDN6YouLmFFfgJMzB-hOEUaTgFZDwSDV99_oegDVuTlnJNtc-6H_ndpa84r1pCxBAJCYYZPYrjOD5I7pf"/>
+<!-- Scan Animation -->
+<div class="scanline"></div>
+<!-- Recognition Overlay Boxes (Simulated) -->
+<div class="absolute top-[20%] left-[10%] w-[40%] h-[10%] border-2 border-primary/50 rounded-sm bg-primary/5 animate-pulse"></div>
+<div class="absolute top-[35%] left-[10%] w-[30%] h-[8%] border-2 border-primary/50 rounded-sm bg-primary/5 animate-pulse"></div>
+<div class="absolute bottom-4 right-4 flex gap-2">
+<button class="bg-surface/90 backdrop-blur-md p-2 rounded-full shadow-sm hover:bg-surface text-primary transition-all">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="bg-surface/90 backdrop-blur-md p-2 rounded-full shadow-sm hover:bg-surface text-primary transition-all">
+<span class="material-symbols-outlined">rotate_right</span>
+</button>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<h2 class="font-title-lg text-title-lg text-on-surface">Verification Preview</h2>
+<div class="flex items-center gap-xs text-primary font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>AI PROCESSED</span>
+</div>
+</div>
+</section>
+<!-- Bottom Section: Extracted Data Card -->
+<section class="px-margin-mobile -mt-2">
+<div class="bg-surface-container-low rounded-2xl p-lg shadow-md border border-outline-variant/30">
+<div class="flex items-center justify-between mb-xl">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Extracted Data</h3>
+<div class="px-md py-xs bg-green-100 text-green-800 rounded-full flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-green-600 animate-pulse"></div>
+<span class="font-label-lg text-label-lg uppercase tracking-wider">98.2% Confidence</span>
+</div>
+</div>
+<!-- Staggered Data Fields -->
+<div class="space-y-md">
+<!-- Name -->
+<div class="stagger-in delay-1 group bg-surface rounded-xl p-md border border-transparent hover:border-primary-container transition-all">
+<div class="flex justify-between items-start">
+<label class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-tighter">Full Name</label>
+<span class="text-[14px] font-medium text-green-600">High</span>
+</div>
+<p class="font-title-lg text-title-lg text-on-surface mt-1">Jonathan Alexander Smith</p>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<!-- DOB -->
+<div class="stagger-in delay-2 group bg-surface rounded-xl p-md border border-transparent hover:border-primary-container transition-all">
+<div class="flex justify-between items-start">
+<label class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-tighter">Date of Birth</label>
+<span class="text-[14px] font-medium text-green-600">High</span>
+</div>
+<p class="font-title-lg text-title-lg text-on-surface mt-1">12 May 1988</p>
+</div>
+<!-- ID Number -->
+<div class="stagger-in delay-3 group bg-surface rounded-xl p-md border border-transparent hover:border-primary-container transition-all">
+<div class="flex justify-between items-start">
+<label class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-tighter">ID Number</label>
+<span class="text-[14px] font-medium text-yellow-600">Med</span>
+</div>
+<p class="font-title-lg text-title-lg text-on-surface mt-1">AX-99281-B</p>
+</div>
+</div>
+<!-- Address -->
+<div class="stagger-in delay-4 group bg-surface rounded-xl p-md border border-transparent hover:border-primary-container transition-all">
+<div class="flex justify-between items-start">
+<label class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-tighter">Registered Address</label>
+<span class="text-[14px] font-medium text-green-600">High</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface mt-1 leading-relaxed">221B Baker Street, Marylebone<br/>London NW1 6XE, United Kingdom</p>
+</div>
+<!-- Other Category -->
+<div class="stagger-in delay-5 group bg-surface rounded-xl p-md border border-transparent hover:border-primary-container transition-all">
+<div class="flex justify-between items-start">
+<label class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-tighter">Issue Date</label>
+<span class="text-[14px] font-medium text-error">Low</span>
+</div>
+<div class="flex items-center gap-sm mt-1">
+<p class="font-title-lg text-title-lg text-on-surface">Jan 2024</p>
+<span class="material-symbols-outlined text-error text-[20px]">warning</span>
+</div>
+</div>
+</div>
+<!-- Profile Matching Section -->
+<div class="stagger-in delay-6 mt-xl p-lg bg-primary/5 rounded-2xl border border-primary/20">
+<div class="flex items-center gap-sm mb-md text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<h4 class="font-title-md text-title-md font-bold">Smart Suggestions</h4>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-lg">We found a potential match for this document in your vault.</p>
+<div class="flex flex-col gap-sm">
+<button class="w-full flex items-center justify-between p-md bg-white rounded-xl border border-primary/30 hover:bg-primary-fixed/50 transition-all text-left">
+<div>
+<p class="font-title-md text-title-md text-primary">Match Existing Profile</p>
+<p class="text-label-lg text-label-lg text-on-surface-variant">John Smith (ID: AX-99...)</p>
+</div>
+<span class="material-symbols-outlined text-primary">chevron_right</span>
+</button>
+<div class="grid grid-cols-2 gap-sm">
+<button class="p-md bg-white/50 rounded-xl border border-outline-variant hover:bg-white transition-all text-center font-title-md text-title-md text-on-surface">
+                                Create New
+                            </button>
+<button class="p-md bg-white/50 rounded-xl border border-outline-variant hover:bg-white transition-all text-center font-title-md text-title-md text-on-surface">
+                                Merge Info
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Actions -->
+<section class="p-margin-mobile flex flex-col gap-md mb-xl">
+<button class="w-full h-14 bg-primary text-white rounded-2xl font-bold flex items-center justify-center gap-sm shadow-lg shadow-primary/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined">check_circle</span>
+                Accept and Save
+            </button>
+<div class="grid grid-cols-2 gap-md">
+<button class="h-12 border-2 border-outline-variant text-on-surface-variant rounded-2xl font-bold flex items-center justify-center gap-sm hover:bg-surface-variant transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+                    Edit Fields
+                </button>
+<button class="h-12 text-error font-medium flex items-center justify-center gap-xs hover:bg-error/5 rounded-2xl transition-all">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+                    Reject Scan
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar from JSON Authority -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface-container rounded-t-xl shadow-md z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-lg text-label-lg">Documents</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-label-lg text-label-lg">AI Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for field auto-fill effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const fields = document.querySelectorAll('.stagger-in');
+            fields.forEach((field, index) => {
+                // Already handled by CSS animation, but could add JS hooks for complex effects
+                field.addEventListener('click', () => {
+                    field.classList.add('ring-2', 'ring-primary/30');
+                    setTimeout(() => field.classList.remove('ring-2', 'ring-primary/30'), 1000);
+                });
+            });
+        });
+    </script>
+</body></html>

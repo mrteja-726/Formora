@@ -1,6 +1,12 @@
 import {
-  IsString, IsNotEmpty, IsArray, IsOptional,
-  ValidateNested, IsEnum, IsNumber, Min, Max,
+  IsString,
+  IsNotEmpty,
+  IsArray,
+  IsOptional,
+  ValidateNested,
+  IsNumber,
+  Min,
+  Max,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -9,23 +15,28 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class FormFieldDto {
   @ApiProperty({ example: '#first-name', description: 'CSS selector for the field' })
-  @IsString() @IsNotEmpty()
+  @IsString()
+  @IsNotEmpty()
   selector: string;
 
   @ApiProperty({ example: 'First Name' })
-  @IsString() @IsNotEmpty()
+  @IsString()
+  @IsNotEmpty()
   label: string;
 
   @ApiProperty({ example: 'text', description: 'HTML input type' })
-  @IsString() @IsNotEmpty()
+  @IsString()
+  @IsNotEmpty()
   type: string;
 
   @ApiPropertyOptional({ example: 'Enter your first name' })
-  @IsOptional() @IsString()
+  @IsOptional()
+  @IsString()
   placeholder?: string;
 
   @ApiPropertyOptional({ example: 'first_name', description: 'HTML name attribute' })
-  @IsOptional() @IsString()
+  @IsOptional()
+  @IsString()
   name?: string;
 }
 
@@ -33,7 +44,8 @@ export class FormFieldDto {
 
 export class AnalyzeFormDto {
   @ApiProperty({ example: 'linkedin.com' })
-  @IsString() @IsNotEmpty()
+  @IsString()
+  @IsNotEmpty()
   domain: string;
 
   @ApiProperty({ type: [FormFieldDto] })
@@ -56,10 +68,13 @@ export class ExecuteFillDto {
 
 export class RateSessionDto {
   @ApiProperty({ example: 95, minimum: 0, maximum: 100 })
-  @IsNumber() @Min(0) @Max(100)
+  @IsNumber()
+  @Min(0)
+  @Max(100)
   accuracy: number;
 
   @ApiPropertyOptional({ example: 'Phone field was wrong' })
-  @IsOptional() @IsString()
+  @IsOptional()
+  @IsString()
   feedback?: string;
 }

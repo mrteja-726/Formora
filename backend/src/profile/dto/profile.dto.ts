@@ -2,14 +2,7 @@
 // Profile DTOs
 // ============================================================
 
-import {
-  IsString,
-  IsNotEmpty,
-  IsOptional,
-  IsEnum,
-  MaxLength,
-  IsIn,
-} from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsEnum, MaxLength, IsIn } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export enum ProfileSection {

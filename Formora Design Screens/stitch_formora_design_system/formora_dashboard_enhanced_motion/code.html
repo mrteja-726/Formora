@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .circular-progress-bg {
+            background: radial-gradient(closest-side, transparent 79%, #e4e1e7 80% 100%);
+        }
+        
+        .circular-progress-fill {
+            background: radial-gradient(closest-side, transparent 79%, #c8daff 80% 100%),
+                        conic-gradient(#ffffff 0%, transparent 0%);
+            transition: conic-gradient 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes progress-fill {
+            from { mask: conic-gradient(#000 0%, transparent 0%); }
+            to { mask: conic-gradient(#000 72%, transparent 72%); }
+        }
+
+        .animate-progress {
+            background: conic-gradient(#ffffff 72%, transparent 0%);
+            mask: radial-gradient(closest-side, transparent 79%, #000 80%);
+            -webkit-mask: radial-gradient(closest-side, transparent 79%, #000 80%);
+            animation: progress-load 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes progress-load {
+            from { transform: rotate(-90deg) scale(0.8); opacity: 0; }
+            to { transform: rotate(-90deg) scale(1); opacity: 1; }
+        }
+
+        /* Smooth scrolling for horizontal areas */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-slide-in-right {
+            opacity: 0;
+            animation: slideInRight 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* Premium hover interaction */
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:active {
+            transform: scale(0.97);
+        }
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.6;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#fbf8fe",
+                      "surface-container": "#f0edf2",
+                      "primary-container": "#005eb8",
+                      "primary-fixed": "#d6e3ff",
+                      "tertiary": "#643c49",
+                      "on-surface-variant": "#424752",
+                      "tertiary-fixed-dim": "#eeb8c8",
+                      "on-tertiary-container": "#ffcddb",
+                      "secondary": "#565e71",
+                      "inverse-surface": "#303034",
+                      "on-primary-fixed-variant": "#00468c",
+                      "on-secondary-fixed": "#131b2c",
+                      "error-container": "#ffdad6",
+                      "outline-variant": "#c2c6d4",
+                      "surface-dim": "#dcd9de",
+                      "on-secondary-container": "#5c6478",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed": "#001b3d",
+                      "primary": "#00478d",
+                      "on-background": "#1b1b1f",
+                      "on-surface": "#1b1b1f",
+                      "secondary-fixed-dim": "#bec6dc",
+                      "inverse-primary": "#a9c7ff",
+                      "on-tertiary-fixed-variant": "#633b48",
+                      "surface-container-high": "#eae7ed",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#727783",
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#7e5361",
+                      "surface-bright": "#fbf8fe",
+                      "surface-tint": "#005db6",
+                      "surface": "#fbf8fe",
+                      "on-secondary-fixed-variant": "#3f4759",
+                      "surface-variant": "#e4e1e7",
+                      "surface-container-low": "#f6f2f8",
+                      "surface-container-highest": "#e4e1e7",
+                      "on-tertiary-fixed": "#31111d",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed": "#ffd9e3",
+                      "on-primary-container": "#c8daff",
+                      "inverse-on-surface": "#f3f0f5",
+                      "secondary-container": "#dae2f9",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#dae2f9",
+                      "primary-fixed-dim": "#a9c7ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "12px",
+                      "2xl": "24px",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "16px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "24px",
+                      "xs": "4px",
+                      "md": "12px",
+                      "3xl": "48px",
+                      "2xl": "32px",
+                      "sm": "8px",
+                      "xl": "24px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "label-lg": ["JetBrains Mono"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "title-md": ["Inter"],
+                      "title-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                      "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                      "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                      "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                      "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-32 overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="w-full sticky top-0 z-50 bg-surface-container-low h-16 flex items-center justify-between px-margin-mobile">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-fixed flex items-center justify-center border-2 border-surface-container-highest">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu4kbSqfASijjOgdOjOmFYijXmbOJO_y66kf-iZjPgMRL36Xg6Unb6i29VzQ2Kp_1mS7v8RwF2Ct37JfWF5ltfG_grkn7gvVu_lho9x820IIqn4KLy-rk7mUWLaH569P-219PLZw1nNSlQvVRjmTSPQR-2hNzzN3Ymbko0kCTweK-6gkapmzbTa2H1_87ICEreCXYc8vG3dp63L-lOBwVKmPlpXAducUhHXr0gKYT_mbPBIMxxr04esOQdertJmcRAsXTaslMafuK9"/>
+</div>
+<div class="flex items-center gap-1 cursor-pointer">
+<h1 class="font-headline-md text-title-md font-bold text-primary">Personal Vault</h1>
+<span class="material-symbols-outlined text-primary text-xl">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100 relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile max-w-2xl mx-auto pt-6 space-y-xl">
+<!-- Hero Section: Profile Completion with WebGL Shader -->
+<section class="bg-primary text-on-primary p-6 rounded-2xl shadow-md relative overflow-hidden group">
+<canvas id="hero-canvas"></canvas>
+<div class="relative z-10 flex items-start justify-between">
+<div class="space-y-sm">
+<h2 class="font-headline-md text-headline-lg-mobile font-bold leading-tight">You're almost there!</h2>
+<p class="font-body-md text-on-primary-container opacity-90">6 items remaining to secure your vault.</p>
+<ul class="mt-4 space-y-xs font-body-md text-sm opacity-80">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-on-primary-container"></span> Add Emergency Contact</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-on-primary-container"></span> Verify Identity Document</li>
+</ul>
+</div>
+<div class="relative flex-shrink-0">
+<!-- Animated Completion Ring -->
+<div class="w-24 h-24 rounded-full flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 circular-progress-bg rounded-full"></div>
+<div class="absolute inset-0 animate-progress rounded-full"></div>
+<div class="w-20 h-20 bg-primary/20 backdrop-blur-md rounded-full flex items-center justify-center text-center z-10 border border-white/20">
+<span class="font-headline font-bold text-xl">72%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Completion Breakdown Chips -->
+<section class="space-y-sm">
+<h3 class="font-headline font-semibold text-on-surface-variant text-sm px-1">Status Overview</h3>
+<div class="flex overflow-x-auto gap-sm hide-scrollbar pb-2">
+<!-- Identity (100%) -->
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container-highest rounded-full border border-outline-variant animate-slide-in-right stagger-1 cursor-pointer hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-green-600 text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-lg text-on-surface">Identity</span>
+</div>
+<!-- Education (80%) -->
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full border border-outline-variant animate-slide-in-right stagger-2 cursor-pointer hover:scale-105 active:scale-95 transition-transform">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="font-label-lg text-on-surface">Education</span>
+</div>
+<!-- Employment (60%) -->
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full border border-outline-variant animate-slide-in-right stagger-3 cursor-pointer hover:scale-105 active:scale-95 transition-transform">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="font-label-lg text-on-surface">Employment</span>
+</div>
+<!-- Banking (40%) -->
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-error-container text-on-error-container rounded-full animate-slide-in-right stagger-4 cursor-pointer hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-lg">error</span>
+<span class="font-label-lg">Banking</span>
+</div>
+<!-- Family (0%) -->
+<div class="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full border border-outline-variant animate-slide-in-right stagger-5 cursor-pointer hover:scale-105 active:scale-95 transition-transform">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="font-label-lg text-on-surface-variant">Family</span>
+</div>
+</div>
+</section>
+<!-- Quick Actions Grid -->
+<section class="grid grid-cols-2 gap-lg">
+<button class="animate-fade-in-up stagger-1 interactive-card flex flex-col items-center justify-center p-6 bg-secondary-container text-on-secondary-container rounded-2xl gap-md group">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container text-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+<span class="material-symbols-outlined text-2xl">document_scanner</span>
+</div>
+<span class="font-title-md text-sm font-semibold">Scan Document</span>
+</button>
+<button class="animate-fade-in-up stagger-2 interactive-card flex flex-col items-center justify-center p-6 bg-secondary-container text-on-secondary-container rounded-2xl gap-md group">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container text-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+<span class="material-symbols-outlined text-2xl">upload_file</span>
+</div>
+<span class="font-title-md text-sm font-semibold">Upload File</span>
+</button>
+<button class="animate-fade-in-up stagger-3 interactive-card flex flex-col items-center justify-center p-6 bg-secondary-container text-on-secondary-container rounded-2xl gap-md group">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container text-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+<span class="material-symbols-outlined text-2xl">person_add</span>
+</div>
+<span class="font-title-md text-sm font-semibold">Create Profile</span>
+</button>
+<button class="animate-fade-in-up stagger-4 interactive-card flex flex-col items-center justify-center p-6 bg-secondary-container text-on-secondary-container rounded-2xl gap-md group">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container text-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+<span class="material-symbols-outlined text-2xl">cloud_sync</span>
+</div>
+<span class="font-title-md text-sm font-semibold">Create Backup</span>
+</button>
+</section>
+<!-- Information Categories List -->
+<section class="space-y-lg">
+<h3 class="font-headline font-semibold text-on-surface-variant text-sm px-1">Vault Categories</h3>
+<!-- Personal Info Card -->
+<div class="animate-fade-in-up stagger-2 interactive-card bg-surface-container-low rounded-2xl p-lg border border-outline-variant flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined">badge</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Personal Info</h4>
+<p class="font-body-md text-xs text-on-surface-variant">100% complete • Secure</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 py-2 font-label-lg text-primary bg-primary/5 rounded-lg hover:bg-primary/10 transition-colors active:scale-95">Edit Details</button>
+<button class="flex-1 py-2 font-label-lg text-on-surface-variant hover:bg-surface-variant rounded-lg transition-colors active:scale-95">View Profile</button>
+</div>
+</div>
+<!-- Identity Docs Card -->
+<div class="animate-fade-in-up stagger-3 interactive-card bg-surface-container-low rounded-2xl p-lg border border-outline-variant flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-error-container/20 text-error">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Identity Docs</h4>
+<p class="font-body-md text-xs text-error font-medium">3 missing fields • Urgent</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-error w-[40%] h-full rounded-full"></div>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 py-2 font-label-lg text-primary border border-primary/20 rounded-lg hover:bg-primary/5 transition-colors active:scale-95">Upload Scan</button>
+<button class="flex-1 py-2 font-label-lg text-white bg-primary rounded-lg shadow-sm hover:brightness-110 transition-all active:scale-95">Fix Missing</button>
+</div>
+</div>
+<!-- Employment Card -->
+<div class="animate-fade-in-up stagger-4 interactive-card bg-surface-container-low rounded-2xl p-lg border border-outline-variant flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined">work</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Employment</h4>
+<p class="font-body-md text-xs text-on-surface-variant">60% complete</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<!-- Emergency Contacts -->
+<div class="animate-fade-in-up stagger-5 interactive-card bg-surface-container-low rounded-2xl p-lg border-2 border-dashed border-outline-variant flex items-center justify-between opacity-70 group hover:opacity-100 hover:border-primary transition-all">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl bg-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined">contact_emergency</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Emergency Contacts</h4>
+<p class="font-body-md text-xs text-on-surface-variant">Not started</p>
+</div>
+</div>
+<button class="p-2 bg-primary rounded-full text-white shadow-sm active:scale-90 hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary-container text-on-primary-container rounded-2xl shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface-container shadow-md rounded-t-xl z-50">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out px-4 py-1 rounded-full" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-lg text-label-lg">Documents</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out px-4 py-1 rounded-full" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-lg text-label-lg">AI Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-on-surface-variant/10 transition-all duration-200 ease-in-out px-4 py-1 rounded-full" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+</nav>
+<script>
+    // WebGL Shader Background Animation
+    const canvas = document.getElementById('hero-canvas');
+    const gl = canvas.getContext('webgl');
+
+    if (gl) {
+        const vertexSource = `
+            attribute vec2 position;
+            varying vec2 v_texCoord;
+            void main() {
+                v_texCoord = position * 0.5 + 0.5;
+                v_texCoord.y = 1.0 - v_texCoord.y;
+                gl_Position = vec4(position, 0.0, 1.0);
+            }
+        `;
+
+        const fragmentSource = `
+            precision highp float;
+            uniform float u_time;
+            uniform vec2 u_resolution;
+            varying vec2 v_texCoord;
+
+            void main() {
+                vec2 uv = v_texCoord;
+                vec3 color1 = vec3(0.0, 0.27, 0.54); // Darkened primary for readability
+                vec3 color2 = vec3(0.0, 0.45, 0.85); // Brightened primary accent
+                
+                float wave = sin(uv.x * 2.5 + u_time * 0.4) * cos(uv.y * 1.5 + u_time * 0.2);
+                wave += sin(uv.y * 3.5 - u_time * 0.3) * 0.4;
+                
+                vec3 finalColor = mix(color1, color2, clamp(wave * 0.5 + 0.5, 0.0, 1.0));
+                float dist = distance(uv, vec2(0.5));
+                finalColor *= 1.2 - dist * 0.4;
+                
+                gl_FragColor = vec4(finalColor, 1.0);
+            }
+        `;
+
+        function createShader(gl, type, source) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            return shader;
+        }
+
+        const program = gl.createProgram();
+        gl.attachShader(program, createShader(gl, gl.VERTEX_SHADER, vertexSource));
+        gl.attachShader(program, createShader(gl, gl.FRAGMENT_SHADER, fragmentSource));
+        gl.linkProgram(program);
+        gl.useProgram(program);
+
+        const buffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+
+        const position = gl.getAttribLocation(program, 'position');
+        gl.enableVertexAttribArray(position);
+        gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+
+        const timeLoc = gl.getUniformLocation(program, 'u_time');
+        const resLoc = gl.getUniformLocation(program, 'u_resolution');
+
+        function render(time) {
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight;
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            gl.uniform1f(timeLoc, time * 0.001);
+            gl.uniform2f(resLoc, canvas.width, canvas.height);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+            requestAnimationFrame(render);
+        }
+        requestAnimationFrame(render);
+    }
+</script>
+</body></html>

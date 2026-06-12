@@ -9,7 +9,9 @@ describe('EncryptionService', () => {
   let service: EncryptionService;
 
   beforeAll(() => {
-    const config = { getOrThrow: () => 'test-secret-key-for-unit-tests-only' } as any as ConfigService;
+    const config = {
+      getOrThrow: () => 'test-secret-key-for-unit-tests-only',
+    } as any as ConfigService;
     service = new EncryptionService(config);
   });
 

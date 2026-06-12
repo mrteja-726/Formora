@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vault AI - Profile Wizard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#dae2f9",
+                    "surface-tint": "#005db6",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "background": "#fbf8fe",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "on-background": "#1b1b1f",
+                    "surface-container-low": "#f6f2f8",
+                    "outline": "#727783",
+                    "surface": "#fbf8fe",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1b1b1f",
+                    "secondary-fixed": "#dae2f9",
+                    "on-secondary-container": "#5c6478",
+                    "inverse-surface": "#303034",
+                    "primary": "#00478d",
+                    "tertiary-container": "#7e5361",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "inverse-on-surface": "#f3f0f5",
+                    "secondary": "#565e71",
+                    "on-surface-variant": "#424752",
+                    "error": "#ba1a1a",
+                    "primary-container": "#005eb8",
+                    "tertiary-fixed": "#ffd9e3",
+                    "on-primary-fixed": "#001b3d",
+                    "on-primary-container": "#c8daff",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-secondary-fixed": "#131b2c",
+                    "on-tertiary-container": "#ffcddb",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dcd9de",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e4e1e7",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-high": "#eae7ed",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#f0edf2",
+                    "inverse-primary": "#a9c7ff",
+                    "surface-container-highest": "#e4e1e7",
+                    "primary-fixed": "#d6e3ff",
+                    "on-tertiary-fixed": "#31111d",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "tertiary": "#643c49",
+                    "surface-bright": "#fbf8fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "12px",
+                    "margin-desktop": "24px",
+                    "gutter": "16px",
+                    "xl": "24px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "2xl": "32px",
+                    "sm": "8px",
+                    "lg": "16px",
+                    "3xl": "48px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-lg": ["JetBrains Mono"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .progress-bar-step {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top AppBar - Following JSON Structure -->
+<header class="w-full top-0 sticky z-50 bg-surface-container-low shadow-sm">
+<div class="flex justify-between items-center px-lg py-sm w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full">menu</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Vault AI</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full">settings</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-3xl mx-auto px-margin-mobile py-xl md:px-margin-desktop">
+<!-- Progress Indicator -->
+<div class="mb-2xl">
+<div class="flex justify-between items-end mb-sm">
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest">Step 4 of 6</span>
+<span class="font-title-md text-title-md text-primary font-bold">Document Setup</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary progress-bar-step" style="width: 66.6%;"></div>
+</div>
+</div>
+<!-- Heading Section -->
+<section class="mb-xl">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-sm">Suggested Documents</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">We've identified these essentials based on your personal profile. Select the ones you want to initialize in your secure vault.</p>
+</section>
+<!-- Suggested Documents List (Bento-lite style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg mb-xl">
+<!-- Category Item 1 -->
+<label class="group relative flex items-center p-lg bg-surface-container rounded-xl border-2 border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-center gap-lg flex-grow">
+<div class="w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">badge</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">National ID Card</p>
+<p class="font-label-lg text-label-lg text-on-surface-variant">Identity Verification</p>
+</div>
+</div>
+<input checked="" class="w-6 h-6 rounded-md border-outline text-primary focus:ring-primary" type="checkbox"/>
+</label>
+<!-- Category Item 2 -->
+<label class="group relative flex items-center p-lg bg-surface-container rounded-xl border-2 border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-center gap-lg flex-grow">
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">public</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Passport</p>
+<p class="font-label-lg text-label-lg text-on-surface-variant">International Travel</p>
+</div>
+</div>
+<input checked="" class="w-6 h-6 rounded-md border-outline text-primary focus:ring-primary" type="checkbox"/>
+</label>
+<!-- Category Item 3 -->
+<label class="group relative flex items-center p-lg bg-surface-container rounded-xl border-2 border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-center gap-lg flex-grow">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Health Records</p>
+<p class="font-label-lg text-label-lg text-on-surface-variant">Vaccinations & Reports</p>
+</div>
+</div>
+<input class="w-6 h-6 rounded-md border-outline text-primary focus:ring-primary" type="checkbox"/>
+</label>
+<!-- Category Item 4 -->
+<label class="group relative flex items-center p-lg bg-surface-container rounded-xl border-2 border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-center gap-lg flex-grow">
+<div class="w-12 h-12 rounded-lg bg-outline-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Tax Documents</p>
+<p class="font-label-lg text-label-lg text-on-surface-variant">IRS & Local Filings</p>
+</div>
+</div>
+<input class="w-6 h-6 rounded-md border-outline text-primary focus:ring-primary" type="checkbox"/>
+</label>
+</div>
+<!-- Add Custom Button -->
+<button class="w-full flex items-center justify-center gap-sm p-lg border-2 border-dashed border-outline-variant rounded-xl text-primary font-title-md hover:bg-primary/5 transition-colors mb-xl">
+<span class="material-symbols-outlined">add</span>
+            Add Custom Document Category
+        </button>
+<!-- Information Card (Privacy First) -->
+<div class="bg-primary-container/10 border border-primary/20 p-lg rounded-2xl flex gap-lg items-start mb-2xl">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">shield</span>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-xs">Local-Only Storage</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Vault AI uses end-to-end encryption. Your documents are processed and stored locally on this device. We never see your private files.</p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center justify-between gap-lg mb-3xl">
+<button class="flex items-center gap-sm px-xl py-md rounded-full border border-outline text-on-surface hover:bg-surface-container-high transition-colors active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+                Back
+            </button>
+<button class="flex items-center gap-sm px-2xl py-md rounded-full bg-primary text-on-primary font-title-md shadow-md hover:shadow-lg transition-all active:scale-95">
+                Next
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation - Following JSON Structure -->
+<!-- Prohibited on sub-pages according to JSON rules (Task-Focused), 
+         but prompt explicitly asked for "Navigation bar from Home Dashboard at the bottom" -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-high shadow-lg rounded-t-3xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-lg text-label-lg">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-lg text-label-lg">Files</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-lg text-label-lg">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</a>
+</nav>
+<!-- Desktop Navigation Rail/Side Support (Visible on md+) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-20 flex-col items-center py-2xl bg-surface-container-low border-r border-outline-variant/10">
+<div class="mb-3xl">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div class="flex flex-col gap-xl">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-3 rounded-xl">chat</button>
+<button class="material-symbols-outlined bg-primary-container text-on-primary-container p-3 rounded-xl shadow-md">description</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-3 rounded-xl">search</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-3 rounded-xl">account_circle</button>
+</div>
+</aside>
+<script>
+        // Micro-interaction for list item checks
+        document.querySelectorAll('label').forEach(label => {
+            const checkbox = label.querySelector('input[type="checkbox"]');
+            label.addEventListener('click', () => {
+                if (checkbox.checked) {
+                    label.classList.add('bg-primary-container/20', 'border-primary/40');
+                } else {
+                    label.classList.remove('bg-primary-container/20', 'border-primary/40');
+                }
+            });
+            // Initial state check
+            if (checkbox.checked) {
+                label.classList.add('bg-primary-container/20', 'border-primary/40');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formora - Activity</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#31111d",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "on-secondary-container": "#5c6478",
+                    "on-background": "#1b1b1f",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffd9e3",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#7e5361",
+                    "primary-container": "#005eb8",
+                    "tertiary": "#643c49",
+                    "on-primary-fixed-variant": "#00468c",
+                    "surface-dim": "#dcd9de",
+                    "surface": "#fbf8fe",
+                    "secondary-fixed": "#dae2f9",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-surface": "#1b1b1f",
+                    "on-secondary": "#ffffff",
+                    "background": "#fbf8fe",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#d6e3ff",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#005db6",
+                    "secondary-container": "#dae2f9",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "surface-variant": "#e4e1e7",
+                    "secondary": "#565e71",
+                    "surface-bright": "#fbf8fe",
+                    "surface-container-high": "#eae7ed",
+                    "inverse-primary": "#a9c7ff",
+                    "surface-container-low": "#f6f2f8",
+                    "surface-container-highest": "#e4e1e7",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "inverse-on-surface": "#f3f0f5",
+                    "on-tertiary-container": "#ffcddb",
+                    "primary": "#00478d",
+                    "on-secondary-fixed": "#131b2c",
+                    "on-primary-container": "#c8daff",
+                    "on-surface-variant": "#424752",
+                    "inverse-surface": "#303034",
+                    "outline": "#727783",
+                    "on-primary-fixed": "#001b3d",
+                    "surface-container": "#f0edf2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-mobile": "16px",
+                    "2xl": "32px",
+                    "margin-desktop": "24px",
+                    "xs": "4px",
+                    "lg": "16px",
+                    "sm": "8px",
+                    "md": "12px",
+                    "3xl": "48px",
+                    "xl": "24px"
+            },
+            "fontFamily": {
+                    "label-lg": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "title-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low min-h-screen flex flex-col font-body-md text-on-surface antialiased overflow-hidden">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky bg-surface dark:bg-surface flex justify-between items-center px-margin-mobile py-sm z-50">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a person with a warm expression, softly lit against a minimalist, high-end studio background. The style is clean and sophisticated, reflecting a premium digital identity for a secure vault application. The color palette is composed of soft grays and warm skin tones, aligning with a professional light-mode UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwsUpz4jzlEuNN-AgT689S2UtwHCn9ZghxWw9vK-9PpXW2x9oumxWz7fdqfPfVlCf1TPQfyOm4C1MH95HNGcUI0PauvyPJBFg0c7iOi2UqqS6sgx3xW1OQudzG1GC8OW5wNMLC0lzgtusjUqjkigat0HqAWs-DTReeAJ9uyuEzDu3GuPMQ74b_KlpUS-8xpeNvoQRlUn3jQ52egNWm9nzYIFs64MaBDdNfeKa6P_dNIR9M_xjcTAHD5fsxg0ZsaAgH0g6sktsFJa7T"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">Activity</h1>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-primary dark:text-inverse-primary hover:bg-surface-container-low transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile text-center pb-32">
+<div class="max-w-md w-full animate-fade-in space-y-xl">
+<!-- Illustration Container -->
+<div class="relative w-64 h-64 mx-auto mb-lg">
+<img alt="No Recent Activity Illustration" class="w-full h-full object-contain mix-blend-multiply opacity-90 drop-shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkOM8rMq1XRPofIMfm8LdWzv63-W2Eqn7zvCDlQoszU0uymmOU2SI_rQmvFZCQYO24DY8-fhzl-N-SXdswylPVGgJmwb1u09h1_2t_SaL3ykY2JktcdOKFyaImA2YURCJgttqwb_MnQfLXKZBb34k3ZP8sfgsqtvk7wzzp4zhzNRfqaVYzikzDw9v7y3rSnDwyaxVCQLVF2OVIZ1WUhzOfyru7UgKBiLctuyo0h9BJ_tcL_uQkeEVojwu8nyCLmW5PfK8GkjoF2VWR"/>
+<!-- Subtle Decorative Element -->
+<div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-48 h-2 bg-on-surface/5 blur-xl rounded-full"></div>
+</div>
+<!-- Empty State Messaging -->
+<div class="space-y-sm">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-semibold">Nothing Here Yet</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[280px] mx-auto">
+                    Your recent uploads, edits and actions will appear here.
+                </p>
+</div>
+<!-- Action Button (Contextual Secondary) -->
+<button class="mt-xl px-xl py-md bg-primary-container text-on-primary-container font-title-md text-title-md rounded-full shadow-sm hover:shadow-md hover:bg-primary hover:text-on-primary transition-all active:scale-95 duration-100 flex items-center justify-center gap-sm mx-auto">
+<span class="material-symbols-outlined" data-icon="upload">upload</span>
+                Upload Document
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container dark:bg-surface-container shadow-md flex justify-around items-center px-margin-mobile pb-sm pt-xs">
+<!-- Home (Active as requested by semantic mapping of main app shell logic) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<!-- Documents -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 ease-in-out p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-lg text-label-lg">Documents</span>
+</a>
+<!-- AI Assistant -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 ease-in-out p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-lg text-label-lg">AI Assistant</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 ease-in-out p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+</nav>
+<!-- Material Symbols Dynamic Rendering Script -->
+<script>
+        document.querySelectorAll('[data-icon]').forEach(el => {
+            const iconName = el.getAttribute('data-icon');
+            if (el.tagName !== 'SPAN') {
+                const iconSpan = el.querySelector('.material-symbols-outlined');
+                if (iconSpan) iconSpan.textContent = iconName;
+            } else {
+                el.textContent = iconName;
+            }
+        });
+    </script>
+</body></html>

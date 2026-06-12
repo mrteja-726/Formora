@@ -1,0 +1,250 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Security - Formora</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001b3d",
+                    "background": "#fbf8fe",
+                    "surface": "#fbf8fe",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#303034",
+                    "tertiary": "#643c49",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-container-high": "#eae7ed",
+                    "secondary": "#565e71",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-primary-container": "#c8daff",
+                    "primary-container": "#005eb8",
+                    "on-tertiary-container": "#ffcddb",
+                    "surface-tint": "#005db6",
+                    "tertiary-fixed-dim": "#eeb8c8",
+                    "secondary-container": "#dae2f9",
+                    "inverse-on-surface": "#f3f0f5",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#7e5361",
+                    "on-tertiary-fixed-variant": "#633b48",
+                    "on-secondary-fixed-variant": "#3f4759",
+                    "surface-container-low": "#f6f2f8",
+                    "outline-variant": "#c2c6d4",
+                    "on-secondary-fixed": "#131b2c",
+                    "on-background": "#1b1b1f",
+                    "on-secondary-container": "#5c6478",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f0edf2",
+                    "on-surface-variant": "#424752",
+                    "primary": "#00478d",
+                    "on-surface": "#1b1b1f",
+                    "surface-variant": "#e4e1e7",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffd9e3",
+                    "surface-container-highest": "#e4e1e7",
+                    "secondary-fixed": "#dae2f9",
+                    "surface-bright": "#fbf8fe",
+                    "surface-dim": "#dcd9de",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#bec6dc",
+                    "outline": "#727783",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-tertiary-fixed": "#31111d",
+                    "inverse-primary": "#a9c7ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "md": "12px",
+                    "lg": "16px",
+                    "2xl": "32px",
+                    "margin-desktop": "24px",
+                    "gutter": "16px",
+                    "xl": "24px",
+                    "3xl": "48px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-lg": ["JetBrains Mono"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes staggerFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-float {
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        .stagger-item {
+            opacity: 0;
+            animation: staggerFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-background min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar Shell -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-background flex items-center justify-between px-margin-mobile py-md bg-surface">
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">menu</span>
+</button>
+<h1 class="font-title-lg text-title-lg text-on-background dark:text-on-background text-on-surface">Security</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-1 rounded-full hover:bg-surface-container-low transition-colors active:scale-95 duration-100">
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVi8SkWgvdlcmhyt3d7mTWREUiqrOrEI3J2k7PoIuf10lHlqyU5xBy_c72Am--IQ1WVi8rC7Q_Nn5OSHqdEat01pqUUILxISGjvkyoXsLver5WZvpqpfCgYH36ZMRkJdNklSFf96m9AsssPbYRzmfWtLiXlxvxs0sm1saaP_u6NAWBiO7-IzzK08HCNHSLkBVZKJcq4xyQxMdKTTrwsEJTqlc2CpTbDyOzFiPbxxBuCyTYdXoMszzl3t7mzGF-IUmNBOBsQXzZs6DE">
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile pb-32">
+<!-- High-Trust Illustration Container -->
+<div class="mb-xl animate-float">
+<div class="relative w-48 h-48 flex items-center justify-center">
+<!-- Aura Background -->
+<div class="absolute inset-0 bg-primary-container/20 rounded-full blur-3xl"></div>
+<img alt="Shield Protection Illustration" class="w-40 h-40 object-contain drop-shadow-xl relative z-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARhJw6Dmm2yFSiocHURX1-AqXnIeATzmkTlVh7KzzC7gyJ0CXMJqjv48z_YDZP3-h-jRVpz3_cD-d3MXZgw43YgG9mBpcSiULgEYi4JU8HpfdfjPoi3WqCy5fqt9FT32QIFRrjLGxvgDAMxi6l528XEkcRk1PeUN8Ng_zi452L5b_Sueti2SygpL4KgVAqHq1QV9rK9nkYx1h45yXSHcLRHffSyQCjpApTico72oiZT8xB7GynQrllhY1cbbXQxE21LT-dgNamR55y">
+</div>
+</div>
+<!-- Headline & Description -->
+<div class="text-center space-y-md mb-xl">
+<h2 class="font-headline-md text-headline-md text-on-surface stagger-item" style="animation-delay: 0.1s;">Protect Your Data</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm px-4 stagger-item" style="animation-delay: 0.2s;">
+                Create an encrypted backup to prevent accidental data loss and ensure your digital identity remains accessible only to you.
+            </p>
+</div>
+<!-- Benefits Section -->
+<div class="w-full max-w-md flex flex-wrap justify-center gap-sm mb-3xl stagger-item" style="animation-delay: 0.3s;">
+<div class="px-lg py-2 rounded-full border border-outline-variant bg-surface-container-lowest flex items-center gap-xs hover:bg-primary-container/10 transition-colors cursor-default">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-label-lg text-label-lg">Profiles</span>
+</div>
+<div class="px-lg py-2 rounded-full border border-outline-variant bg-surface-container-lowest flex items-center gap-xs hover:bg-primary-container/10 transition-colors cursor-default">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-lg text-label-lg">Documents</span>
+</div>
+<div class="px-lg py-2 rounded-full border border-outline-variant bg-surface-container-lowest flex items-center gap-xs hover:bg-primary-container/10 transition-colors cursor-default">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">document_scanner</span>
+<span class="font-label-lg text-label-lg">OCR Data</span>
+</div>
+<div class="px-lg py-2 rounded-full border border-outline-variant bg-surface-container-lowest flex items-center gap-xs hover:bg-primary-container/10 transition-colors cursor-default" style="transform: translateY(0px);">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</div>
+</div>
+<!-- Primary Call to Action -->
+<div class="w-full max-w-sm stagger-item" style="animation-delay: 0.4s;">
+<button class="w-full h-14 bg-primary text-on-primary rounded-full font-title-md text-title-md flex items-center justify-center gap-sm shadow-lg shadow-primary/20 hover:bg-primary-container hover:text-on-primary-container active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined">cloud_upload</span>
+                Create Backup
+            </button>
+<p class="text-center mt-md font-label-lg text-label-lg text-outline">
+                AES-256 Bit Encryption Standard
+            </p>
+</div>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg py-md pb-safe bg-surface-container shadow-md rounded-t-xl md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-secondary-container/50 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+<span class="font-label-lg text-label-lg">Vault</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-secondary-container/50 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-lg text-label-lg">Recent</span>
+</button>
+<!-- SECURITY TAB - ACTIVE STATE AS PER PROMPT -->
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="font-label-lg text-label-lg font-medium">Security</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-secondary-container/50 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-lg text-label-lg">Assistant</span>
+</button>
+</nav>
+<!-- Desktop Navigation Rail Placeholder -->
+<aside class="hidden md:flex flex-col fixed left-0 top-0 h-full w-20 bg-surface-container border-r border-outline-variant py-xl items-center gap-xl z-50">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center mb-xl">
+<span class="material-symbols-outlined text-on-primary">lock</span>
+</div>
+<nav class="flex flex-col gap-lg flex-grow">
+<button class="p-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">folder</span>
+</button>
+<button class="p-3 rounded-xl bg-primary-container text-on-primary-container transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+</button>
+<button class="p-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+</nav>
+<button class="p-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</aside>
+<script>
+        // Micro-interaction for benefits chips
+        document.querySelectorAll('.stagger-item div').forEach(chip => {
+            chip.addEventListener('mouseenter', () => {
+                chip.style.transform = 'translateY(-2px)';
+            });
+            chip.addEventListener('mouseleave', () => {
+                chip.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Simulating the 'Security' active state from the JSON hierarchy logic
+        // Normally determined by page routing/context.
+    </script>
+
+
+</body></html>

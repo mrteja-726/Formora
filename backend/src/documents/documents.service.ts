@@ -3,12 +3,16 @@
 // Upload, virus check, thumbnail generation, CRUD, presigned URLs
 // ============================================================
 
-import { Injectable, Logger, BadRequestException, NotFoundException, PayloadTooLargeException } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  BadRequestException,
+  NotFoundException,
+  PayloadTooLargeException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { StorageService } from '../common/storage/storage.service';
-import * as sharpLib from 'sharp';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const sharp = (sharpLib as any).default ?? sharpLib;
+import sharp from 'sharp';
 
 // ── Constants ─────────────────────────────────────────────
 const MAX_FILE_SIZE_BYTES = 25 * 1024 * 1024; // 25 MB
@@ -42,11 +46,7 @@ export class DocumentsService {
 
   // ── UPLOAD ────────────────────────────────────────────────
 
-  async upload(
-    userId: string,
-    file: Express.Multer.File,
-    documentType?: DocumentType,
-  ) {
+  async upload(userId: string, file: Express.Multer.File, documentType?: DocumentType) {
     // ── Validate ────────────────────────────────────────────
     if (file.size > MAX_FILE_SIZE_BYTES) {
       throw new PayloadTooLargeException('File exceeds 25 MB limit');
@@ -108,7 +108,7 @@ export class DocumentsService {
           sizeBytes: BigInt(file.size),
           storageKey,
           thumbnailKey,
-          documentType: (documentType ?? 'OTHER') as any,
+          documentType: documentType ?? 'OTHER',
           virusScanned: false,
         },
       });

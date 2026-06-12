@@ -15,6 +15,8 @@ import {
   UseGuards,
   HttpCode,
   HttpStatus,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -22,16 +24,16 @@ import {
   ApiBearerAuth,
   ApiParam,
   ApiResponse,
+  ApiConsumes,
+  ApiBody,
 } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { memoryStorage } from 'multer';
 
 import { ProfileService } from './profile.service';
 import { JwtAuthGuard } from '../auth/guards/auth.guard';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
-import {
-  UpsertProfileFieldDto,
-  BulkUpsertFieldsDto,
-  FieldVisibility,
-} from './dto/profile.dto';
+import { UpsertProfileFieldDto, BulkUpsertFieldsDto, FieldVisibility } from './dto/profile.dto';
 import { IsEnum } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -51,8 +53,13 @@ export class ProfileController {
   // ── GET PROFILE (metadata) ──────────────────────────────────
 
   @Get()
-  @ApiOperation({ summary: 'Get profile metadata (field keys, sections, visibility — no decrypted values)' })
-  @ApiResponse({ status: 200, description: 'Profile metadata with field index and completeness score' })
+  @ApiOperation({
+    summary: 'Get profile metadata (field keys, sections, visibility — no decrypted values)',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Profile metadata with field index and completeness score',
+  })
   async getProfile(@CurrentUser() user: { id: string }) {
     return {
       success: true,
@@ -65,10 +72,7 @@ export class ProfileController {
   @Get('fields/:fieldKey')
   @ApiOperation({ summary: 'Get a single decrypted profile field (access is audit-logged)' })
   @ApiParam({ name: 'fieldKey', example: 'first_name' })
-  async getField(
-    @CurrentUser() user: { id: string },
-    @Param('fieldKey') fieldKey: string,
-  ) {
+  async getField(@CurrentUser() user: { id: string }, @Param('fieldKey') fieldKey: string) {
     return {
       success: true,
       data: await this.profileService.getField(user.id, fieldKey, user.id),
@@ -80,10 +84,7 @@ export class ProfileController {
   @Put('fields/:fieldKey')
   @ApiOperation({ summary: 'Create or update a single encrypted profile field' })
   @ApiParam({ name: 'fieldKey', example: 'first_name' })
-  async upsertField(
-    @CurrentUser() user: { id: string },
-    @Body() dto: UpsertProfileFieldDto,
-  ) {
+  async upsertField(@CurrentUser() user: { id: string }, @Body() dto: UpsertProfileFieldDto) {
     return {
       success: true,
       data: await this.profileService.upsertField(user.id, dto),
@@ -95,10 +96,7 @@ export class ProfileController {
   @Post('fields/bulk')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Upsert multiple profile fields in one atomic transaction' })
-  async bulkUpsert(
-    @CurrentUser() user: { id: string },
-    @Body() dto: BulkUpsertFieldsDto,
-  ) {
+  async bulkUpsert(@CurrentUser() user: { id: string }, @Body() dto: BulkUpsertFieldsDto) {
     return {
       success: true,
       data: await this.profileService.bulkUpsertFields(user.id, dto),
@@ -111,10 +109,7 @@ export class ProfileController {
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Delete a profile field' })
   @ApiParam({ name: 'fieldKey', example: 'middle_name' })
-  async deleteField(
-    @CurrentUser() user: { id: string },
-    @Param('fieldKey') fieldKey: string,
-  ) {
+  async deleteField(@CurrentUser() user: { id: string }, @Param('fieldKey') fieldKey: string) {
     return {
       success: true,
       data: await this.profileService.deleteField(user.id, fieldKey),
@@ -156,6 +151,36 @@ export class ProfileController {
     return {
       success: true,
       data: await this.profileService.exportProfile(user.id),
+    };
+  }
+
+  // ── IMPORT ───────────────────────────────────────────────────
+
+  @Post('import')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: memoryStorage(),
+      limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB
+    }),
+  )
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: { type: 'string', format: 'binary' },
+      },
+      required: ['file'],
+    },
+  })
+  @ApiOperation({ summary: 'Import profile from LinkedIn JSON or Résumé PDF (max 5 MB)' })
+  async importProfile(
+    @CurrentUser() user: { id: string },
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return {
+      success: true,
+      data: await this.profileService.importProfileFromFile(user.id, file),
     };
   }
 }

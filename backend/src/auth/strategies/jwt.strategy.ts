@@ -9,7 +9,7 @@ import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../../prisma/prisma.service';
 
 export interface JwtPayload {
-  sub: string;   // userId
+  sub: string; // userId
   email: string;
   iat?: number;
   exp?: number;

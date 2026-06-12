@@ -26,7 +26,7 @@ import { MappingModule } from './mapping/mapping.module';
 
     // ── Rate limiting ─────────────────────────────────────
     ThrottlerModule.forRoot([
-      { name: 'short',  ttl: 60_000,      limit: 100 },
+      { name: 'short', ttl: 60_000, limit: 100 },
       { name: 'medium', ttl: 60_000 * 10, limit: 500 },
     ]),
 
@@ -57,8 +57,6 @@ import { MappingModule } from './mapping/mapping.module';
     OcrModule,
     MappingModule,
   ],
-  providers: [
-    { provide: APP_GUARD, useClass: ThrottlerGuard },
-  ],
+  providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
 export class AppModule {}
